@@ -1,0 +1,27 @@
+{
+  "name": "nfce",
+  "version": "1.0.0",
+  "description": "Ferramenta de testes NFCe",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Thiago Martins",
+  "license": "",
+  "devDependencies": {
+    "electron": "~1.6.2"
+  },
+  "dependencies": {
+    "hammer": "0.0.5",
+    "jquery": "^3.2.1",
+    "materialize": "^1.0.0"
+  }
+}
