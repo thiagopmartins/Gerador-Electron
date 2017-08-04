@@ -22,6 +22,7 @@
   "dependencies": {
     "hammer": "0.0.5",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "materialize": "^1.0.0"
   }
 }
