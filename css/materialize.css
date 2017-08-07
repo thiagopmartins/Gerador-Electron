@@ -5999,7 +5999,7 @@ textarea.materialize-textarea {
   border-bottom: 1px solid #9e9e9e;
   border-radius: 0;
   outline: none;
-  height: 3rem;
+  height: 1.7rem;
   width: 100%;
   font-size: 1rem;
   margin: 0 0 20px 0;
@@ -7129,8 +7129,8 @@ select:disabled {
 
 .file-field .btn, .file-field .btn-large {
   float: left;
-  height: 3rem;
-  line-height: 3rem;
+  height: 1.7rem;
+  line-height: 1.9rem;
 }
 
 .file-field span {
