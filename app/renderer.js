@@ -1,13 +1,11 @@
-const FerramentaController = require('./controller/FerramentaController.js');
-console.log('campos');
+const FerramentaController = require('./js/controller/FerramentaController.js');
 let ferramenta = new FerramentaController();
-document.querySelector('#btnGerador').addEventListener('submit', (event) => {
+document.getElementById('btnGerador').onclick = function(event) {
     event.preventDefault(); 
     ferramenta._atualizarGerador();
-    console.log('aaa');
-});
+};
 
-document.querySelector('#btnEstatisticas').click('submit', (event) => {
+document.getElementById('btnEstatisticas').onclick = function(event){
     event.preventDefault();
     ferramenta._atualizarEstatisticas();
-});
+};
