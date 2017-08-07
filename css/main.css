@@ -1,6 +1,7 @@
 .mainMenu {margin-top: 20px;}
 .mainMenu .btn {width: 100%;}
 .mainMenu #btnGerador, .mainMenu #btnEstatisticas  {color: #292b2c;background-color: #f8f8f8; border-color: #000; }
-.btn-floating .small {background: #2fb995; }
+.btn-floating .small {background:  #3fc6a7; }
+.input-field button[type="submit"] {background: #2fb995;}
 .file-field .btn {min-width: 116px;}
 .input-field.col label {line-height: 0px;}
