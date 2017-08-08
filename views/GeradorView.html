@@ -1,4 +1,4 @@
-<form action="#"> 
+<form action="#">
   <div class="col s9 center-align">
     <div class="file-field input-field">
       <div class="btn">
@@ -12,13 +12,18 @@
   </div>
   <div class="col s3 center-align">
     <div class="file-field input-field arquivoBaseModal">
-      <a class="modal-trigger" id="btnModal" href="" >
+      <a class="modal-trigger" id="btnModal" href="">
         <button class="waves-effect waves-light btn-floating">
           <i class="small material-icons right">assignment</i>
         </button>
         <span>Arquivo Base</span>
       </a>
     </div>
+  </div>
+
+  <div class="input-field col s12">
+    <input id="destino" type="text" class="validate" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service'>
+    <label class="active" for="destino">Caminho de Destino</label>
   </div>
 
   <div class="col s12 center-align">
@@ -30,15 +35,15 @@
 
           <input name="group1" type="radio" id="test2" />
           <label for="test2">Contingência</label>
-        </div>  
+        </div>
       </div>
-      <div class="range-field col s8">  
-        <label class="active" for="agentes">Quantidade de Agentes</label>  
+      <div class="range-field col s8">
+        <label class="active" for="agentes">Quantidade de Agentes</label>
         <input type="range" id="agentes" min="0" max="50" value="1" />
       </div>
-    </div>  
-  </div> 
-    
+    </div>
+  </div>
+
   <div class="col s12 center-align">
     <div class="row">
       <div class="col s1">
@@ -56,8 +61,8 @@
         <input id="quantidade" type="text" class="validate">
         <label class="active" for="quantidade">Quantidade de Notas</label>
       </div>
-    </div>  
-  </div> 
+    </div>
+  </div>
 
   <div class="col s12 center-align">
     <div class="row">
@@ -73,16 +78,16 @@
         <input id="sleep" type="text" class="validate">
         <label class="active" for="sleep">Sleep (ms)</label>
       </div>
-    </div>  
-  </div> 
-  
+    </div>
+  </div>
+
   <div class="col s12 center-align">
     <div class="row">
       <div class="input-field col s12 right-align">
         <button class="btn waves-effect waves-light" type="submit" name="action">Gerar Notas
           <i class="material-icons right">send</i>
         </button>
-      </div>  
-    </div>  
+      </div>
+    </div>
   </div>
 </form>
