@@ -26,7 +26,6 @@ document.getElementById('btnGerarNovaSerie').onclick = function(event){
 document.getElementById('arquivo').onchange = function(event){
     var caminho = document.getElementById("arquivo").files[0].path;
     let conteudo = fs.readFileSync(caminho, 'utf8');
-    $('<a class="waves-effect waves-light btn-floating modal-trigger" href="#modal1"><i class="material-icons right">assignment</i></a>').appendTo('.arquivoBaseModal');
     let caminhoModal = fs.readFileSync('./modal/arquivoBaseModal.html', 'utf8');
     document.getElementById("appendArquivoBaseModal").innerHTML = caminhoModal;
 };
