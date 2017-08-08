@@ -7,4 +7,9 @@
 .input-field.col label {line-height: 0px;}
 .mgTop-25 {margin-top: 25px;}
 .mainMenu .btnSelected {background-color: #6fd4bd !important; color: white !important;}
+#btnModal button {top: -12px;}
 .arquivoBaseModal span {color: rgba(0, 0, 0, 0.87); margin: 0px 0px 0px 10px}
+.modalElectron .modal-content {padding: 24px;}
+.modalElectron .modal-footer {border-radius: 0 0 2px 2px; background-color: #fafafa; padding: 4px 6px; height: 56px; width: 100%; text-align: right;}
+textarea.materialize-textarea {overflow-y: hidden; padding: .8rem 0 1.6rem 0; resize: none; height: 20rem; }
+textarea.materialize-textarea:focus:not([readonly]) {border: none;}

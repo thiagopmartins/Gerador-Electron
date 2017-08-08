@@ -44,7 +44,7 @@ app.on('activate', () => {
 ipcMain.on('ModalArquivo', () => {
   if(modalWindow == null){
     modalWindow = new BrowserWindow({
-      width: 500,
+      width: 700,
       height: 500,
       resizable:  true,
       movable: false,
