@@ -5,3 +5,5 @@
 .input-field button[type="submit"] {background: #2fb995;}
 .file-field .btn {min-width: 116px;}
 .input-field.col label {line-height: 0px;}
+.mgTop-25 {margin-top: 25px;}
+.mainMenu .btnSelected {background-color: #6fd4bd !important; color: white !important;}
