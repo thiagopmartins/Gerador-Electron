@@ -2,7 +2,8 @@ const FerramentaController = require('./js/controller/FerramentaController.js');
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
 let ferramenta = new FerramentaController();
-document.getElementById('btnGerador').onclick = function(event) {
+let $ = document.querySelector.bind(document);
+$('#btnGerador').onclick = function(event) {
     event.preventDefault(); 
     ferramenta._atualizarGerador();
     document.getElementById("btnGerador").classList.remove('btnSelected');
@@ -25,10 +26,10 @@ document.getElementById('btnGerarNovaSerie').onclick = function(event){
 };
 
 document.getElementById('arquivo').onchange = function(event){
-    var caminho = document.getElementById("arquivo").files[0].path;
-    let conteudo = fs.readFileSync(caminho, 'utf8');
+    let caminho = document.getElementById("arquivo").files[0].path;
+    ferramenta._arquivoBase(caminho);
 };
-document.getElementById('btnModal').onclick = function(event) {
+$('#btnModal').onclick = function(event) {
     event.preventDefault();
-    ipcRenderer.send('ModalArquivo');
+    ipcRenderer.send('ModalArquivo', ferramenta._arquivo);
 };
