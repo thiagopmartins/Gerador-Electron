@@ -1,4 +1,5 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
+const { ipcRenderer } = require('electron');
 const fs = require('fs');
 let ferramenta = new FerramentaController();
 document.getElementById('btnGerador').onclick = function(event) {
@@ -26,6 +27,8 @@ document.getElementById('btnGerarNovaSerie').onclick = function(event){
 document.getElementById('arquivo').onchange = function(event){
     var caminho = document.getElementById("arquivo").files[0].path;
     let conteudo = fs.readFileSync(caminho, 'utf8');
-    let caminhoModal = fs.readFileSync('./modal/arquivoBaseModal.html', 'utf8');
-    document.getElementById("appendArquivoBaseModal").innerHTML = caminhoModal;
+};
+document.getElementById('btnModal').onclick = function(event) {
+    event.preventDefault();
+    ipcRenderer.send('ModalArquivo');
 };
