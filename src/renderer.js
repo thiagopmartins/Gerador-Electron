@@ -24,14 +24,18 @@ window.onload = function(){
         $('#serie').value = Math.floor(Math.random() * 900) + 1;
         $('#lblSerie').classList.add('active');
     };
-    $('#arquivo').onsubmit = function(event){
+    $('#arquivo').onchange = function(event){
         let caminho = null;
         try {
             caminho = document.getElementById("arquivo").files[0].path;
             FerramentaController._arquivoBase(caminho);           
         } catch (Exception) {
-            console.log(Exception);
+            throw(Exception);
         }
+    };
+    $('#arquivo').onclick = function(event) {
+        console.log("olá");
+        document.getElementById("arquivo").value = "";
     };
     $('#btnModal').onclick = function(event) {
         event.preventDefault();
