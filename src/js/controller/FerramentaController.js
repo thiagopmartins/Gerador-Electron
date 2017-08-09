@@ -17,9 +17,7 @@ class FerramentaController{
     }
     _arquivoBase(model){
         ArquivoBaseModel.criarArquivo = model;
-    }
-    _arquivo(){
-        return ArquivoBaseModel.arquivo;
+        console.log(ArquivoBaseModel.arquivo);
     }
 };
 module.exports = FerramentaController;

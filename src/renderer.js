@@ -31,5 +31,5 @@ document.getElementById('arquivo').onchange = function(event){
 };
 $('#btnModal').onclick = function(event) {
     event.preventDefault();
-    ipcRenderer.send('ModalArquivo', ferramenta._arquivo);
+    ipcRenderer.send('ModalArquivo');
 };
