@@ -34,7 +34,6 @@ window.onload = function(){
         }
     };
     $('#arquivo').onclick = function(event) {
-        console.log("olá");
         document.getElementById("arquivo").value = "";
     };
     $('#btnModal').onclick = function(event) {
