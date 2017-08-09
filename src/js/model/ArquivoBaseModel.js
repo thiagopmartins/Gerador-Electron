@@ -5,8 +5,12 @@ class ArquivoBase{
     }
     static set criarArquivo(model){       
         this._model = model;
-        let conteudo = fs.readFileSync(this._model, 'utf8'); 
-        fs.writeFile("./data/arquivo.temp", conteudo, function(err) {
+        let dir = './data/';
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }       
+        let conteudo = fs.readFileSync(this._model, 'utf8');         
+        fs.writeFile(dir + 'arquivo.tmp', conteudo, function(err) {
             if(err) {
                 return console.log(err);
             }

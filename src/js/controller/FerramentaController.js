@@ -1,23 +1,27 @@
-const GeradorView = require('../views/GeradorView.js');
-const EstatisticasView = require('../views/EstatisticasView.js');
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
+let $ = document.querySelector.bind(document);
 class FerramentaController{
-    constructor(){
-        let $ = document.querySelector.bind(document);
-        this._elemento = $('#mainPanel');
-        this._atualizarGerador();
-    }
-    _atualizarGerador(){
-        let geradorView = new GeradorView(this._elemento);
-        geradorView.update();
-    }
-    _atualizarEstatisticas(){
-        let estatisticasView = new EstatisticasView(this._elemento);
-        estatisticasView.update();
-    }
-    _arquivoBase(model){
+    static _arquivoBase(model){
         ArquivoBaseModel.criarArquivo = model;
         console.log(ArquivoBaseModel.arquivo);
+    }
+    static _ativarGerador(){
+        $('#painelGerador').style.display = 'block';
+        $('#painelEstatistica').style.display = 'none';
+        $('#btnGerador').classList.remove('btnSelected');
+        $('#btnGerador').classList.add('btnSelected');
+        $('#btnGerador').classList.add('disabled');
+        $('#btnEstatisticas').classList.remove('btnSelected');
+        $('#btnEstatisticas').classList.remove('disabled');        
+    }
+    static _ativarEstatisticas(){
+        $('#painelGerador').style.display = 'none';
+        $('#painelEstatistica').style.display = 'block';
+        $('#btnEstatisticas').classList.remove('btnSelected');
+        $('#btnEstatisticas').classList.add('btnSelected');
+        $('#btnEstatisticas').classList.add('disabled');
+        $('#btnGerador').classList.remove('btnSelected');
+        $('#btnGerador').classList.remove('disabled');        
     }
 };
 module.exports = FerramentaController;

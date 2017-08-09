@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 
 const path = require('path')
 const url = require('url')
+const fs = require('fs');
 
 
 let mainWindow = null;
@@ -21,7 +22,13 @@ function createWindow () {
     slashes: true
   }));
 
-  mainWindow.on('closed', () => { mainWindow = null })
+  mainWindow.on('closed', () => {
+    let dir = './data/arquivo.tmp';
+    mainWindow = null;
+    if(fs.existsSync(dir)){
+      fs.unlinkSync(dir);
+    }
+  });
   
   mainWindow.openDevTools();
 }
