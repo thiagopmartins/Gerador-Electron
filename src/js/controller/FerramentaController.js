@@ -1,9 +1,9 @@
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
+const ConfigModel = require('../model/ConfigModel.js');
 let $ = document.querySelector.bind(document);
 class FerramentaController{
     static _arquivoBase(model){
         ArquivoBaseModel.criarArquivo = model;
-        console.log(ArquivoBaseModel.arquivo);
     }
     static _ativarGerador(){
         $('#painelGerador').style.display = 'block';
@@ -22,6 +22,9 @@ class FerramentaController{
         $('#btnEstatisticas').classList.add('disabled');
         $('#btnGerador').classList.remove('btnSelected');
         $('#btnGerador').classList.remove('disabled');        
+    }
+    static _iniciaConfig(){
+        new ConfigModel();     
     }
 };
 module.exports = FerramentaController;

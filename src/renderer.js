@@ -6,6 +6,8 @@ const fs = require('fs');
 window.onload = function(){
     let $ = document.querySelector.bind(document);
     FerramentaController._ativarGerador();
+    FerramentaController._iniciaConfig();
+    $('#btnModal').classList.add('disabled'); 
     console.log("Carregando aplicação!!!");
     $('#btnGerador').onclick = function(event) {
         event.preventDefault(); 
@@ -22,10 +24,14 @@ window.onload = function(){
         $('#serie').value = Math.floor(Math.random() * 900) + 1;
         $('#lblSerie').classList.add('active');
     };
-
-    $('#arquivo').onchange = function(event){
-        let caminho = document.getElementById("arquivo").files[0].path;
-        FerramentaController._arquivoBase(caminho);
+    $('#arquivo').onsubmit = function(event){
+        let caminho = null;
+        try {
+            caminho = document.getElementById("arquivo").files[0].path;
+            FerramentaController._arquivoBase(caminho);           
+        } catch (Exception) {
+            console.log(Exception);
+        }
     };
     $('#btnModal').onclick = function(event) {
         event.preventDefault();
