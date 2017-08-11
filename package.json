@@ -14,7 +14,7 @@
     "tutorial",
     "demo"
   ],
-  "author": "Thiago Martins",
+  "author": "Diego de Liz - Thiago Martins",
   "license": "",
   "devDependencies": {
     "electron": "~1.6.2"

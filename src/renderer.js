@@ -4,6 +4,7 @@ const fs = require('fs');
 
 
 window.onload = function(){
+    let emissaoValor = 1;
     let $ = document.querySelector.bind(document);
     FerramentaController._ativarGerador();
     FerramentaController._iniciaConfig();
@@ -39,5 +40,13 @@ window.onload = function(){
     $('#btnModal').onclick = function(event) {
         event.preventDefault();
         ipcRenderer.send('ModalArquivo');
-    };    
+        FerramentaController._salvarOrigem();
+    };
+    $('#gerarNotas').onclick = function(event){
+        event.preventDefault();
+        FerramentaController._gerarNotas();
+    };
+    $('#agentes').onchange = (event) =>{
+        $('#lblAgentes').innerHTML = 'Quantidade de Agentes: ' + $('#agentes').value;
+    };
 };

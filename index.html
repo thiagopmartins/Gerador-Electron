@@ -67,16 +67,18 @@
               <div class="row">
                 <div class="col s4">
                   <div class="left-align mgTop-25">
-                    <input name="group1" type="radio" id="test1" checked />
-                    <label for="test1">Normal</label>
+                    <select id="tipoEmissao">
+                        <input name="group1" type="radio" id="normal" value="1" checked />
+                        <label for="normal">Normal</label>
 
-                    <input name="group1" type="radio" id="test2" />
-                    <label for="test2">Contingência</label>
+                        <input name="group1" type="radio" id="contingencia" value="2" />
+                        <label for="contingencia">Contingência</label>
+                    </select>                    
                   </div>
                 </div>
                 <div class="range-field col s8">
-                  <label class="active" for="agentes">Quantidade de Agentes</label>
-                  <input type="range" id="agentes" min="0" max="50" value="1" />
+                  <label class="active" for="agentes" id="lblAgentes">Quantidade de Agentes: 1</label>
+                  <input type="range" id="agentes" min="1" max="50" value="1" />
                 </div>
               </div>
             </div>
@@ -92,7 +94,7 @@
                 </div>
                 <div class="input-field col s3">
                   <input id="numero" type="text" class="validate">
-                  <label class="active" for="numero">Número</label>
+                  <label class="active" for="numero">Número Inicial</label>
                 </div>
                 <div class="input-field col s3">
                   <input id="quantidade" type="text" class="validate">
@@ -121,7 +123,7 @@
             <div class="col s12 center-align">
               <div class="row">
                 <div class="input-field col s12 right-align">
-                  <button class="btn waves-effect waves-light" type="submit" name="action">Gerar Notas
+                  <button class="btn waves-effect waves-light" type="submit" name="action" id="gerarNotas">Gerar Notas
                     <i class="material-icons right">send</i>
                   </button>
                 </div>
