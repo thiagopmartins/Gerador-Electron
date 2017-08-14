@@ -19,6 +19,16 @@ class DadosModel{
     get nomenclatura(){ return $('#nomenclatura').value; }
     get fuso(){ return $('#fuso').value; }
     get sleep(){ return $('#sleep').value; }
+
+    set destino(valor){ $('#destino').value = valor; }
+    set origem(valor){ $('#arquivo').path = valor; }
+    set agentes(valor){ $('#agentes').value = valor; $('#lblAgentes').innerHTML = 'Quantidade de Agentes: ' + $('#agentes').value; }
+    set serie(valor){ $('#serie').value = valor; $('#lblSerie').classList.add('active'); }
+    set numero(valor){ $('#numero').value = valor; $('#lblNumero').classList.add('active'); }
+    set quantidade(valor){ $('#quantidade').value = valor; $('#lblQuantidade').classList.add('active'); }
+    set nomenclatura(valor){ $('#nomenclatura').value = valor; $('#lblNomenclatura').classList.add('active'); }
+    set fuso(valor){ $('#fuso').value = valor; $('#lblFuso').classList.add('active'); }
+    set sleep(valor){ $('#sleep').value = valor; $('#lblSleep').classList.add('active'); }
 }
 
 module.exports = DadosModel;

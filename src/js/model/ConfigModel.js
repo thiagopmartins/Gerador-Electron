@@ -1,6 +1,7 @@
 const jsonfile = require('jsonfile-promised');
 const DadosModel = require('../model/DadosModel.js');
 const fs = require('fs');
+const path = require('path');
 let dir = './data/';
 let filename = 'config.json';
 class ConfigModel{
@@ -9,8 +10,23 @@ class ConfigModel{
             fs.mkdirSync(dir);
         if(!fs.existsSync(dir + filename)) 
             this.criarConfig();
-        else
-            console.log("Arquivo de configuração já existe!"); 
+        else{
+            console.log("Arquivo de configuração já existe."); 
+            console.log("Carregando Configurações.");
+            let dadosModel = new DadosModel();
+            this.pegarDados()
+                .then((dados) => {
+                    dadosModel.destino = dados.destino;
+                    dadosModel.agentes = dados.agentes;
+                    dadosModel.serie = dados.serie;
+                    dadosModel.numero = dados.numero;
+                    dadosModel.quantidade = dados.quantidade;
+                    dadosModel.nomenclatura = dados.nomenclatura;
+                    dadosModel.fuso = dados.fuso;
+                    dadosModel.sleep = dados.sleep;
+                },(erro) =>{ console.log(erro); }
+            );             
+        }
     }
     criarConfig(){
         return jsonfile.writeFile(dir + filename,{})
