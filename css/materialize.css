@@ -6512,7 +6512,8 @@ textarea.materialize-textarea.validate + label:not(.label-icon).active {
   margin-bottom: 20px;
   display: block;
   opacity: 1;
-  position: static;
+  position: absolute;
+  z-index: 333;
 }
 
 .autocomplete-content li .highlight {

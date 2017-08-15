@@ -1,165 +1,176 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Ferramenta de Testes NFCe</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/main.css"  media="screen,projection"/>   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  </head>
-  <body>
-    <header>
-      <div class="navbar-fixed">
-        <nav class="menu-topo">
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Ferramenta NFCe</a>
-          </div>
-        </nav>
-      </div>     
-    </header>
-    <main>
-      <div class="container">  
-        <div class="row mainMenu">
-          <div class="col s6 center-align">
-            <div class="btn waves-effect waves-light btn-large btnSelected" type="button" id="btnGerador">
-              <span>Gerador de Massa</span>
-            </div>
-          </div>
-          <div class="col s6 center-align">
-            <div class="btn waves-effect waves-light btn-large" id="btnEstatisticas">
-              <span>Gerador de Estatísticas</span>
-            </div>
-          </div>
-        </div> 
 
-        <div class="row content" id="mainPanel">
-          <form action="#" id="painelGerador">
-            <div class="col s9 center-align">
-              <div class="file-field input-field">
-                <div class="btn">
-                  <span>Arquivo Base</span>
-                  <input type="file" id="arquivo" name="arquivo" />
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path " type="text" />
-                </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Ferramenta de Testes NFCe</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+  <link type="text/css" rel="stylesheet" href="css/main.css" media="screen,projection" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <header>
+    <div class="navbar-fixed">
+      <nav class="menu-topo">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">Ferramenta NFCe</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="row mainMenu">
+        <div class="col s6 center-align">
+          <div class="btn waves-effect waves-light btn-large btnSelected" type="button" id="btnGerador">
+            <span>Gerador de Massa</span>
+          </div>
+        </div>
+        <div class="col s6 center-align">
+          <div class="btn waves-effect waves-light btn-large" id="btnEstatisticas">
+            <span>Gerador de Estatísticas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row content" id="mainPanel">
+        <form action="#" id="painelGerador">
+          <div class="col s9 center-align">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Arquivo Base</span>
+                <input type="file" id="arquivo" name="arquivo" />
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path " type="text" />
               </div>
             </div>
-            <div class="col s3 center-align">
-              <div class="file-field input-field arquivoBaseModal">
-                <a class="modal-trigger" id="btnModal" href="">
+          </div>
+          <div class="col s3 center-align">
+            <div class="file-field input-field arquivoBaseModal">
+              <a class="modal-trigger" id="btnModal" href="">
                   <button class="waves-effect waves-light btn-floating">
                     <i class="small material-icons right">assignment</i>
                   </button>
                   <span>Arquivo Base</span>
                 </a>
-              </div>
             </div>
+          </div>
 
-            <div class="input-field col s12">
-              <input id="destino" type="text" class="validate" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service'>
-              <label class="active" for="destino">Caminho de Destino</label>
-            </div>
+          <div class="input-field col s12">
+            <input id="destino" type="text" class="validate" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service'>
+            <label class="active" for="destino">Caminho de Destino</label>
+          </div>
 
-            <div class="col s12 center-align">
-              <div class="row">
-                <div class="col s4">
-                  <div class="left-align mgTop-25">
-                    <select id="tipoEmissao">
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="col s4">
+                <div class="left-align mgTop-25">
+                  <select id="tipoEmissao">
                         <input name="group1" type="radio" id="normal" value="1" checked />
                         <label for="normal">Normal</label>
 
                         <input name="group1" type="radio" id="contingencia" value="2" />
                         <label for="contingencia">Contingência</label>
-                    </select>                    
-                  </div>
-                </div>
-                <div class="range-field col s8">
-                  <label class="active" for="agentes" id="lblAgentes">Quantidade de Agentes: 1</label>
-                  <input type="range" id="agentes" min="1" max="50" value="1" />
+                    </select>
                 </div>
               </div>
-            </div>
-
-            <div class="col s12 center-align">
-              <div class="row">
-                <div class="col s1">
-                  <a id="btnGerarNovaSerie" class="btn-floating waves-effect waves-light red"><i class="small material-icons">autorenew</i></a>
-                </div>
-                <div class="input-field col s3">
-                  <input id="serie" type="text" class="validate" value="" />
-                  <label id="lblSerie" class="active" for="serie">Serie</label>
-                </div>
-                <div class="input-field col s3">
-                  <input id="numero" type="text" class="validate">
-                  <label id="lblNumero" class="active" for="numero">Número Inicial</label>
-                </div>
-                <div class="input-field col s3">
-                  <input id="quantidade" type="text" class="validate">
-                  <label id="lblQuantidade" class="active" for="quantidade">Quantidade de Notas</label>
-                </div>
+              <div class="range-field col s8">
+                <label class="active" for="agentes" id="lblAgentes">Quantidade de Agentes: 1</label>
+                <input type="range" id="agentes" min="1" max="50" value="1" />
               </div>
             </div>
+          </div>
 
-            <div class="col s12 center-align">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input id="nomenclatura" type="text" class="validate">
-                  <label id="lblNomenclatura" class="active" for="nomenclatura">Nomenclatura do Arquivo</label>
-                </div>
-                <div class="input-field col s2">
-                  <input id="fuso" type="text" class="validate">
-                  <label id="lblFuso" class="active" for="fuso">Fuso Horário</label>
-                </div>
-                <div class="input-field col s2">
-                  <input id="sleep" type="text" class="validate">
-                  <label id="lblSleep" class="active" for="sleep">Sleep (ms)</label>
-                </div>
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="col s1">
+                <a id="btnGerarNovaSerie" class="btn-floating waves-effect waves-light red"><i class="small material-icons">autorenew</i></a>
+              </div>
+              <div class="input-field col s3">
+                <input id="serie" type="text" class="validate" value="" />
+                <label id="lblSerie" class="active" for="serie">Serie</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="numero" type="text" class="validate">
+                <label id="lblNumero" class="active" for="numero">Número Inicial</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="quantidade" type="text" class="validate">
+                <label id="lblQuantidade" class="active" for="quantidade">Quantidade de Notas</label>
+              </div>
+              <div class="input-field col s1">
+                <input id="sleep" type="text" class="validate">
+                <label id="lblSleep" class="active" for="sleep">Sleep</label>
               </div>
             </div>
+          </div>
 
-            <div class="col s12 center-align">
-              <div class="row">
-                <div class="input-field col s12 right-align">
-                  <button class="btn waves-effect waves-light" type="submit" name="action" id="gerarNotas">Gerar Notas
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="input-field col s5">
+                <input id="nomenclatura" type="text" class="validate">
+                <label id="lblNomenclatura" class="active" for="nomenclatura">Nomenclatura do Arquivo</label>
+              </div>
+              <div class="input-field col s5">
+                <input type="text" id="autocomplete-input" class="autocomplete">
+                <label for="autocomplete-input">CNPJ</label>
+              </div>
+              <div class="input-field col s1">
+                <input id="fuso" type="text" class="validate">
+                <label id="lblFuso" class="active" for="fuso">Fuso</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="input-field col s12 right-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="gerarNotas">Gerar Notas
                     <i class="material-icons right">send</i>
                   </button>
-                </div>
               </div>
             </div>
-          </form>    
-                
-          <form action="#" id="painelEstatistica">
-            <div class="col s12 center-align">
-              <div class="file-field input-field">
-                <div class="btn">
-                  <span>Carregar Arquivos</span>
-                  <input type="file" id="arquivo" name="arquivo" />
-                </div>
-                <div class="file-path-wrapper">
-                  <input class="file-path " type="text" />
-                </div>
-              </div>
-            </div>
+          </div>
+        </form>
 
-            <div class="col s12 center-align">
-              <div class="row">
-                <div class="input-field col s12 right-align">
-                  <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+        <form action="#" id="painelEstatistica">
+          <div class="col s12 center-align">
+            <div class="file-field input-field">
+              <div class="btn">
+                <span>Carregar Arquivos</span>
+                <input type="file" id="arquivo" name="arquivo" />
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path " type="text" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="input-field col s12 right-align">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
                     <i class="material-icons right">send</i>
                   </button>
-                </div>
               </div>
             </div>
-          </form>          
-        </div>
-      </div>       
-    </main>
-  </body>
-  <script>require('./src/renderer.js');</script>
-  <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="node_modules/hammer/hammer-min.js"></script>
-  <script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
+<script>
+  require('./src/renderer.js');
+</script>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript" src="node_modules/hammer/hammer-min.js"></script>
+<script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
+<script type="text/javascript" src="src/js/autocomplete.js"></script>
+
 </html>
