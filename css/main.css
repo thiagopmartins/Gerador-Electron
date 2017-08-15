@@ -1,14 +1,14 @@
 .mainMenu {margin-top: 20px;}
 .mainMenu .btn {width: 100%;}
-.mainMenu #btnGerador, .mainMenu #btnEstatisticas  {color: #9e9e9e;background-color: #f8f8f8; border-color: #000; }
+.mainMenu #btnGerador, .mainMenu #btnEstatisticas  {color: #a0a0a0;background-color: #f8f8f8; border-color: #000; }
 .btn-floating .small {background:  #3fc6a7; }
 .input-field button[type="submit"] {background: #2fb995;}
 .file-field .btn {min-width: 116px;}
 .input-field.col label {line-height: 0px;}
 .mgTop-25 {margin-top: 25px;}
 .mainMenu .btnSelected {background-color: #6fd4bd !important; color: white !important;}
-#btnModal button {top: -12px;}
-.arquivoBaseModal span {color: #9e9e9e; margin: 0px 0px 0px 10px}
+#btnModal button {top: -5px;}
+.arquivoBaseModal span {color: #a0a0a0; margin: 0px 0px 0px 10px}
 .modalElectron .modal-content {padding: 24px 24px 0px 24px; }
 .modalElectron .modal-footer {border-radius: 0 0 2px 2px; background-color: #fafafa; padding: 4px 6px; height: 40px; width: 100%; text-align: right;}
 textarea.materialize-textarea {overflow-y: auto; padding: .8rem 0 1.6rem 0;  min-height: 294px; max-height: 294px;}
@@ -20,3 +20,5 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 .chip.green {color: #4CAF50 !important;background-color: #E8F5E9 !important;}
 .chip.yellow {color: #ff9800 !important;background-color: #fff3e0 !important;}
 #notificacao { display: none; }
+.limpaFormulario {color: #a0a0a0; cursor: pointer; }
+.limpaFormulario .btn-floating {margin-right: 20px;}

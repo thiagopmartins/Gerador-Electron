@@ -91,18 +91,18 @@
                 <a id="btnGerarNovaSerie" class="btn-floating waves-effect waves-light red"><i class="small material-icons">autorenew</i></a>
               </div>
               <div class="input-field col s3">
-                <input id="serie" type="text" class="validate" value="" />
+                <input id="serie" type='number' step=1 data-length="3" class="validate" value="" />
                 <label id="lblSerie" class="active" for="serie">Serie</label>
               </div>
               <div class="input-field col s3">
-                <input id="numero" type="text" class="validate">
+                <input id="numero" type='number' step=1 data-length="9" class="validate" value="0" />
                 <label id="lblNumero" class="active" for="numero">Número Inicial</label>
               </div>
               <div class="input-field col s3">
-                <input id="quantidade" type="text" class="validate">
+                <input id="quantidade" type='number' step=1 class="validate">
                 <label id="lblQuantidade" class="active" for="quantidade">Quantidade de Notas</label>
               </div>
-              <div class="input-field col s1">
+              <div class="input-field col s2">
                 <input id="sleep" type="text" class="validate">
                 <label id="lblSleep" class="active" for="sleep">Sleep</label>
               </div>
@@ -119,8 +119,8 @@
                 <input type="text" id="autocomplete-input" class="autocomplete">
                 <label for="autocomplete-input">CNPJ</label>
               </div>
-              <div class="input-field col s1">
-                <input id="fuso" type="text" class="validate">
+              <div class="input-field col s2">
+                <input type='number' step=1 id="fuso" class="validate" value="-3">
                 <label id="lblFuso" class="active" for="fuso">Fuso</label>
               </div>
             </div>
@@ -128,10 +128,16 @@
 
           <div class="col s12 center-align">
             <div class="row">
-              <div class="input-field col s12 right-align">
-                <button class="btn waves-effect waves-light" type="submit" name="action" id="gerarNotas">Gerar Notas
-                    <i class="material-icons right">send</i>
-                  </button>
+              <div class="input-field col s6 left-align">
+                <a class="limpaFormulario" id="btnLimpaFormulario">
+                   <button class="btn-floating waves-effect waves-light red"><i class="material-icons">clear</i></button>
+                   Limpar Formulário
+                  </a>
+              </div>
+              <div class="input-field col s6 right-align">
+                <button class="btn waves-effect waves-light" type="submit" name="gerarNotas" id="gerarNotas">Gerar Notas
+                  <i class="material-icons right">send</i>
+                </button>
               </div>
             </div>
           </div>
@@ -153,9 +159,9 @@
           <div class="col s12 center-align">
             <div class="row">
               <div class="input-field col s12 right-align">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+                <button class="btn waves-effect waves-light" type="submit">Enviar
                     <i class="material-icons right">send</i>
-                  </button>
+                </button>
               </div>
             </div>
           </div>
@@ -166,11 +172,12 @@
 </body>
 <script>
   require('./src/renderer.js');
+
 </script>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-
 <script type="text/javascript" src="node_modules/hammer/hammer-min.js"></script>
 <script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
 <script type="text/javascript" src="src/js/autocomplete.js"></script>
+<script type="text/javascript" src="src/js/validate.js"></script>
 
 </html>

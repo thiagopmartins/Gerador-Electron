@@ -11,15 +11,10 @@ window.onload = function(){
 $('#textarea1').oninput = () =>{
     if(conteudo == $('#textarea1').value){
         $('#btnDescartar').classList.add('disabled'); 
-        console.log("igual"); 
     }  
     else{
        $('#btnDescartar').classList.remove('disabled'); 
-        console.log("diferente"); 
-    }
-    console.log(conteudo); 
-    console.log($('#textarea1').value); 
-    
+    }    
 };
 $('#btnSalvarNota').onclick = () => {
     ArquivoBaseModel.salvarArquivo = $('#textarea1').value;

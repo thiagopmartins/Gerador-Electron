@@ -49,4 +49,8 @@ window.onload = function(){
     $('#agentes').onchange = (event) =>{
         $('#lblAgentes').innerHTML = 'Quantidade de Agentes: ' + $('#agentes').value;
     };
+    $('#btnLimpaFormulario').onclick = function(event) {
+        event.preventDefault();
+        document.getElementById("painelGerador").reset();
+    };
 };
