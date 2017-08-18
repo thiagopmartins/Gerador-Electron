@@ -24,6 +24,7 @@ class ConfigModel{
                     dadosModel.nomenclatura = dados.nomenclatura;
                     dadosModel.fuso = dados.fuso;
                     dadosModel.sleep = dados.sleep;
+                    dadosModel.cnpj = dados.cnpj;
                 },(erro) =>{ console.log(erro); }
             );             
         }
@@ -64,7 +65,8 @@ class ConfigModel{
             quantidade: dadosModel.quantidade,
             nomenclatura: dadosModel.nomenclatura,
             fuso: dadosModel.fuso,
-            sleep: dadosModel.sleep
+            sleep: dadosModel.sleep,
+            cnpj: dadosModel.cnpj
         }
         jsonfile.writeFile(dir + filename, dados, {spaces: 2})
                 .then(() => {

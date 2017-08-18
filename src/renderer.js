@@ -4,12 +4,12 @@ const fs = require('fs');
 
 
 window.onload = function(){
+    console.log("Carregando aplicação!!!");
     let emissaoValor = 1;
     let $ = document.querySelector.bind(document);
     FerramentaController._ativarGerador();
     FerramentaController._iniciaConfig();
-    $('#btnModal').classList.add('disabled'); 
-    console.log("Carregando aplicação!!!");
+    $('#btnModal').classList.add('disabled');  
     $('#btnGerador').onclick = function(event) {
         event.preventDefault(); 
         FerramentaController._ativarGerador();

@@ -19,6 +19,7 @@ class DadosModel{
     get nomenclatura(){ return $('#nomenclatura').value; }
     get fuso(){ return $('#fuso').value; }
     get sleep(){ return $('#sleep').value; }
+    get cnpj(){ return $('#CNPJ').value; }
 
     set destino(valor){ $('#destino').value = valor; }
     set origem(valor){ $('#arquivo').path = valor; }
@@ -29,6 +30,7 @@ class DadosModel{
     set nomenclatura(valor){ $('#nomenclatura').value = valor; $('#lblNomenclatura').classList.add('active'); }
     set fuso(valor){ $('#fuso').value = valor; $('#lblFuso').classList.add('active'); }
     set sleep(valor){ $('#sleep').value = valor; $('#lblSleep').classList.add('active'); }
+    set cnpj(valor){ $('#CNPJ').value = valor; $('#lblCNPJ').classList.add('active'); }    
 }
 
 module.exports = DadosModel;
