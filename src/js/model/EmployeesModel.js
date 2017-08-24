@@ -8,15 +8,13 @@ class EmployeesModal{
     }
     get funcionarios(){
         let funcionario;
+        let name;
+        let login;
         for(funcionario in data ){
             Object.getOwnPropertyNames(data[funcionario]).forEach(function(val, idx, array) {
-                let nome = "";
-                let login = "";
-
-                login = data[funcionario]['EmployeeLogon'];
-                nome = data[funcionario]['EmployeeName'];
-     
-                document.getElementById("showEmployeesList").innerHTML += '<ul class="listEmployees"><li class="viewEmployees"><img src="http://172.31.255.126/BusinessCard/Images/faces/' + login + '.jpg?n=54"><p class="employeesNames">' + nome + '</p></li></ul>';         
+                if(val == 'employeeLogon') {
+                    document.getElementById("showEmployeesList").innerHTML += '<ul class="listEmployees"><li class="viewEmployees"><img src="http://172.31.255.126/BusinessCard/Images/faces/' + data[funcionario][val] + '.jpg?n=54"><p class="employeesNames">' + data[funcionario][val] + '</p></li></ul>';     
+                }              
             });
                                 
         } 
