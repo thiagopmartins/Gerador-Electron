@@ -2,7 +2,6 @@ const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const ConfigModel = require('../model/ConfigModel.js');
 let $ = document.querySelector.bind(document);
 let configModel;
-let employeesModel;
 class FerramentaController{
     static _arquivoBase(model){
         ArquivoBaseModel.criarArquivo = model;
