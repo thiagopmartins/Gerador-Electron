@@ -74,7 +74,7 @@ ipcMain.on('ModalArquivo', () => {
 ipcMain.on('ModalEmployees', () => {
   if(ModalEmployees == null){
     ModalEmployees = new BrowserWindow({
-      width: 700,
+      width: 770,
       height: 500,
       resizable:  true,
       movable: false,
