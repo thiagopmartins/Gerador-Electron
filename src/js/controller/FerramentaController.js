@@ -1,6 +1,5 @@
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const ConfigModel = require('../model/ConfigModel.js');
-const EmployeesModel = require('../model/EmployeesModel.js');
 let $ = document.querySelector.bind(document);
 let configModel;
 let employeesModel;
@@ -16,9 +15,6 @@ class FerramentaController{
         $('#btnGerador').classList.add('disabled');
         $('#btnEstatisticas').classList.remove('btnSelected');
         $('#btnEstatisticas').classList.remove('disabled');  
-        employeesModel = new EmployeesModel();
-        employeesModel.funcionarios;
-
     }
     static _ativarEstatisticas(){
         $('#painelGerador').style.display = 'none';
