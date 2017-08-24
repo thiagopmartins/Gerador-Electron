@@ -2,7 +2,6 @@ const FerramentaController = require('./js/controller/FerramentaController.js');
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
 
-
 window.onload = function(){
     console.log("Carregando aplicação!!!");
     let emissaoValor = 1;
