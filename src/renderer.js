@@ -6,6 +6,7 @@ const fs = require('fs');
 window.onload = function(){
     let emissaoValor = 1;
     let $ = document.querySelector.bind(document);
+    let conteudo = "showEmployees";
     FerramentaController._ativarGerador();
     FerramentaController._iniciaConfig();
     $('#btnModal').classList.add('disabled'); 
@@ -52,5 +53,17 @@ window.onload = function(){
     $('#btnLimpaFormulario').onclick = function(event) {
         event.preventDefault();
         document.getElementById("painelGerador").reset();
+    };
+    $('#nomenclatura').oninput = () =>{
+        if(conteudo == $('#nomenclatura').value){
+            document.getElementById('showEmployees').style.display = 'block'; 
+        }  
+        else{
+            document.getElementById('showEmployees').style.display = 'none'; 
+        }    
+    };
+    $('#showEmployees').onclick = function(event) {
+        event.preventDefault();
+        ipcRenderer.send('ModalEmployees');
     };
 };
