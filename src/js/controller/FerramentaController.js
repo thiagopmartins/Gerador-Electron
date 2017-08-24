@@ -1,6 +1,6 @@
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const ConfigModel = require('../model/ConfigModel.js');
-const EmployeesModal = require('../model/EmployeesModal.js');
+const EmployeesModel = require('../model/EmployeesModel.js');
 let $ = document.querySelector.bind(document);
 let configModel;
 let employeesModel;
@@ -16,7 +16,7 @@ class FerramentaController{
         $('#btnGerador').classList.add('disabled');
         $('#btnEstatisticas').classList.remove('btnSelected');
         $('#btnEstatisticas').classList.remove('disabled');  
-        employeesModel = new EmployeesModal();
+        employeesModel = new EmployeesModel();
         employeesModel.funcionarios;
 
     }
