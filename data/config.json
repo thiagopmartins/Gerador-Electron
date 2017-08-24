@@ -1,1 +1,13 @@
-{}
+{
+  "origem": "G:\\Gerador-Electron-master\\teste.txt",
+  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service",
+  "tipoEmissao": "1",
+  "agentes": "13",
+  "serie": "",
+  "numero": "3",
+  "quantidade": "10",
+  "nomenclatura": "dadsa",
+  "fuso": "-3",
+  "sleep": "3",
+  "cnpj": "06255692000103"
+}
