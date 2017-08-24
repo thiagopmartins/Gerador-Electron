@@ -1,5 +1,6 @@
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const ConfigModel = require('../model/ConfigModel.js');
+
 let $ = document.querySelector.bind(document);
 let configModel;
 class FerramentaController{

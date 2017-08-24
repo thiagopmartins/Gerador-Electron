@@ -1,4 +1,3 @@
-const jsonfile = require('jsonfile-promised');
 let data;
 class EmployeesModal{    
     constructor(){
@@ -12,7 +11,7 @@ class EmployeesModal{
         for(funcionario in data ){
             Object.getOwnPropertyNames(data[funcionario]).forEach(function(val, idx, array) {
                 if(val == 'employeeName')
-                    console.log(val + ' -> ' + data[funcionario][val]);
+                    console.log(val + ' -> ' + data[funcionario][val]);;               
             });
                                 
         } 
