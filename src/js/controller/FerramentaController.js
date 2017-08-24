@@ -1,7 +1,9 @@
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const ConfigModel = require('../model/ConfigModel.js');
+const EmployeesModal = require('../model/EmployeesModal.js');
 let $ = document.querySelector.bind(document);
 let configModel;
+let employeesModel;
 class FerramentaController{
     static _arquivoBase(model){
         ArquivoBaseModel.criarArquivo = model;
@@ -13,7 +15,10 @@ class FerramentaController{
         $('#btnGerador').classList.add('btnSelected');
         $('#btnGerador').classList.add('disabled');
         $('#btnEstatisticas').classList.remove('btnSelected');
-        $('#btnEstatisticas').classList.remove('disabled');        
+        $('#btnEstatisticas').classList.remove('disabled');  
+        employeesModel = new EmployeesModal();
+        employeesModel.funcionarios;
+
     }
     static _ativarEstatisticas(){
         $('#painelGerador').style.display = 'none';
