@@ -1092,7 +1092,7 @@
 }
 
 .green {
-  background-color: #4CAF50 !important;
+  background-color: #2fb995 !important;
 }
 
 .green-text {
@@ -4918,8 +4918,7 @@ small {
   display: block;
   position: fixed;
   z-index: 10000;
-  top:20px;
-  
+  top:64px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -5303,19 +5302,18 @@ button.btn-floating {
 
 .fixed-action-btn.horizontal ul {
   text-align: right;
-  right: 64px;
-  top: 50%;
+  right: -190px;
+  top: 20%;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   height: 100%;
   left: auto;
   width: 500px;
-  /*width 100% only goes to width of button container */
 }
 
 .fixed-action-btn.horizontal ul li {
   display: inline-block;
-  margin: 15px 15px 0 0;
+  margin: 15px -10px 0 0;
 }
 
 .fixed-action-btn.toolbar {

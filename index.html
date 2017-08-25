@@ -16,14 +16,28 @@
     <div class="navbar-fixed">
       <nav class="menu-topo">
         <div class="nav-wrapper">
-          <div class="brand-logo">Ferramenta NFCe</div>
           <div class="container">
             <div class="row">
-              <div class="col s1">
+              <div class="col s6">
                 <div class="leftMenu" id="leftMenu">
-                  <span id="showEmployees"></span>
+                  <div class="logo">Ferramenta NFCe</div>
                 </div>
               </div>
+              <div class="col s6">
+                <div style="position: relative; height: 70px;">
+                  <div class="fixed-action-btn horizontal click-to-toggle menuTopo">
+                    <a class="btn-floating btn-large green">
+                      <i class="material-icons">menu</i>
+                    </a>
+                    <ul id="menuTopo">
+                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnGerador"><i class="material-icons">description</i></a></li>
+                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnEstatisticas"><i class="material-icons">insert_chart</i></a></li>
+                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes"><i class="material-icons">settings</i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -32,21 +46,19 @@
   </header>
   <main>
     <div class="container">
-      <div class="row mainMenu">
-        <div class="col s6 center-align">
-          <div class="btn waves-effect waves-light btn-large btnSelected" type="button" id="btnGerador">
-            <span>Gerador de Massa</span>
-          </div>
-        </div>
-        <div class="col s6 center-align">
-          <div class="btn waves-effect waves-light btn-large" id="btnEstatisticas">
-            <span>Gerador de Estatísticas</span>
-          </div>
-        </div>
-      </div>
 
       <div class="row content" id="mainPanel">
         <form action="#" id="painelGerador">
+
+          <div class="row mainMenu">
+            <div class="col s6">
+              <div class="chip">
+                <i class="material-icons iconTitle">description</i>
+                <span class="spanTitle">Gerador de Massa</span>
+              </div>
+            </div>
+          </div>
+
           <div class="col s9 center-align">
             <div class="file-field input-field">
               <div class="btn">
@@ -153,6 +165,16 @@
         </form>
 
         <form action="#" id="painelEstatistica">
+
+          <div class="row mainMenu">
+            <div class="col s6">
+              <div class="chip">
+                <i class="material-icons iconTitle">insert_chart</i>
+                <span class="spanTitle">Gerador de Estatísticas</span>
+              </div>
+            </div>
+          </div>
+
           <div class="col s12 center-align">
             <div class="file-field input-field">
               <div class="btn">

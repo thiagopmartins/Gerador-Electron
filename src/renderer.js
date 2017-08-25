@@ -56,7 +56,7 @@ window.onload = function(){
     };
     $('#nomenclatura').oninput = () =>{
         if(conteudo == $('#nomenclatura').value){
-            document.getElementById('showEmployees').style.display = 'block'; 
+            $('#menuTopo').innerHTML += '<li><a class="btn-floating btnMenu amber accent-4" id="showEmployees"><i class="material-icons">people</i></a></li>'; 
         }  
         else{
             document.getElementById('showEmployees').style.display = 'none'; 
