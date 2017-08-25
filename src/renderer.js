@@ -4,6 +4,7 @@ const fs = require('fs');
 
 window.onload = function(){
     console.log("Carregando aplicação!!!");
+    Materialize.toast('Lista Atualizada!', 3000);
     let emissaoValor = 1;
     let $ = document.querySelector.bind(document);
     let conteudo = "showEmployees";
