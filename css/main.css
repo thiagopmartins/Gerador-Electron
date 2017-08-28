@@ -6,6 +6,7 @@
 .file-field .btn {min-width: 116px;}
 .input-field.col label {line-height: 0px;}
 .mgTop-25 {margin-top: 25px;}
+.btnMenuTopo {position: relative; height: 70px;}
 .menuTopo {position: absolute; right: 24px; top: 0px;}
 .menuTopo .btnMenu {transform: scaleY(0.4) scaleX(0.4) translateY(0px) translateX(40px); opacity: 0; color: black !important;}
 .menuTopo .btnMenu i {color: black !important;}
