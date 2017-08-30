@@ -54,12 +54,13 @@ window.onload = function(){
         event.preventDefault();
         document.getElementById("painelGerador").reset();
     };
-    $('#nomenclatura').oninput = () =>{
+    $('#nomenclatura').oninput = (event) =>{
         if(conteudo == $('#nomenclatura').value){
+            $('#menuTopo').style.right = '-190px';
             $('#showEmployees').innerHTML = '<a class="btn-floating btnMenu amber accent-4"><i class="material-icons">people</i></a>'; 
         }  
         else{
-            document.getElementById('showEmployees').style.display = 'none'; 
+            $('#menuTopo').style.right = '-250px'; 
         }    
     };
     $('#showEmployees').onclick = function(event) {
