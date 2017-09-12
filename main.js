@@ -4,9 +4,9 @@ const path = require('path')
 const url = require('url')
 const fs = require('fs');
 
-
 let mainWindow = null;
 let modalWindow = null;
+let ModalCnpj = null;
 let ModalEmployees = null;
 
 function createWindow () {
@@ -33,7 +33,6 @@ function createWindow () {
   
   mainWindow.openDevTools();
 }
-
 
 app.on('ready', createWindow);
 
@@ -69,6 +68,28 @@ ipcMain.on('ModalArquivo', () => {
     }));   
   }
   modalWindow.on('closed', () => { modalWindow = null });  
+});
+
+ipcMain.on('ModalCnpj', () => {
+  if(ModalCnpj == null){
+    ModalCnpj = new BrowserWindow({
+      width: 700,
+      height: 500,
+      resizable:  true,
+      movable: false,
+      minimizable: false,
+      modal: true,
+      autoHideMenuBar: true,
+      parent: mainWindow,
+      icon: path.join(__dirname, 'img/logo.png')
+    });
+    ModalCnpj.loadURL(url.format({
+      pathname: path.join(__dirname, 'views/CnpjModal.html'),
+      protocol: 'file:',
+      slashes: true
+    }));   
+  }
+  ModalCnpj.on('closed', () => { ModalCnpj = null });  
 });
 
 ipcMain.on('ModalEmployees', () => {

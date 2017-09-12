@@ -132,13 +132,16 @@
 
           <div class="col s12 center-align">
             <div class="row">
+              <div class="col s1">
+                <a id="btnCadastrarCnpj" class="btn-floating waves-effect waves-light red"><i class="small material-icons">list</i></a>
+              </div>
+              <div class="input-field col s4">
+                <input id="CNPJ" type="text" id="autocomplete-input" class="autocomplete">
+                <label id="lblCNPJ" for="autocomplete-input">CNPJ</label>
+              </div>
               <div class="input-field col s5">
                 <input id="nomenclatura" type="text" class="validate">
                 <label id="lblNomenclatura" class="active" for="nomenclatura">Nomenclatura do Arquivo</label>
-              </div>
-              <div class="input-field col s5">
-                <input id="CNPJ" type="text" id="autocomplete-input" class="autocomplete">
-                <label id="lblCNPJ" for="autocomplete-input">CNPJ</label>
               </div>
               <div class="input-field col s2">
                 <input type='number' step=1 id="fuso" class="validate" value="-3">
@@ -197,6 +200,7 @@
             </div>
           </div>
         </form>
+
       </div>
     </div>
   </main>

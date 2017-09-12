@@ -1,11 +1,11 @@
-(function ($) {
-  $(function () {
-
-    var window_width = $(window).width();
-
-    $('input.autocomplete').autocomplete({
-      data: { "06255692000103": 'NDD', "10280765000186": 'Tumelero', "42274696004262": 'Adidas', "02043800000115": 'Pro Audio', "47508411022559": 'GPA' },
+(function($){
+  $(function(){
+    $.getJSON('cnpjs.json').then(function(result) {
+      $('input.autocomplete').autocomplete({
+        data: result,
+        limit: 20,
+        minLength: 3, 
+      });
     });
-
-  }); // end of document ready
-})(jQuery); // end of jQuery name space
+  }); 
+})(jQuery);     
