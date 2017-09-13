@@ -1,6 +1,7 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
+const ConfigBanco = require('../data/configBanco.js');
 
 window.onload = function(){
     console.log("Carregando aplicação!!!");
@@ -81,41 +82,25 @@ window.onload = function(){
         }    
     };
 
-    const config = {
-        user: 'sa',
-        password: 'p@ssw0rd',
-        server: '172.31.40.181', // You can use 'localhost\\instance' to connect to named instance 
-        database: 'NDD_CONNECTOR_NFCe',
-        
-        options: {
-            encrypt: true // Use this if you're on Windows Azure 
-        },
-
-        connectionString: "Driver={SQL Server Native Client 11.0};Server=172.31.40.181\\sql;Database=NDD_CONNECTOR_NFCe;Uid=sa;Pwd=p@ssw0rd;"
-    
-    }
+    const config = ConfigBanco.configBanco;
 
     const sql = require('mssql')
     
     new sql.ConnectionPool(config).connect().then(pool => {
-    return pool.query`select DISTINCT st.cnpj, qr.identifier from tbstore as st INNER JOIN TBQRCODE as qr ON qr.id = st.QRCODEID`
+    return pool.query`select DISTINCT CNPJ, IDENTIFIER from TBCNPJ`
     }).then(result => {
         let jsonResult = JSON.stringify(result);
         let jsonData = JSON.parse(jsonResult);
         let counter = {};
         for (let i = 0; i < jsonData.recordset.length; i++) {
-        if (jsonData.recordset[i].cnpj.length === 13) {
-            jsonData.recordset[i].cnpj = '0' + jsonData.recordset[i].cnpj;
-        } else if (jsonData.recordset[i].cnpj.length === 12) {
-            jsonData.recordset[i].cnpj = '00' + jsonData.recordset[i].cnpj;
-        } 
-        counter[jsonData.recordset[i].cnpj] = jsonData.recordset[i].identifier;
+            counter[jsonData.recordset[i].CNPJ] = jsonData.recordset[i].IDENTIFIER;
         }
         counter = JSON.stringify(counter);
+        
         let fs = require('fs');
         fs.writeFileSync("cnpjs.json", counter);
 
     }).catch(err => {
-    console.log(err)
+        console.log(err)
     });
 };

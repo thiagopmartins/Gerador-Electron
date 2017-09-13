@@ -4,14 +4,14 @@ const fs = require('fs');
 const path = require('path');
 let dir = './data/';
 let filename = 'config.json';
-class ConfigModel{
-    constructor(){
+class ConfigModel {
+    constructor() {
         if (!fs.existsSync(dir))
             fs.mkdirSync(dir);
-        if(!fs.existsSync(dir + filename)) 
+        if (!fs.existsSync(dir + filename))
             this.criarConfig();
-        else{
-            console.log("Arquivo de configuração já existe."); 
+        else {
+            console.log("Arquivo de configuração já existe.");
             console.log("Carregando Configurações.");
             let dadosModel = new DadosModel();
             this.pegarDados()
@@ -25,35 +25,35 @@ class ConfigModel{
                     dadosModel.fuso = dados.fuso;
                     dadosModel.sleep = dados.sleep;
                     dadosModel.cnpj = dados.cnpj;
-                },(erro) =>{ console.log(erro); }
-            );             
+                }, (erro) => { console.log(erro); }
+                );
         }
     }
-    criarConfig(){
-        return jsonfile.writeFile(dir + filename,{})
-                .then(() => {
-                    console.log('Arquivo Criado')
-                }).catch((err) => {
-                    console.log(err);
-            });        
-    }
-    pegarDados(){
-        return jsonfile.readFile(dir + filename);
-    }
-    salvarOrigem(){
-        let dadosModel = new DadosModel();
-        this.pegarDados()
-        .then((dados) => {
-            dados.origem = dadosModel.origem
-            jsonfile.writeFile(dir + filename, dados, {spaces: 2})
-                .then(() => {
-                    console.log('Dado salvo com sucesso');
-                }).catch((err) => {
-                    console.log(err);
-                })
+    criarConfig() {
+        return jsonfile.writeFile(dir + filename, {})
+        .then(() => {
+            console.log('Arquivo Criado')
+        }).catch((err) => {
+            console.log(err);
         });
     }
-    salvarDados(){
+    pegarDados() {
+        return jsonfile.readFile(dir + filename);
+    }
+    salvarOrigem() {
+        let dadosModel = new DadosModel();
+        this.pegarDados()
+            .then((dados) => {
+                dados.origem = dadosModel.origem
+                jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
+                    .then(() => {
+                        console.log('Dado salvo com sucesso');
+                    }).catch((err) => {
+                        console.log(err);
+                    })
+            });
+    }
+    salvarDados() {
         let dadosModel = new DadosModel();
         let dados = {
             origem: dadosModel.origem,
@@ -68,12 +68,12 @@ class ConfigModel{
             sleep: dadosModel.sleep,
             cnpj: dadosModel.cnpj
         }
-        jsonfile.writeFile(dir + filename, dados, {spaces: 2})
-                .then(() => {
-                    console.log('Dado salvo com sucesso');
-                }).catch((err) => {
-                    console.log(err);
-                })        
-    }    
+        jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
+            .then(() => {
+                console.log('Dado salvo com sucesso');
+            }).catch((err) => {
+                console.log(err);
+            })
+    }
 }
 module.exports = ConfigModel;
