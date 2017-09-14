@@ -28,6 +28,7 @@ window.onload = function () {
     }).catch(err => {
         console.log(err)
     });
+
 };
 
 $('#btnSalvarCnpj').onclick = () => {
@@ -44,12 +45,3 @@ $('#btnSalvarCnpj').onclick = () => {
         document.getElementById('notificacao').innerHTML = "Erro ao registrar arquivo"; 
     }
 };
-
-$('.deleta').each(function(i){
-    $('#cnpjPar' + i).click(function(){
-        if (confirm('Deseja realmente deletar?')) {
-            let cnpj = $('#cnpj' + i).val();
-            console.log(cnpj);
-        }
-    });
-});

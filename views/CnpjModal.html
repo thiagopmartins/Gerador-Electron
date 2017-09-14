@@ -42,18 +42,35 @@
             <div class="container">
                 <div class="col s10 offset-l1">
                     <div class="row" id="listaCnpj">
-      
+
                     </div>
                 </div>
             </div>
         </div>
     </main>
 </body>
-<script>
-    require('../src/cnpjModal.js');
-</script>
 <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="../node_modules/hammer/hammer-min.js"></script>
 <script type="text/javascript" src="../node_modules/materialize/materialize.js"></script>
+<script>
+    require('../src/cnpjModal.js');
+</script>
 <script type="text/javascript" src="../src/js/listaCnpjs.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#listaCnpj').one('mouseenter', '.deleta', function () {
+            $('.deleta').each(function (i) {
+                $('#cnpjPar' + i).click(function () {
+                    if (confirm('Deseja realmente deletar?')) {
+                        var cnpj = $('#cnpj' + i).val();
+                        console.log(cnpj);
+                    }
+                });
+            });
+        });
+    });
+
+</script>
+
 </html>

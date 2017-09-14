@@ -45,3 +45,4 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 .collection-item span {font-weight: bold; font-size: 16px;}
 .collection-item .secondary-content {float: right; color: #F44336;}
 .collection-item .secondary-content.edit {float: right; padding-right: 10px; color: #0AA2BA;}
+.deleta {cursor: pointer;}
