@@ -1,7 +1,9 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
-const ConfigBanco = require('../data/configBanco.js');
+const CnpjModel = require('./js/model/CnpjModel.js');
+
+let cnpjModel;
 
 window.onload = function(){
     console.log("Carregando aplicação!!!");
@@ -11,6 +13,12 @@ window.onload = function(){
     let conteudo = "showEmployees";
     FerramentaController._ativarGerador();
     FerramentaController._iniciaConfig();
+
+    //Instancia a classe CnpjModel do arquivo CnpjModel.js em Model
+    cnpjModel = new CnpjModel();
+    
+    //Atualiza o json trazendo a lista de CNPJ  
+    cnpjModel.atualizaLista();
 
     $('#btnModal').classList.add('disabled');  
 
@@ -82,25 +90,4 @@ window.onload = function(){
         }    
     };
 
-    const config = ConfigBanco.configBanco;
-
-    const sql = require('mssql')
-    
-    new sql.ConnectionPool(config).connect().then(pool => {
-    return pool.query`select DISTINCT CNPJ, IDENTIFIER from TBCNPJ`
-    }).then(result => {
-        let jsonResult = JSON.stringify(result);
-        let jsonData = JSON.parse(jsonResult);
-        let counter = {};
-        for (let i = 0; i < jsonData.recordset.length; i++) {
-            counter[jsonData.recordset[i].CNPJ] = jsonData.recordset[i].IDENTIFIER;
-        }
-        counter = JSON.stringify(counter);
-        
-        let fs = require('fs');
-        fs.writeFileSync("cnpjs.json", counter);
-
-    }).catch(err => {
-        console.log(err)
-    });
 };

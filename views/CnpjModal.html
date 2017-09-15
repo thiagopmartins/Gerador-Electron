@@ -54,20 +54,6 @@
 <script type="text/javascript" src="../node_modules/materialize/materialize.js"></script>
 <script>
     require('../src/cnpjModal.js');
-
-    $(document).ready(function () {
-        $('#listaCnpj').one('mouseenter', '.deleta', function () {
-            $('.deleta').each(function (i) {
-                $('#cnpjPar' + i).click(function () {
-                    if (confirm('Deseja realmente deletar?')) {
-                        var cnpj = $('#cnpj' + i).val();
-                        console.log(cnpj);
-                    }
-                });
-            });
-        });
-    });
-
 </script>
 
 </html>
