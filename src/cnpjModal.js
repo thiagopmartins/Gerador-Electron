@@ -29,6 +29,27 @@ window.onload = function () {
         console.log(err)
     });
 
+    const xhr = new XMLHttpRequest();
+    const url = '../cnpjs.json';
+    
+    xhr.responseType = 'json';
+    
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        let data = xhr.response;
+        let i = 0;
+
+        for (let [key, val] of Object.entries(data)) {
+            document.getElementById('listaCnpj').innerHTML += "<li class='collection-item id='listaCnpjPar" + i + "''><span>" + val + ' - </span> ' + key + "<div class='secondary-content deleta' id='cnpjPar" + i + "'><i class='material-icons'>delete</i><input type='hidden' name='cnpj" + i + "' id='cnpj" + i + "' value='" + key + "' /></div><div class='secondary-content edit' id='editCnpj'><i class='material-icons'>mode edit</i></div></li>";
+            i++;
+        }
+
+      }
+    }
+    
+    xhr.open('GET', url);
+    xhr.send();
+
 };
 
 $('#btnSalvarCnpj').onclick = () => {
