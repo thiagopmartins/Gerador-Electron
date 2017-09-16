@@ -11,7 +11,8 @@ class CnpjModal {
     new sql.ConnectionPool(config).connect().then(pool => {
       return pool.query`INSERT into TBCNPJ (CNPJ,IDENTIFIER) VALUES (${cnpj}, ${empresa})`;
     }).then(result => {
-      return this.atualizaLista();
+      this.atualizaLista();
+      this.reload();
     }).catch(err => {
       console.log(err);
       return false;
@@ -45,11 +46,10 @@ class CnpjModal {
   criaLista() {
     //limpa lista
     document.getElementById('listaCnpj').innerHTML = "";
-    
     let data = require('../../../cnpjs.json');
     let i = 0;
     for (let [key, val] of Object.entries(data)) {
-      document.getElementById('listaCnpj').innerHTML += "<li class='collection-item id='listaCnpjPar" + i + "''><span>" + val + ' - </span> ' + key + "<div class='secondary-content deleta' id='cnpjPar" + i + "'><i class='material-icons'>delete</i><input type='hidden' name='cnpj" + i + "' id='cnpj" + i + "' value='" + key + "' /></div><div class='secondary-content edit' id='editCnpj'><i class='material-icons'>mode edit</i></div></li>";
+      document.getElementById('listaCnpj').innerHTML += "<li class='collection-item id='listaCnpjPar" + i + "''><span>" + val + ' - </span> ' + key + "<div class='secondary-content deleta' id='cnpjPar" + i + "'><i class='material-icons'>delete</i><input type='hidden' name='cnpj" + i + "' id='cnpj" + i + "' value='" + key + "' /></div><div class='secondary-content edit' id='editCnpjPar" + i + "'><i class='material-icons'>mode edit</i><input type='hidden' name='editCnpj" + i + "' id='editCnpj" + i + "' value='" + key + "' /></div></li>";
       i++;
     }
   }
@@ -59,13 +59,19 @@ class CnpjModal {
     const sql = require("mssql");
 
     new sql.ConnectionPool(config).connect().then(pool => {
-      return pool.query`DELETE from TBCNPJ where CNPJ = ${cnpj}`;
+      pool.query`DELETE from TBCNPJ where CNPJ = ${cnpj}`;
     }).then(result => {
-      return this.atualizaLista();
+       this.atualizaLista();
+       this.reload();
     }).catch(err => {
       console.log(err);
       return false;
     });
   }
+
+  reload() {
+    location.reload();    
+  }
+
 }
 module.exports = CnpjModal;
