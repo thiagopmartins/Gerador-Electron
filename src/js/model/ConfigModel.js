@@ -25,6 +25,15 @@ class ConfigModel {
                     dadosModel.fuso = dados.fuso;
                     dadosModel.sleep = dados.sleep;
                     dadosModel.cnpj = dados.cnpj;
+
+                    let file_field = $('input[type="file"]').closest('.file-field');       
+                    let path_input = file_field.find('input.file-path');
+                    let files = dados.origem;
+                    let caminhoSplit = files.split('\\');
+                    let value = caminhoSplit.length - 1;
+                    path_input.val(caminhoSplit[value]);
+                    path_input.trigger('change');
+
                 }, (erro) => { console.log(erro); }
                 );
         }

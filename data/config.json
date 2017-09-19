@@ -1,12 +1,12 @@
 {
-  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\NDDDDL1000001001# Goias GPA .txt",
+  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\Aponte para esta nota como arquivo base Tumelero Sefaz RS.txt",
   "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service",
   "tipoEmissao": "1",
   "agentes": "13",
   "serie": "",
   "numero": "3",
   "quantidade": "10",
-  "nomenclatura": "showEmployees",
+  "nomenclatura": "showEmploy",
   "fuso": "-3",
   "sleep": "3",
   "cnpj": "06255692000103"

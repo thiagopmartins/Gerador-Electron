@@ -12,7 +12,7 @@ let ModalEmployees = null;
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 900,
-    height: 750,
+    height: 650,
     autoHideMenuBar: true,
     icon: path.join(__dirname, 'img/logo.png')
   });
@@ -31,7 +31,6 @@ function createWindow () {
     }
   });
   
-  mainWindow.openDevTools();
 }
 
 app.on('ready', createWindow);

@@ -4,19 +4,17 @@ const ConfigBanco = require('../../../data/configBanco.js');
 let data;
 class CnpjModal {
 
-  salvarArquivo(cnpj, empresa) {
-    const config = ConfigBanco.configBanco;
-    const sql = require("mssql");
+  //CRUD - CriaLista - AtualizaLista - SalvaArquivo - deletaCnpj
 
-    new sql.ConnectionPool(config).connect().then(pool => {
-      return pool.query`INSERT into TBCNPJ (CNPJ,IDENTIFIER) VALUES (${cnpj}, ${empresa})`;
-    }).then(result => {
-      this.atualizaLista();
-      this.reload();
-    }).catch(err => {
-      console.log(err);
-      return false;
-    });
+  criaLista() {
+    //limpa lista
+    document.getElementById('listaCnpj').innerHTML = "";
+    let data = require('../../../cnpjs.json');
+    let i = 0;
+    for (let [key, val] of Object.entries(data)) {
+      document.getElementById('listaCnpj').innerHTML += "<li class='collection-item id='listaCnpjPar" + i + "''><span>" + val + ' - </span> ' + key + "<div class='secondary-content deleta' id='cnpjPar" + i + "'><i class='material-icons'>delete</i><input type='hidden' name='cnpj" + i + "' id='cnpj" + i + "' value='" + key + "' /></div><div class='secondary-content edit' id='editCnpjPar" + i + "'><i class='material-icons'>mode edit</i><input type='hidden' name='editCnpj" + i + "' id='editCnpj" + i + "' value='" + key + "' /><input type='hidden' name='editEmpresa" + i + "' id='editEmpresa" + i + "' value='" + val + "' /></div></li>";
+      i++;
+    }
   }
 
   atualizaLista() {
@@ -43,15 +41,34 @@ class CnpjModal {
     });
   }
 
-  criaLista() {
-    //limpa lista
-    document.getElementById('listaCnpj').innerHTML = "";
-    let data = require('../../../cnpjs.json');
-    let i = 0;
-    for (let [key, val] of Object.entries(data)) {
-      document.getElementById('listaCnpj').innerHTML += "<li class='collection-item id='listaCnpjPar" + i + "''><span>" + val + ' - </span> ' + key + "<div class='secondary-content deleta' id='cnpjPar" + i + "'><i class='material-icons'>delete</i><input type='hidden' name='cnpj" + i + "' id='cnpj" + i + "' value='" + key + "' /></div><div class='secondary-content edit' id='editCnpjPar" + i + "'><i class='material-icons'>mode edit</i><input type='hidden' name='editCnpj" + i + "' id='editCnpj" + i + "' value='" + key + "' /></div></li>";
-      i++;
-    }
+  editaArquivo(cnpj, empresa, cnpjNovo, empresaNovo) {
+    const config = ConfigBanco.configBanco;
+    const sql = require("mssql");
+
+    new sql.ConnectionPool(config).connect().then(pool => {
+      return pool.query`UPDATE TBCNPJ SET CNPJ = ${cnpjNovo}, IDENTIFIER = ${empresaNovo} WHERE CNPJ = ${cnpj} AND IDENTIFIER = ${empresa}`;
+    }).then(result => {
+      this.atualizaLista();
+      this.reload();
+    }).catch(err => {
+      console.log(err);
+      return false;
+    });
+  }
+
+  salvarArquivo(cnpj, empresa) {
+    const config = ConfigBanco.configBanco;
+    const sql = require("mssql");
+
+    new sql.ConnectionPool(config).connect().then(pool => {
+      return pool.query`INSERT into TBCNPJ (CNPJ,IDENTIFIER) VALUES (${cnpj}, ${empresa})`;
+    }).then(result => {
+      this.atualizaLista();
+      this.reload();
+    }).catch(err => {
+      console.log(err);
+      return false;
+    });
   }
 
   deletaCnpj(cnpj) {
