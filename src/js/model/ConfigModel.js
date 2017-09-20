@@ -56,7 +56,7 @@ class ConfigModel {
                 dados.origem = dadosModel.origem
                 jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
                     .then(() => {
-                        console.log('Dado salvo com sucesso');
+                        console.log('Dados de origem registrado com sucesso');
                     }).catch((err) => {
                         console.log(err);
                     })

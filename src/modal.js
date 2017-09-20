@@ -5,8 +5,15 @@ let $ = document.querySelector.bind(document);
 let conteudo
 window.onload = function(){
     let configModel = new ConfigModel();
-    conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
-    $('#textarea1').value = conteudo;
+
+    let conteudoOrigem;
+    configModel.pegarDados()
+        .then((dados) => {
+            ArquivoBaseModel.criarArquivo = dados.origem;   
+            conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
+            $('#textarea1').value = conteudo;              
+        },(erro) =>{ console.log(erro); }
+     );
 };
 $('#textarea1').oninput = () =>{
     if(conteudo == $('#textarea1').value){

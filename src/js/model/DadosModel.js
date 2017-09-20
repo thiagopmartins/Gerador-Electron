@@ -1,15 +1,17 @@
 let $ = document.querySelector.bind(document);
+let dir = './data/';
+let filename = 'config.json';
 
 class DadosModel{
     get destino(){ return $('#destino').value.toString(); }
     get origem() { 
-        let caminho = null;
-        try {
-            caminho = $('#arquivo').files[0].path;       
-        } catch (Exception) {
-            throw(Exception);
-        }  
-        return caminho.toString();      
+        if ($('#arquivo').value == '') {
+            let data = require('../../../data/config.json');
+            return data.origem.toString();  
+        } else {
+            let caminho = $('#arquivo').files[0].path;
+            return caminho.toString(); 
+        }            
     }
     get tipo(){ return $('input[name="group1"]:checked').value; }
     get agentes(){ return $('#agentes').value; }
@@ -30,7 +32,8 @@ class DadosModel{
     set nomenclatura(valor){ $('#nomenclatura').value = valor; $('#lblNomenclatura').classList.add('active'); }
     set fuso(valor){ $('#fuso').value = valor; $('#lblFuso').classList.add('active'); }
     set sleep(valor){ $('#sleep').value = valor; $('#lblSleep').classList.add('active'); }
-    set cnpj(valor){ $('#CNPJ').value = valor; $('#lblCNPJ').classList.add('active'); }    
+    set cnpj(valor){ $('#CNPJ').value = valor; $('#lblCNPJ').classList.add('active'); }   
+    
 }
 
 module.exports = DadosModel;

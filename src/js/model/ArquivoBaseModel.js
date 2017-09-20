@@ -4,15 +4,12 @@ class ArquivoBaseModel{
         let dir = './data/';
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
-        }       
-        let conteudo = fs.readFileSync(model, 'utf8');         
-        fs.writeFile(dir + 'arquivo.tmp', conteudo, function(err) {
-            if(err) {
-                return console.log(err);
-            }
-            console.log("Arquivo temporário criado com sucesso!");
-        });      
+        } 
+        let conteudo = fs.readFileSync(model, 'utf8');
+                    
+        fs.writeFileSync(dir + 'arquivo.tmp', conteudo);
     }
+
     static set salvarArquivo(conteudo){
         let dir = './data/arquivo.tmp';            
         fs.writeFileSync(dir, conteudo, function(err) {

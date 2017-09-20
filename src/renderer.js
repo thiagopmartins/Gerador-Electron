@@ -16,12 +16,6 @@ window.onload = function(){
     FerramentaController._ativarGerador();
     FerramentaController._iniciaConfig();
 
-    //Instancia a classe CnpjModel do arquivo CnpjModel.js em Model
-    cnpjModel = new CnpjModel();
-    
-    //Atualiza o json trazendo a lista de CNPJ  
-    cnpjModel.atualizaLista();
-
     $('#gerarNotas').onclick = function(event){
         event.preventDefault();
 

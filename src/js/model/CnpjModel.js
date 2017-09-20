@@ -8,7 +8,6 @@ class CnpjModal {
 
   criaLista() {
     //limpa lista
-    document.getElementById('listaCnpj').innerHTML = "";
     let data = require('../../../cnpjs.json');
     let i = 0;
     for (let [key, val] of Object.entries(data)) {

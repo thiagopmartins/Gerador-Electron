@@ -1,13 +1,13 @@
 {
-  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\Aponte para esta nota como arquivo base Tumelero Sefaz RS.txt",
+  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\ADIDAS BR11101#12345679_ped_env.txt",
   "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service",
   "tipoEmissao": "1",
-  "agentes": "13",
-  "serie": "",
-  "numero": "3",
+  "agentes": "1",
+  "serie": "52",
+  "numero": "0",
   "quantidade": "10",
-  "nomenclatura": "showEmploy",
+  "nomenclatura": "NDDDDL1000",
   "fuso": "-3",
-  "sleep": "3",
-  "cnpj": "06255692000103"
+  "sleep": "2000",
+  "cnpj": "24634734734734"
 }
