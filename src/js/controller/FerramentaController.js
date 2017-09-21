@@ -1,5 +1,6 @@
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const ConfigModel = require('../model/ConfigModel.js');
+const NotasController = require('../controller/NotasController.js');
 
 let $ = document.querySelector.bind(document);
 let configModel;
@@ -30,9 +31,11 @@ class FerramentaController{
     }
     static _gerarNotas(){
         configModel.salvarDados();
+        NotasController.run();
     }
     static _salvarOrigem(){
         configModel.salvarOrigem();
+  
     }
 };
 module.exports = FerramentaController;

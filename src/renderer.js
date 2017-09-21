@@ -1,4 +1,6 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
+const NotasController = require('./js/controller/NotasController.js');
+const ConfigModel = require('./js/model/ConfigModel.js'); 
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
 const CnpjModel = require('./js/model/CnpjModel.js');
@@ -17,7 +19,16 @@ window.onload = function(){
     FerramentaController._iniciaConfig();
 
     $('#gerarNotas').onclick = function(event){
-        event.preventDefault();
+
+        //PROCESSO CHAMANDO JAVA
+        let configModel = new ConfigModel();
+        configModel.pegarDados()
+            .then((dados) => {
+            FerramentaController._arquivoBase(dados.origem); 
+            conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
+            },(erro) =>{ console.log(erro); }
+        ); 
+        
 
         let modal = document.getElementById('myModal');
         let span = document.getElementsByClassName("close")[0];
@@ -25,27 +36,25 @@ window.onload = function(){
         modal.style.display = "block";
         window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; }}
 
-        let spawn = require('child_process').spawn;
-        let child = spawn('java', ['-jar', './gerador-linux.jar']);
-
-        module.exports = child;
 
         //fecha ao clicar no botão e mata o processo JAVA
         $('#btnCloseModalGerador').onclick = function(event) {
-            child.stdin.end();
-            child.kill('SIGTERM');
+            NotasController.pararGerarNotas();
             modal.style.display = "none";
         }; 
+        $('#xbtnCloseModalGerador').onclick = function(event) {
+            NotasController.pararGerarNotas();
+            modal.style.display = "none";
+        };         
 
         //fecha ao clicar fora da página e mata o processo JAVA
         window.onclick = function(event) { 
             if (event.target == modal) { 
-                child.stdin.end();
-                child.kill('SIGTERM');
+                NotasController.pararGerarNotas();
                 modal.style.display = "none"; 
             }
         }
-
+        event.preventDefault();
         FerramentaController._gerarNotas();        
 
     };
