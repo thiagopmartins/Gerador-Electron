@@ -22,11 +22,11 @@ class NotasController{
             clearTimeout();
         }
         else{
+            let detalhes = document.getElementById('detalhes');
             
             let numNota = i + 1;
             console.clear();
-            console.log('gerando notas ' + numNota + '/' + notasModel.quantidade); 
-            
+            detalhes.innerHTML = 'gerando notas ' + numNota + '/' + notasModel.quantidade; 
   
             let nota = notasModel.criarNota(i);
             let notaNumero = parseInt(notasModel.numeroInicio) + i;
@@ -36,14 +36,25 @@ class NotasController{
                     i ++;
                     this.gerarNotas();
                 }
-                else
-                    console.log('Todas as notas foram geradas.')
+                else {
+                    this.atualizaForm();
+
+                    let modal = document.getElementById('myModal');
+                    modal.style.display = "none"; 
+
+                    console.log('Todas as notas foram geradas.');
+                }
+                    
             }, parseInt(notasModel.sleep));
         }
     }
     static pararGerarNotas(){
         console.log('Parando as notas');
         continua = false;
+        this.atualizaForm();
+    }
+
+    static atualizaForm() {
         let ondeParou = parseInt(notasModel.numeroInicio) + i;
         let dadosModel = new DadosModel();
         dadosModel.numero = ondeParou + 1;

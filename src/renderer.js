@@ -29,33 +29,35 @@ window.onload = function(){
             },(erro) =>{ console.log(erro); }
         ); 
         
-
         let modal = document.getElementById('myModal');
-        let span = document.getElementsByClassName("close")[0];
 
+        //Exibe o modal
         modal.style.display = "block";
-        window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; }}
 
+        //Salva dados e gera notas
+        FerramentaController._gerarNotas();   
 
-        //fecha ao clicar no botão e mata o processo JAVA
+        //fecha ao clicar no botão e para de gerar notas
         $('#btnCloseModalGerador').onclick = function(event) {
             NotasController.pararGerarNotas();
             modal.style.display = "none";
         }; 
+
+        //fecha ao clicar no botão X e para de gerar notas
         $('#xbtnCloseModalGerador').onclick = function(event) {
             NotasController.pararGerarNotas();
             modal.style.display = "none";
         };         
 
-        //fecha ao clicar fora da página e mata o processo JAVA
+        //fecha ao clicar fora da página e para de gerar notas
         window.onclick = function(event) { 
             if (event.target == modal) { 
                 NotasController.pararGerarNotas();
                 modal.style.display = "none"; 
             }
         }
-        event.preventDefault();
-        FerramentaController._gerarNotas();        
+
+        event.preventDefault();    
 
     };
 

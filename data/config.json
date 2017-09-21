@@ -1,12 +1,12 @@
 {
-  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Tumelero\\NDDRS11000001001.txt",
-  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service\\in",
+  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\ADIDAS BR11101#12345679_ped_env.txt",
+  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_1\\in",
   "tipoEmissao": "1",
   "agentes": "1",
-  "serie": "283",
-  "numero": "32",
-  "quantidade": "1",
-  "nomenclatura": "NDDFFF1000001001#",
+  "serie": "166",
+  "numero": "39",
+  "quantidade": "2",
+  "nomenclatura": "NDDDDL1000001001#",
   "fuso": "-3",
   "sleep": "2000",
   "cnpj": "06255692000103"

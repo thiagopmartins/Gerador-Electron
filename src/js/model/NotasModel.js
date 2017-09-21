@@ -1,13 +1,11 @@
 const jsonfile = require('jsonfile-promised');
 const ConfigModel = require('../model/ConfigModel.js');
 
-
 const fs = require('fs');
 const path = require('path');
 const dir = './data/';
 const filename = 'arquivo.tmp';
 let configModel = null;
-
 
 let 
     agentes,
@@ -22,7 +20,6 @@ let
     tipoEmissao,
     numeroInicio
 ;
-
 
 class NotasModel {
     iniciar() {
