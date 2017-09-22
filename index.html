@@ -48,7 +48,7 @@
     <div class="container">
 
       <div class="row content" id="mainPanel">
-        <form action="#" id="painelGerador">
+        <form action="#" id="painelGerador" name="painelGerador">
 
           <div class="mainMenu">
             <div class="col s6">
@@ -82,7 +82,7 @@
           </div>
 
           <div class="input-field col s12">
-            <input id="destino" type="text" class="validate" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service'>
+            <input id="destino" type="text" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service' required="required" />
             <label class="active" for="destino">Caminho de Destino</label>
           </div>
 
@@ -112,19 +112,19 @@
                 <a id="btnGerarNovaSerie" class="btn-floating waves-effect waves-light red"><i class="small material-icons">autorenew</i></a>
               </div>
               <div class="input-field col s3">
-                <input id="serie" type='number' step=1 data-length="3" class="validate" value="" />
+                <input id="serie" name="serie" type='number' step=1 data-length="3" required="required" />
                 <label id="lblSerie" class="active" for="serie">Serie</label>
               </div>
               <div class="input-field col s3">
-                <input id="numero" type='number' step=1 data-length="9" class="validate" value="0" />
+                <input id="numero" type='number' step=1 data-length="9" value="0" required="required" />
                 <label id="lblNumero" class="active" for="numero">Número Inicial</label>
               </div>
               <div class="input-field col s3">
-                <input id="quantidade" type='number' step=1 class="validate" value="10" />
+                <input id="quantidade" type='number' step=1  value="10" required="required" />
                 <label id="lblQuantidade" class="active" for="quantidade">Quantidade de Notas</label>
               </div>
               <div class="input-field col s2">
-                <input id="sleep" type="text" class="validate">
+                <input id="sleep" type="text">
                 <label id="lblSleep" class="active" for="sleep">Sleep</label>
               </div>
             </div>
@@ -136,15 +136,15 @@
                 <a id="btnCadastrarCnpj" class="btn-floating waves-effect waves-light red"><i class="small material-icons">list</i></a>
               </div>
               <div class="input-field col s4">
-                <input id="CNPJ" type="text" id="autocomplete-input" class="autocomplete">
+                <input id="CNPJ" type="text" id="autocomplete-input" class="autocomplete" required="required" />
                 <label id="lblCNPJ" for="autocomplete-input">CNPJ</label>
               </div>
               <div class="input-field col s5">
-                <input id="nomenclatura" type="text" class="validate">
+                <input id="nomenclatura" type="text" required="required" />
                 <label id="lblNomenclatura" class="active" for="nomenclatura">Nomenclatura do Arquivo</label>
               </div>
               <div class="input-field col s2">
-                <input type='number' step=1 id="fuso" class="validate" value="-3">
+                <input type='number' step=1 id="fuso" value="-3" required="required" />
                 <label id="lblFuso" class="active" for="fuso">Fuso</label>
               </div>
             </div>
@@ -201,6 +201,14 @@
           </div>
         </form>
 
+        <div class="modal-message container">
+          <div class="row center">
+            <div class="col s8 chip offset-s2" id="notificacao">
+  
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -217,7 +225,8 @@
           <div class="modal-footer row">
             <div class="center mgBottom-30">
               <a href="#!" class="btn waves-effect waves-light" id="btnCloseModalGerador">Clique para encerrar o processo.</a>
-              <p id="detalhes">31231232</p>
+              <p id="detalhes"></p>
+              <p id="estimativa"></p>
             </div>
           </div>
 
@@ -234,6 +243,5 @@
 <script type="text/javascript" src="node_modules/hammer/hammer-min.js"></script>
 <script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
 <script type="text/javascript" src="src/js/autocomplete.js"></script>
-<script type="text/javascript" src="src/js/validate.js"></script>
 
 </html>

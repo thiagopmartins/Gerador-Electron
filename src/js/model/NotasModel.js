@@ -1,11 +1,13 @@
 const jsonfile = require('jsonfile-promised');
 const ConfigModel = require('../model/ConfigModel.js');
 
+
 const fs = require('fs');
 const path = require('path');
 const dir = './data/';
 const filename = 'arquivo.tmp';
 let configModel = null;
+
 
 let 
     agentes,
@@ -20,6 +22,7 @@ let
     tipoEmissao,
     numeroInicio
 ;
+
 
 class NotasModel {
     iniciar() {
@@ -56,7 +59,7 @@ class NotasModel {
         `${data.getFullYear()}-${mes}-${dia}T${hora}:${minuto}:${segundos}${fusoNota}:00`;
         notaConteudo = fs.readFileSync(dir + filename, 'utf8');
         notaConteudo = notaConteudo.replace('${Id}', '');
-        notaConteudo = notaConteudo.replace('${cNF}', '12345678');
+        notaConteudo = notaConteudo.replace('${cNF}', Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000);
         notaConteudo = notaConteudo.replace('${serie}', serie);
         notaConteudo = notaConteudo.replace('${nNF}', numeroNota);
         notaConteudo = notaConteudo.replace('${tpEmis}', dataFormat);
