@@ -1,9 +1,8 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
 const NotasController = require('./js/controller/NotasController.js');
-const ConfigModel = require('./js/model/ConfigModel.js');
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
-const CnpjModel = require('./js/model/CnpjModel.js');
+
 let $ = document.querySelector.bind(document);
 let cnpjModel;
 
@@ -85,36 +84,13 @@ window.onload = function () {
     };
 
     $('#gerarNotas').onclick = function (event) {
-
-        if ($("#serie").value == "") {
-            $("#serie").focus();
-            $('#notificacao').classList.add("red");
-            $('#notificacao').innerHTML = "O campo série está vazio";
-        } else if ($("#nomenclatura").value == "") {
-            $("#nomenclatura").focus();
-            $('#notificacao').classList.add("red");
-            $('#notificacao').innerHTML = "O campo nomenclatura está vazio";
-        } else if ($("#fuso").value == "") {
-            $("#fuso").focus();
-            $('#notificacao').classList.add("red");
-            $('#notificacao').innerHTML = "O campo fuso está vazio";
-        } else if ($("#sleep").value == "") {
-            $("#sleep").focus();
-            $('#notificacao').classList.add("red");
-            $('#notificacao').innerHTML = "O campo sleep está vazio";
-        } else if ($("#quantidade").value == "") {
-            $("#quantidade").focus();
-            $('#notificacao').classList.add("red");
-            $('#notificacao').innerHTML = "O campo quantidade está vazio";
-        } else if ($("#numero").value == "") {
-            $("#numero").focus();
-            $('#notificacao').classList.add("red");
-            $('#notificacao').innerHTML = "O campo número está vazio";
-        } else {
-            //gera notas JS
+        let verificaValidacao = FerramentaController._validaFormulario();
+        if (verificaValidacao == true) {
+            //Chama o método para gerar Notas
             FerramentaController._gerarNotas();
-            event.preventDefault();
-         };
+        } 
+
+        event.preventDefault();
     }
 
 

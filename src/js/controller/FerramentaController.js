@@ -5,6 +5,8 @@ const fs = require('fs');
 
 let $ = document.querySelector.bind(document);
 let configModel;
+let value = false;
+
 class FerramentaController{
     static _arquivoBase(model){
         
@@ -28,11 +30,38 @@ class FerramentaController{
         $('#btnGerador').classList.remove('btnSelected');
         $('#btnGerador').classList.remove('disabled');        
     }
+    static _validaFormulario(){
+        if ($("#serie").value == "") {
+            $("#serie").focus();
+            $('#notificacao').classList.add("red");
+            $('#notificacao').innerHTML = "O campo série está vazio";
+        } else if ($("#nomenclatura").value == "") {
+            $("#nomenclatura").focus();
+            $('#notificacao').classList.add("red");
+            $('#notificacao').innerHTML = "O campo nomenclatura está vazio";
+        } else if ($("#fuso").value == "") {
+            $("#fuso").focus();
+            $('#notificacao').classList.add("red");
+            $('#notificacao').innerHTML = "O campo fuso está vazio";
+        } else if ($("#sleep").value == "") {
+            $("#sleep").focus();
+            $('#notificacao').classList.add("red");
+            $('#notificacao').innerHTML = "O campo sleep está vazio";
+        } else if ($("#quantidade").value == "") {
+            $("#quantidade").focus();
+            $('#notificacao').classList.add("red");
+            $('#notificacao').innerHTML = "O campo quantidade está vazio";
+        } else if ($("#numero").value == "") {
+            $("#numero").focus();
+            $('#notificacao').classList.add("red");
+            $('#notificacao').innerHTML = "O campo número está vazio";
+        } else { value = true; }
+        return value;
+    }
     static _iniciaConfig(){
         configModel = new ConfigModel();     
     }
     static _gerarNotas(){
-        
         configModel.salvarDados();
         configModel = new ConfigModel();
         configModel.pegarDados()
