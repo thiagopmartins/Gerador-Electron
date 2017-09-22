@@ -111,48 +111,10 @@ window.onload = function () {
             $('#notificacao').classList.add("red");
             $('#notificacao').innerHTML = "O campo número está vazio";
         } else {
-            $('#notificacao').innerHTML = "";
-            $('#notificacao').classList.remove("red");
-
-            let configModel = new ConfigModel();
-            configModel.pegarDados()
-                .then((dados) => {
-                    FerramentaController._arquivoBase(dados.origem);
-                    conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
-                }, (erro) => { console.log(erro); }
-                );
-
-            let modal = document.getElementById('myModal');
-
-            //Exibe o modal
-            modal.style.display = "block";
-
             //gera notas JS
             FerramentaController._gerarNotas();
-
-            //fecha ao clicar no botão e para de gerar notas
-            $('#btnCloseModalGerador').onclick = function (event) {
-                NotasController.pararGerarNotas();
-                modal.style.display = "none";
-            };
-
-            //fecha ao clicar no botão X e para de gerar notas
-            $('#xbtnCloseModalGerador').onclick = function (event) {
-                NotasController.pararGerarNotas();
-                modal.style.display = "none";
-            };
-
-            //fecha ao clicar fora da página e para de gerar notas
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    NotasController.pararGerarNotas();
-                    modal.style.display = "none";
-                }
-            }
-
             event.preventDefault();
-
-        };
+         };
     }
 
 

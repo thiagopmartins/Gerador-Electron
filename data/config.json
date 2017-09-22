@@ -1,10 +1,10 @@
 {
-  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Tanca SAT\\Aponte para esta nota como arquivo base Tanca.txt",
+  "origem": "",
   "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service\\in",
   "tipoEmissao": "1",
   "agentes": "1",
   "serie": "245",
-  "numero": "473",
+  "numero": "535",
   "quantidade": "200",
   "nomenclatura": "NDDDDL1000001001#",
   "fuso": "-3",

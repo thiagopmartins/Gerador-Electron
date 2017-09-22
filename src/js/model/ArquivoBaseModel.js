@@ -5,9 +5,15 @@ class ArquivoBaseModel{
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
         } 
-        let conteudo = fs.readFileSync(model, 'utf8');
-                    
-        fs.writeFileSync(dir + 'arquivo.tmp', conteudo);
+        if (fs.existsSync(model)){
+            let conteudo = fs.readFileSync(model, 'utf8');
+            fs.writeFileSync(dir + 'arquivo.tmp', conteudo);
+        }
+        else {
+            throw new Error('Pau na budeguinha');
+        }
+    
+        
     }
 
     static set salvarArquivo(conteudo){
