@@ -1,13 +1,13 @@
 {
-  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\Nota_Base_NFe\\NDDDDL1000001001#.txt",
-  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_1\\in",
+  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Tanca SAT\\Aponte para esta nota como arquivo base Tanca.txt",
+  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service\\in",
   "tipoEmissao": "1",
   "agentes": "1",
   "serie": "245",
-  "numero": "246",
-  "quantidade": "3",
+  "numero": "473",
+  "quantidade": "200",
   "nomenclatura": "NDDDDL1000001001#",
   "fuso": "-3",
-  "sleep": "2000",
+  "sleep": "100",
   "cnpj": "06255692000103"
 }

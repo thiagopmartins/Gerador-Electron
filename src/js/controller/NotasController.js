@@ -32,22 +32,18 @@ class NotasController{
 
             let nota = notasModel.criarNota(i);
             let notaNumero = parseInt(notasModel.numeroInicio) + i;
-            notasModel.criarArquivo(nota,notaNumero);
-            setTimeout(() => {
-                if(i < notasModel.quantidade - 1){
+            notasModel.criarArquivo(nota,notaNumero);     
+            if(i < notasModel.quantidade - 1){
+                setTimeout(() => {
                     i ++;
                     this.gerarNotas();
-                }
-                else {
-                    this.atualizaFormulario();
-
-                    let modal = document.getElementById('myModal');
-                    modal.style.display = "none"; 
-
-                    console.log('Todas as notas foram geradas.');
-                }
-                    
-            }, parseInt(notasModel.sleep));
+                }, parseInt(notasModel.sleep));
+            }
+            else {
+                this.atualizaFormulario();
+                estimativa.innerHTML = 'Todas as notas foram geradas com sucesso!';
+                console.log('Todas as notas foram geradas.');
+            }
         }
     }
     static pararGerarNotas(){
@@ -63,25 +59,30 @@ class NotasController{
     }
 
     static estimativaTempo() {
-        let segundos = (this.inicio - 1) * Main.getSleep() / 1000;
-        let data = dataAtual.getTime() + notasModel.quantidade * parseInt(notasModel.sleep);
-        data = new Date(data);
-        let dia = ("00" + data.getDate()).slice(-2);
-        let hora = ("00" + data.getHours()).slice(-2) - dia * 24;
-        let minuto =  ("00" + data.getMinutes()).slice(-2);
-        let segundos = ("00" + data.getSeconds()).slice(-2);
+        let estimativa = ((notasModel.quantidade - i) * notasModel.sleep) - notasModel.sleep;
 
-        if (dia > dataAtual.getDate()) {
-        let dia = ("00" + data.getDate()).slice(-2);
-            return "Estimativa: " + dia + " dias " + hora + " h " + minuto + " m " + segundos + " s";
-        } else if (hora > dataAtual.getHours()) {
-            return "Estimativa: " + hora + " h " + minuto + " m " + segundos + " s";
-        } else if (minuto > data.getMinutes()) {
-            return "Estimativa: " + minuto + " m " + segundos + " s";
-        } else {
-            return "Estimativa: " + segundos + " s";
-        }
-        
+        let string;
+
+        let dia, hora, minuto, segundos;
+        segundos = Math.floor(estimativa / 1000);
+        minuto = Math.floor(segundos / 60);
+        segundos = segundos % 60;
+        hora = Math.floor(minuto / 60);
+        minuto = minuto % 60;
+        dia = Math.floor(hora / 24);
+        hora = hora % 24;
+
+        if( dia > 0)
+            string = `Estimativa: ${dia} dia(s) ${hora} h ${minuto} m ${segundos} s`;
+        else if(hora > 0)
+            string = `Estimativa: ${hora} h ${minuto} m ${segundos} s`;
+        else if(minuto > 0)
+            string = `Estimativa: ${minuto} m ${segundos} s`;
+        else
+            string = `Estimativa: ${segundos} s`;
+
+
+        return string;
     }
 }
 module.exports = NotasController;
