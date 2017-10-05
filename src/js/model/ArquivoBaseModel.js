@@ -8,12 +8,9 @@ class ArquivoBaseModel{
         if (fs.existsSync(model)){
             let conteudo = fs.readFileSync(model, 'utf8');
             fs.writeFileSync(dir + 'arquivo.tmp', conteudo);
-        }
-        else {
+        } else {
             throw new Error('Pau na budeguinha');
         }
-    
-        
     }
 
     static set salvarArquivo(conteudo){

@@ -42,6 +42,7 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 .logo {  color: #fff; display: inline-block; font-size: 2.1rem;}
 .loader {padding-top: 20%;}
 .mgTop-30 {margin-top: 30px;}
+.mgTop-10 {margin-top: 10px;}
 .mgBottom-20 {margin-bottom: 20px;}
 .mgBottom-30 {margin-bottom: 30px;}
 .collection-item span {font-weight: bold; font-size: 16px;}
@@ -63,3 +64,4 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 .button {border: none;display: inline-block; outline: 0;padding: 8px 16px;vertical-align: middle;overflow: hidden;text-decoration: none;color: inherit; background-color: inherit;text-align: center;cursor: pointer; white-space: nowrap;-webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
 .hover-green:hover {color: #fff!important; background-color: #3fc6a7!important;}  
 .hover-opacity:hover {opacity: 0.7;}  
+.disabled {opacity: 0.7;}

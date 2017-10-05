@@ -32,6 +32,7 @@
                     <ul id="menuTopo">
                       <li><a class="btn-floating btnMenu grey lighten-5" id="btnGerador"><i class="material-icons">description</i></a></li>
                       <li><a class="btn-floating btnMenu grey lighten-5" id="btnEstatisticas"><i class="material-icons">insert_chart</i></a></li>
+                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnServicos"><i class="material-icons">backspace</i></a></li>
                       <li><a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes"><i class="material-icons">settings</i></a></li>
                       <li id="showEmployees"></li>
                     </ul>
@@ -94,7 +95,7 @@
                         <input name="group1" type="radio" id="normal" value="1" checked />
                         <label for="normal">Normal</label>
 
-                        <input name="group1" type="radio" id="contingencia" value="2" />
+                        <input name="group1" type="radio" id="contingencia" value="9" />
                         <label for="contingencia">Contingência</label>
                     </select>
                 </div>
@@ -120,7 +121,7 @@
                 <label id="lblNumero" class="active" for="numero">Número Inicial</label>
               </div>
               <div class="input-field col s3">
-                <input id="quantidade" type='number' step=1  value="10" required="required" />
+                <input id="quantidade" type='number' step=1 value="10" required="required" />
                 <label id="lblQuantidade" class="active" for="quantidade">Quantidade de Notas</label>
               </div>
               <div class="input-field col s2">
@@ -135,11 +136,15 @@
               <div class="col s1">
                 <a id="btnCadastrarCnpj" class="btn-floating waves-effect waves-light red"><i class="small material-icons">list</i></a>
               </div>
-              <div class="input-field col s4">
+              <div class="input-field col s3">
                 <input id="CNPJ" type="text" id="autocomplete-input" class="autocomplete" required="required" />
                 <label id="lblCNPJ" for="autocomplete-input">CNPJ</label>
               </div>
-              <div class="input-field col s5">
+              <div class="input-field col s3">
+                <input id="IE" type="text" id="autocomplete-input" class="disabled" disabled />
+                <label id="lblIE" for="autocomplete-input">Inscrição Estadual</label>
+              </div>
+              <div class="input-field col s3">
                 <input id="nomenclatura" type="text" required="required" />
                 <label id="lblNomenclatura" class="active" for="nomenclatura">Nomenclatura do Arquivo</label>
               </div>
@@ -158,6 +163,7 @@
                    Limpar Formulário
                   </a>
               </div>
+
               <div class="input-field col s6 right-align">
                 <button class="btn waves-effect waves-light" type="submit" name="gerarNotas" id="gerarNotas">Gerar Notas
                   <i class="material-icons right">send</i>
@@ -194,7 +200,49 @@
             <div class="row">
               <div class="input-field col s12 right-align">
                 <button class="btn waves-effect waves-light" type="submit">Enviar
-                    <i class="material-icons right">send</i>
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <form action="#" id="painelServicos">
+
+          <div class="row mainMenu">
+            <div class="col s6">
+              <div class="chip">
+                <i class="material-icons iconTitle">backspace</i>
+                <span class="spanTitle">Gerenciador de Serviços</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="col s4">
+                <div class="left-align mgTop-25">
+                  <select id="tipoEmissao">
+                    <input name="group1" type="radio" id="agente" value="1" checked />
+                    <label for="agente">Agente</label>
+
+                    <input name="group1" type="radio" id="concentrador" value="2" />
+                    <label for="concentrador">Concentrador</label>
+                  </select>
+                </div>
+              </div>
+              <div class="range-field col s8" id="divQtdAgente">
+                <label class="active" for="agentes" id="lblAgentes">Quantidade de Agentes: 1</label>
+                <input type="range" id="contadorAgente" min="1" max="50" value="1" />
+              </div>
+            </div>
+          </div>
+
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="input-field col s12 right-align">
+                <button class="btn waves-effect waves-light" type="submit">Enviar
+                  <i class="material-icons right">send</i>
                 </button>
               </div>
             </div>
@@ -204,7 +252,7 @@
         <div class="modal-message container">
           <div class="row center">
             <div class="col s8 chip offset-s2" id="notificacao">
-  
+
             </div>
           </div>
         </div>
@@ -217,7 +265,7 @@
     <div class="modal-content">
       <div class="modal-content animate-top card-4">
         <header class="green display-container">
-          <span  id="xbtnCloseModalGerador"class="button xlarge display-topright hover-green hover-opacity">×</span>
+          <span id="xbtnCloseModalGerador" class="button xlarge display-topright hover-green hover-opacity">×</span>
           <h4>Gerador de Massa Ativo</h4>
         </header>
         <div class="container input-edit">

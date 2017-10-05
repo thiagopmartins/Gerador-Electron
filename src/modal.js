@@ -2,16 +2,21 @@ const ArquivoBaseModel = require('./js/model/ArquivoBaseModel.js');
 const ConfigModel = require('./js/model/ConfigModel.js');
 const fs = require('fs');
 let $ = document.querySelector.bind(document);
-let conteudo
-window.onload = function(){
-    let configModel = new ConfigModel();
+let conteudo;
+let configModel = new ConfigModel();
 
-    let conteudoOrigem;
+window.onload = function(){
     configModel.pegarDados()
         .then((dados) => {
-            ArquivoBaseModel.criarArquivo = dados.origem;   
-            conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
-            $('#textarea1').value = conteudo;              
+            try {
+                conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
+                $('#textarea1').value = conteudo; 
+            } catch (error) {
+                ArquivoBaseModel.criarArquivo = dados.origem;
+                conteudo = fs.readFileSync('./data/arquivo.tmp', 'utf8');
+                $('#textarea1').value = conteudo; 
+                console.log("Arquivo .tmp não encontrado. Gerando novo arquivo com base na URL de origem" + error);
+            }
         },(erro) =>{ console.log(erro); }
      );
 };

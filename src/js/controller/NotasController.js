@@ -1,5 +1,6 @@
 const NotasModel = require('../model/NotasModel.js');
 const DadosModel = require('../model/DadosModel.js');
+const ConfigModel = require('../model/ConfigModel.js');
 
 let notasModel;
 let i;
@@ -56,13 +57,14 @@ class NotasController{
         let ondeParou = parseInt(notasModel.numeroInicio) + i;
         let dadosModel = new DadosModel();
         dadosModel.numero = ondeParou + 1;
+
+        let configModel = new ConfigModel();
+        configModel.salvarDados();
     }
 
     static estimativaTempo() {
         let estimativa = ((notasModel.quantidade - i) * notasModel.sleep) - notasModel.sleep;
-
         let string;
-
         let dia, hora, minuto, segundos;
         segundos = Math.floor(estimativa / 1000);
         minuto = Math.floor(segundos / 60);
@@ -80,7 +82,6 @@ class NotasController{
             string = `Estimativa: ${minuto} m ${segundos} s`;
         else
             string = `Estimativa: ${segundos} s`;
-
 
         return string;
     }

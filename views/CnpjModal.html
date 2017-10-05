@@ -16,10 +16,14 @@
         <div class="modalElectron modal-fixed-footer">
             <div class="modal-content-employees">
                 <div class="col s12 center-align">
-                    <div class="row mgTop-30">
+                    <div class="row mgTop-10">
                         <div class="input-field col s8 offset-s2">
                             <input id="cnpj" type='number' step=1 data-length="14" class="validate" value="" required />
                             <label id="lblSerie" class="active" for="cnpj">CNPJ</label>
+                        </div>
+                        <div class="input-field col s8 offset-s2">
+                            <input id="ie" type='number' step=1 class="" value="" required />
+                            <label id="lblIe" class="active" for="ie">Inscrição Estadual</label>
                         </div>
                         <div class="input-field col s8 offset-s2">
                             <input id="empresa" type='text' class="validate" required />
@@ -62,10 +66,16 @@
                 </header>
                 <div class="container input-edit">
                     <div class="input-field col s8 offset-s2">
-                        <input id="cnpjModal" type='number' step=1 data-length="14" class="validate active" value="" required />
+                        <input id="cnpjModal" type='number' step=1 data-length="14" class="validate" placeholder="CNPJ" value="" required />
+                        <label id="lblCnpj" class="active" for="cnpjModal">CNPJ</label>
                     </div>
                     <div class="input-field col s8 offset-s2">
-                        <input id="empresaModal" type='text' class="validate active" required value="" />
+                        <input id="ieModal" type='number' step=1 class="" value="" placeholder="Inscrição Estadual" required />
+                        <label id="lblIe" class="active" for="ieModal">Inscrição Estadual</label>
+                    </div>
+                    <div class="input-field col s8 offset-s2">
+                        <input id="empresaModal" type='text' class="validate" required value="" placeholder="Empresa" />
+                        <label id="lblEmpresa" class="active" for="empresaModal">Empresa</label>
                     </div>
 
                     <div class="modal-footer row ">
@@ -73,6 +83,14 @@
                             <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat" id="btnDescartarEdicao">Descartar</a>
                             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" id="btnEditarCnpj">Salvar</a>
                         </div> 
+                    </div>
+
+                    <div class="modal-message container">
+                        <div class="row center">
+                            <div class="col s8 chip offset-s2" id="notificacaoModal">
+        
+                            </div>
+                        </div>
                     </div>
 
                 </div>

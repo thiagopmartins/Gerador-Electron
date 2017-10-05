@@ -7,6 +7,7 @@ let $ = document.querySelector.bind(document);
 let cnpjModel;
 
 window.onload = function () {
+
     console.log("Carregando aplicação!!!");
 
     //Materialize.toast('Lista Atualizada!', 3000);
@@ -17,8 +18,6 @@ window.onload = function () {
     FerramentaController._ativarGerador();
     FerramentaController._iniciaConfig();
 
-    $('#btnModal').classList.add('disabled');
-
     $('#btnGerador').onclick = function (event) {
         event.preventDefault();
         FerramentaController._ativarGerador();
@@ -27,6 +26,11 @@ window.onload = function () {
     $('#btnEstatisticas').onclick = function (event) {
         event.preventDefault();
         FerramentaController._ativarEstatisticas();
+    };
+
+    $('#btnServicos').onclick = function (event) {
+        event.preventDefault();
+        FerramentaController._ativarServicos();
     };
 
     $('#btnGerarNovaSerie').onclick = function (event) {
@@ -40,19 +44,16 @@ window.onload = function () {
         try {
             caminho = document.getElementById("arquivo").files[0].path;
             FerramentaController._arquivoBase(caminho);
+            //grava arquivo vindo do campo #arquivo
+            FerramentaController._salvarOrigem();
         } catch (Exception) {
             throw (Exception);
         }
     };
 
-    $('#arquivo').onclick = function (event) {
-        document.getElementById("arquivo").value = "";
-    };
-
     $('#btnModal').onclick = function (event) {
         event.preventDefault();
         ipcRenderer.send('ModalArquivo');
-        FerramentaController._salvarOrigem();
     };
 
     $('#btnCadastrarCnpj').onclick = function (event) {
@@ -67,6 +68,11 @@ window.onload = function () {
 
     $('#agentes').onchange = event => $('#lblAgentes').innerHTML = 'Quantidade de Agentes: ' + $('#agentes').value;
 
+    $('#CNPJ').onchange = event => { 
+        FerramentaController._salvarDados();
+        FerramentaController._registraIe($('#CNPJ').value);
+    }
+    
     $('#btnLimpaFormulario').onclick = function (event) {
         event.preventDefault();
         document.getElementById("painelGerador").reset();
@@ -75,11 +81,11 @@ window.onload = function () {
     $('#nomenclatura').oninput = (event) => {
         //regra
         if (conteudo == $('#nomenclatura').value) {
-            $('#menuTopo').style.right = '-190px';
+            $('#menuTopo').style.right = '-130px';
             $('#showEmployees').innerHTML = '<a class="btn-floating btnMenu amber accent-4"><i class="material-icons">people</i></a>';
         }
         else {
-            $('#menuTopo').style.right = '-250px';
+            $('#menuTopo').style.right = '-186px';
         }
     };
 
@@ -93,5 +99,44 @@ window.onload = function () {
         event.preventDefault();
     }
 
+    //PAINEL SERVIÇOS
+/*
+    $('#paraService').onclick = function (event) {
+        let child = require('child_process').exec('net stop NDDigitalAgentService_1', function (error, stdout, stderr) {
+            if (error !== null) {
+                console.log('exec error: ' + error);
+            }
+        });
 
+        event.preventDefault();
+    }
+*/
+
+    $('#agente').onchange = function (event) {
+        if ($("#concentrador").checked == true) {
+            $("#contadorAgente").disabled = true;
+            $('#divQtdAgente').classList.add('disabled');
+            console.log("O campo quantidade de agentes desativado");
+        } else {
+            $("#contadorAgente").disabled = false;
+            $('#divQtdAgente').classList.remove('disabled');            
+            console.log("O campo quantidade de agentes foi reativado");
+        }
+        event.preventDefault();
+    }
+
+    $('#concentrador').onchange = function (event) {
+        if ($("#concentrador").checked == true) {
+            $("#contadorAgente").disabled = true;
+            $('#divQtdAgente').classList.add('disabled');
+            console.log("O campo quantidade de agentes desativado");
+        } else {
+            $("#contadorAgente").disabled = false;
+            $('#divQtdAgente').classList.remove('disabled');                        
+            console.log("O campo quantidade de agentes foi reativado");
+        }
+        event.preventDefault();
+    }
+
+    
 };

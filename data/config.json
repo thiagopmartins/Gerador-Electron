@@ -1,13 +1,14 @@
 {
   "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\Nota_Base_NFe\\NDDDDL1000001001#.txt",
-  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service\\in",
+  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_1\\in",
   "tipoEmissao": "1",
   "agentes": "1",
-  "serie": "245",
-  "numero": "206",
-  "quantidade": "3",
+  "serie": "593",
+  "numero": "5000098",
+  "quantidade": "1",
   "nomenclatura": "NDDDDL1000001001#",
   "fuso": "-3",
-  "sleep": "1000",
-  "cnpj": "06255692000103"
+  "sleep": "4000",
+  "cnpj": "10280765000186",
+  "ie": "200984926"
 }

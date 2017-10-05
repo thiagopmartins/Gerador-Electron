@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 let dir = './data/';
 let filename = 'config.json';
+let dadosModel;
+let cnpjModel;
 class ConfigModel {
     constructor() {
         if (!fs.existsSync(dir))
@@ -25,6 +27,7 @@ class ConfigModel {
                     dadosModel.fuso = dados.fuso;
                     dadosModel.sleep = dados.sleep;
                     dadosModel.cnpj = dados.cnpj;
+                    dadosModel.ie = dados.ie;
 
                     let file_field = $('input[type="file"]').closest('.file-field');       
                     let path_input = file_field.find('input.file-path');
@@ -63,7 +66,7 @@ class ConfigModel {
             });
     }
     salvarDados() {
-        let dadosModel = new DadosModel();
+        dadosModel = new DadosModel();
         let dados = {
             origem: dadosModel.origem,
             destino: dadosModel.destino,
@@ -75,8 +78,10 @@ class ConfigModel {
             nomenclatura: dadosModel.nomenclatura,
             fuso: dadosModel.fuso,
             sleep: dadosModel.sleep,
-            cnpj: dadosModel.cnpj
+            cnpj: dadosModel.cnpj,
+            ie: dadosModel.ie,
         }
+        
         jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
             .then(() => {
                 console.log('Dado salvo com sucesso');

@@ -73,7 +73,7 @@ ipcMain.on('ModalCnpj', () => {
   if(ModalCnpj == null){
     ModalCnpj = new BrowserWindow({
       width: 700,
-      height: 500,
+      height: 600,
       resizable:  true,
       movable: false,
       minimizable: false,
@@ -88,7 +88,7 @@ ipcMain.on('ModalCnpj', () => {
       slashes: true
     }));   
   }
-  ModalCnpj.on('closed', () => { ModalCnpj = null });  
+  ModalCnpj.on('closed', () => { ModalCnpj = null; });  
 });
 
 ipcMain.on('ModalEmployees', () => {
