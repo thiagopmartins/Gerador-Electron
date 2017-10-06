@@ -18,7 +18,8 @@ let
     sleep,
     tipoEmissao,
     numeroInicio,
-    ie
+    ie,
+    xml = false;
     ;
 
 class NotasModel {
@@ -55,10 +56,15 @@ class NotasModel {
         let minuto = ("00" + data.getMinutes()).slice(-2);
         let segundos = ("00" + data.getSeconds()).slice(-2);
         let fusoNota = fuso[0] + '0' + fuso[1];
+  
         let dataFormat = `${data.getFullYear()}-${mes}-${dia}T${hora}:${minuto}:${segundos}${fusoNota}:00`;
 
         try {
+            xml = false;
             notaConteudo = fs.readFileSync(dir + filename, 'utf8');
+            if(notaConteudo.includes('<?xml'))
+                xml = true;
+
         } catch (error) {
             ArquivoBaseModel.criarArquivo = origem;
             notaConteudo = fs.readFileSync(dir + filename, 'utf8');
@@ -79,8 +85,13 @@ class NotasModel {
         return notaConteudo;
     }
     criarArquivo(conteudo, numNota) {
-        let caminho = destino + '\\' + nomenclatura + numNota + '_ped_env.txt';
+        let caminho;
+        if(!xml)
+            caminho = destino + '\\' + nomenclatura + numNota + '_ped_env.txt';
+        else
+            caminho = destino + '\\' + nomenclatura + numNota + '_ped_env.xml';    
         console.log(caminho);
+        console.log(xml);
         fs.writeFileSync(caminho, conteudo);
     }
 

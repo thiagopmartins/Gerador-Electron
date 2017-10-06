@@ -1,14 +1,14 @@
 {
-  "origem": "C:\\Users\\diego.liz\\Desktop\\Gerador de massa eForms\\Nota_Base_NFe\\NDDDDL1000001001#.txt",
-  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_1\\in",
+  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Tumelero\\NDDRS11000001001.txt",
+  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_02\\in",
   "tipoEmissao": "1",
   "agentes": "1",
-  "serie": "593",
-  "numero": "5000098",
-  "quantidade": "1",
-  "nomenclatura": "NDDDDL1000001001#",
+  "serie": "391",
+  "numero": "5000312",
+  "quantidade": "999999999",
+  "nomenclatura": "NDDPDF1001001001#",
   "fuso": "-3",
   "sleep": "4000",
   "cnpj": "10280765000186",
-  "ie": "200984926"
+  "ie": "0963270850"
 }
