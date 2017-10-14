@@ -20,6 +20,7 @@
     "electron": "~1.6.2"
   },
   "dependencies": {
+    "fs-extra": "^4.0.2",
     "hammer": "0.0.5",
     "jquery": "^3.2.1",
     "jsonfile-promised": "0.0.1",

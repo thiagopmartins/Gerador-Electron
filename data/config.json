@@ -3,12 +3,12 @@
   "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_1\\in",
   "tipoEmissao": "1",
   "agentes": "1",
-  "serie": "593",
-  "numero": "5000098",
+  "serie": "829",
+  "numero": "10000050",
   "quantidade": "1",
   "nomenclatura": "NDDDDL1000001001#",
   "fuso": "-3",
-  "sleep": "4000",
+  "sleep": "2000",
   "cnpj": "10280765000186",
-  "ie": "200984926"
+  "ie": "0963270850"
 }
