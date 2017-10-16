@@ -1,46 +1,60 @@
-const EstatisticaModel = require('../model/EstatisticaModel.js');
-const fs = require('fs');
-const readline = require('readline');
+const EstatisticaModel = require("../model/EstatisticaModel.js");
+const ConstantesModel = require("../model/ConstantesModel.js");
+const fs = require("fs");
+const readline = require("readline");
 
+let constantesModel = new ConstantesModel();
 let estatisticaModel = new EstatisticaModel();
 
+let valores = [];
+let dir = [];
+let resultados = [];
+let content;
+let tempo;
+let rl;
+
 class EstatisticaController {
-    static leArquivos(qtdItens) {
+    static async leArquivos(element) {
+        for (var i = 0; i < element.files.length; i++) {
+            dir = element.files[i].path;
+            await this.readLines(dir).then(
+                tempo => {
+                   resultados.push([dir, tempo]);
+                },
+                error => {
+                    console.log(`${error}`);
+                }
+            ) 
+        }
+
+        return resultados;
+    }
+
+    static readLines(dir) {
         return new Promise((resolve, reject) => {
-            let content = null;
-            let tempo;
-            let valores = [];
-            let dir = [];
-            for (var i = 0; i < qtdItens; i++) {
-                dir[i] = document.getElementById("arquivosException").files[i].path;
-                let inputFile = fs.createReadStream(dir[i])
-                const rl = readline.createInterface({
-                    input: inputFile,
-                    output: process.stdout
-                });
+            let inputFile = fs.createReadStream(dir);
 
-                rl.on('line', (linha) => {
-                    if (linha.includes(estatisticaModel.SEFAZ)) {
-                        tempo = linha.split(estatisticaModel.SEFAZ);
-                        tempo[1] = tempo[1].replace(estatisticaModel.TERMO, "");
-                        try {
-                            valores.push(parseInt(tempo[1]));
-                        } catch (e) {
-                            tempo[1] = tempo[1].replace(estatisticaModel.TERMO_OLD, "");
-                            valores.push(parseInt(tempo[1]));
-                        }
+            rl = readline.createInterface({
+                input: inputFile,
+                output: process.stdout
+            });
+
+            rl.on("line", linha => {
+                if (linha.includes(constantesModel.SEFAZ)) {
+                    tempo = linha.split(constantesModel.SEFAZ);
+                    tempo[1] = tempo[1].replace(constantesModel.TERMO, "");
+                    try {
+                        valores.push(parseInt(tempo[1]));
+                    } catch (e) {
+                        tempo[1] = tempo[1].replace(constantesModel.TERMO_OLD, "");
+                    valores.push(parseInt(tempo[1]));
                     }
-                }).on('close', () => {
-                    console.log('terminou de ler!');
-                    console.log(valores);
-                    
-                });
-            }
-
-            return resolve();
+                }
+            }).on("close", () => {
+                let tempo = estatisticaModel.mediaTempos(valores);
+                return resolve(tempo);
+            });
         });
-
-
     }
 }
 module.exports = EstatisticaController;

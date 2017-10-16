@@ -104,10 +104,14 @@ window.onload = function () {
 
     $('#gerarEstatistica').onclick = function (event) {
         try {
-            let qtdItens = $("#arquivosException").files.length;
-            EstatisticaController.leArquivos(qtdItens).then(() => {
-                //promisse sem implementação
-            },(error) => {console.log(`Erro: ${error}`);});   
+            let element = $("#arquivosException");
+            let resultadoPromise = EstatisticaController.leArquivos(element); 
+            
+            let resultado = Promise.resolve(resultadoPromise);
+            resultado.then(function(valores) {
+              console.log(valores); // 1
+            });
+
         } catch (Exception) {
             console.log("Erro: " + Exception);
         }
