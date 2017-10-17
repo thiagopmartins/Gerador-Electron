@@ -205,6 +205,17 @@
               </div>
             </div>
           </div>
+
+          <div class="col s6 offset-s3 m6 offset-m3" id="cardMediaTotal">
+            <div class="card-panel">
+              <!-- Box com a média total de tempos em MS e quantidade total de arquivos enviados -->
+              <h5 class="center" id="mediaTotal"></h5>
+            </div>
+          </div>
+
+          <!-- Lista os tempos por arquivo enviado -->
+          <ul class="collapsible col s12" data-collapsible="expandable" id="listaTempos"></ul>
+
         </form>
 
         <form action="#" id="painelServicos">
@@ -301,11 +312,14 @@
 </body>
 <script>
   require('./src/renderer.js');
-
 </script>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="node_modules/hammer/hammer-min.js"></script>
 <script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
 <script type="text/javascript" src="src/js/autocomplete.js"></script>
-
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
 </html>

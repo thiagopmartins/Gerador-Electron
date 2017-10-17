@@ -103,13 +103,17 @@ window.onload = function () {
     //Estatistica .Exception
 
     $('#gerarEstatistica').onclick = function (event) {
+        document.getElementById('listaTempos').innerHTML = " ";        
+        document.getElementById('mediaTotal').innerHTML = " ";
         try {
+            let estatisticaController = new EstatisticaController();            
             let element = $("#arquivosException");
-            let resultadoPromise = EstatisticaController.leArquivos(element); 
             
+            let resultadoPromise = estatisticaController.leArquivos(element); 
             let resultado = Promise.resolve(resultadoPromise);
             resultado.then(function(valores) {
-              console.log(valores); // 1
+                estatisticaController.criaTotal(valores);                         
+                estatisticaController.criaLista(valores);         
             });
 
         } catch (Exception) {
