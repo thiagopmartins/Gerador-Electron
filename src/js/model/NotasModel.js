@@ -67,6 +67,7 @@ class NotasModel {
                     console.log(err);
                 else
                     console.log(results); // results contains rows returned by server
+                connection.close();
             }
         );
     }

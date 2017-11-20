@@ -1,15 +1,15 @@
 {
-  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Rio Grande do Sul - TUMELERO 4.00\\TUMELERO 4.0 .txt",
+  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Rio Grande do Sul - TUMELERO\\NDDRS11000001001.txt",
   "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Agent Service_02\\in",
   "tipoEmissao": "1",
-  "agentes": "20",
-  "serie": "391",
-  "numero": "5000377",
+  "agentes": "5",
+  "serie": "430",
+  "numero": "923",
   "quantidade": "1",
-  "nomenclatura": "NDDPDF1001001001#",
-  "fuso": "-3",
-  "sleep": "1",
+  "nomenclatura": "NDDTUM1000001001#",
+  "fuso": "-2",
+  "sleep": "500",
   "cnpj": "10280765000186",
   "ie": "0963270850",
-  "itens": "1"
+  "itens": "20"
 }
