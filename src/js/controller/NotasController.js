@@ -5,6 +5,7 @@ const ConfigModel = require('../model/ConfigModel.js');
 let notasModel;
 let i;
 let continua;
+let agenteId = 0;
 class NotasController{
     static run(){
         
@@ -25,15 +26,21 @@ class NotasController{
         else{
             let numNota = i + 1;
             console.clear();
-            let detalhes = document.getElementById('detalhes');
-            detalhes.innerHTML = 'gerando notas ' + numNota + '/' + notasModel.quantidade; 
              
             let estimativa = document.getElementById('estimativa');
             estimativa.innerHTML = this.estimativaTempo();
 
             let nota = notasModel.criarNota(i);
             let notaNumero = parseInt(notasModel.numeroInicio) + i;
-            notasModel.criarArquivo(nota,notaNumero);     
+            let dadosModel = new DadosModel();
+            let detalhes = document.getElementById('detalhes');
+            detalhes.innerHTML = 'Gerando Notas ' + numNota + '/' + notasModel.quantidade + ' <strong><br>Nota: ' + notaNumero;
+            if(agenteId >= dadosModel.agentes)
+                agenteId = 1;
+            else
+                agenteId ++;
+            console.log('agente ' + agenteId);
+            notasModel.criarArquivo(nota,notaNumero,agenteId);      
             if(i < notasModel.quantidade - 1){
                 setTimeout(() => {
                     i ++;

@@ -188,7 +188,7 @@
             <div class="file-field input-field">
               <div class="btn">
                 <span>Carregar Arquivos</span>
-                <input type="file" id="arquivo" name="arquivo" />
+                <input type="file" id="arquivosException" name="arquivosException" multiple />
               </div>
               <div class="file-path-wrapper">
                 <input class="file-path " type="text" />
@@ -199,12 +199,23 @@
           <div class="col s12 center-align">
             <div class="row">
               <div class="input-field col s12 right-align">
-                <button class="btn waves-effect waves-light" type="submit">Enviar
+                <button class="btn waves-effect waves-light" id="gerarEstatistica" type="submit">Enviar
                   <i class="material-icons right">send</i>
                 </button>
               </div>
             </div>
           </div>
+
+          <div class="col s6 offset-s3 m6 offset-m3" id="cardMediaTotal">
+            <div class="card-panel">
+              <!-- Box com a média total de tempos em MS e quantidade total de arquivos enviados -->
+              <h5 class="center" id="mediaTotal"></h5>
+            </div>
+          </div>
+
+          <!-- Lista os tempos por arquivo enviado -->
+          <ul class="collapsible col s12" data-collapsible="expandable" id="listaTempos"></ul>
+
         </form>
 
         <form action="#" id="painelServicos">
@@ -231,17 +242,33 @@
                   </select>
                 </div>
               </div>
-              <div class="range-field col s8" id="divQtdAgente">
-                <label class="active" for="agentes" id="lblAgentes">Quantidade de Agentes: 1</label>
+              <div class="range-field col s8" id="qtdAgenteServico">
+                <label class="active" for="agente" id="lblAgente">Quantidade de Agentes: 1</label>
                 <input type="range" id="contadorAgente" min="1" max="50" value="1" />
               </div>
             </div>
           </div>
 
+          <div class="input-field col s12">
+            <input id="arquivosAgente" type="text" value='C:\bat\arquivos\' required="required" />
+            <label class="active" for="arquivosAgente">Caminho dos Arquivos de Configuração</label>
+          </div>
+
+          <div class="input-field col s12" >
+            <input id="destinoArquivos" type="text" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service_' required="required" />
+            <label class="active" for="destinoArquivos">Caminho de Destino</label>
+          </div>
+
           <div class="col s12 center-align">
             <div class="row">
               <div class="input-field col s12 right-align">
-                <button class="btn waves-effect waves-light" type="submit">Enviar
+                <button class="btn waves-effect waves-light light-blue" id="limparAgente" type="submit">Limpar Agente
+                  <i class="material-icons right">send</i>
+                </button>
+                <button class="btn waves-effect waves-light red" id="pararServico" type="submit">Parar Serviços
+                  <i class="material-icons right">send</i>
+                </button>
+                <button class="btn waves-effect waves-light" id="iniciarServico" type="submit">Iniciar Serviços
                   <i class="material-icons right">send</i>
                 </button>
               </div>
@@ -285,11 +312,14 @@
 </body>
 <script>
   require('./src/renderer.js');
-
 </script>
 <script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="node_modules/hammer/hammer-min.js"></script>
 <script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
 <script type="text/javascript" src="src/js/autocomplete.js"></script>
-
+<script>
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
 </html>

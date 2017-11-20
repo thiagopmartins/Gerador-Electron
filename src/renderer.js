@@ -1,5 +1,6 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
-const NotasController = require('./js/controller/NotasController.js');
+const ServicosController = require('./js/controller/ServicosController.js');
+const EstatisticaController = require('./js/controller/EstatisticaController.js');
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
 
@@ -99,44 +100,99 @@ window.onload = function () {
         event.preventDefault();
     }
 
-    //PAINEL SERVIÇOS
-/*
-    $('#paraService').onclick = function (event) {
-        let child = require('child_process').exec('net stop NDDigitalAgentService_1', function (error, stdout, stderr) {
-            if (error !== null) {
-                console.log('exec error: ' + error);
-            }
-        });
+    //Estatistica .Exception
+
+    $('#gerarEstatistica').onclick = function (event) {
+        document.getElementById('listaTempos').innerHTML = " ";        
+        document.getElementById('mediaTotal').innerHTML = " ";
+        try {
+            let estatisticaController = new EstatisticaController();            
+            let element = $("#arquivosException");
+            
+            let resultadoPromise = estatisticaController.leArquivos(element); 
+            let resultado = Promise.resolve(resultadoPromise);
+            resultado.then(function(valores) {
+                estatisticaController.criaTotal(valores);                         
+                estatisticaController.criaLista(valores);         
+            });
+
+        } catch (Exception) {
+            console.log("Erro: " + Exception);
+        }
 
         event.preventDefault();
     }
-*/
+
+    //Gerenciador de Serviços
 
     $('#agente').onchange = function (event) {
-        if ($("#concentrador").checked == true) {
-            $("#contadorAgente").disabled = true;
-            $('#divQtdAgente').classList.add('disabled');
-            console.log("O campo quantidade de agentes desativado");
-        } else {
-            $("#contadorAgente").disabled = false;
-            $('#divQtdAgente').classList.remove('disabled');            
-            console.log("O campo quantidade de agentes foi reativado");
-        }
+        $("#contadorAgente").disabled = false;
+        $('#destinoArquivos').disabled = false;
+        $('#arquivosAgente').disabled = false; 
+        $('#limparAgente').disabled = false;
         event.preventDefault();
     }
+
+    $('#qtdAgenteServico').onchange = event => $('#lblAgente').innerHTML = 'Quantidade de Agentes: ' + parseInt($("#contadorAgente").value);    
 
     $('#concentrador').onchange = function (event) {
-        if ($("#concentrador").checked == true) {
-            $("#contadorAgente").disabled = true;
-            $('#divQtdAgente').classList.add('disabled');
-            console.log("O campo quantidade de agentes desativado");
+        $("#contadorAgente").disabled = true;
+        $('#arquivosAgente').disabled = true;
+        $('#destinoArquivos').disabled = true;
+        $('#limparAgente').disabled = true;
+        event.preventDefault();
+    }
+
+    $('#pararServico').onclick = function (event) {
+        if ($("#agente").checked == true) {
+            let quantidade = parseInt($("#contadorAgente").value);
+            let tipo = 1;
+            ServicosController.paraServicos(quantidade, 'NDDigitalAgentService_', tipo).then(() => {
+                //promisse sem implementação
+            },(error) => {console.log(`${error}`);});        
         } else {
-            $("#contadorAgente").disabled = false;
-            $('#divQtdAgente').classList.remove('disabled');                        
-            console.log("O campo quantidade de agentes foi reativado");
+            let quantidade = 1;
+            let tipo = 2;
+            ServicosController.paraServicos(quantidade, 'NDDigitalConcentratorService', tipo).then(() => {
+                 //promisse sem implementação               
+            },(error) => {console.log(`${error}`);});        
         }
         event.preventDefault();
     }
 
-    
+    $('#iniciarServico').onclick = function (event) {
+        if ($("#agente").checked == true) {
+            let quantidade = parseInt($("#contadorAgente").value);
+            let tipo = 1;
+            ServicosController.iniciaServicos(quantidade, 'NDDigitalAgentService_', tipo).then(() => {
+                //promisse sem implementação
+            },(error) => {console.log(`${error}`);});        
+        } else {
+            let quantidade = 1;
+            let tipo = 2;
+            ServicosController.iniciaServicos(quantidade, 'NDDigitalConcentratorService', tipo).then(() => {
+                 //promisse sem implementação               
+            },(error) => {console.log(`${error}`);});        
+        }
+        event.preventDefault();
+    }
+
+    $('#limparAgente').onclick = function (event) {
+        if ($("#agente").checked == true) {
+            let quantidade = parseInt($("#contadorAgente").value);
+            let tipo = 1;
+            ServicosController.paraServicos(quantidade, 'NDDigitalAgentService_', tipo).then(() => {
+                let caminho = $('#destinoArquivos').value;
+                let base =  $('#arquivosAgente').value;
+                ServicosController.alteraArquivos(quantidade, caminho, base);    
+            },(error) => {console.log(`${error}`);});        
+        } else {
+            let quantidade = 1;
+            let tipo = 2;
+            ServicosController.paraServicos(quantidade, 'NDDigitalConcentratorService', tipo).then(() => {
+                //Concentrador não terá remove arquivos
+            },(error) => {console.log(`${error}`);});        
+        }
+        event.preventDefault();
+    }
 };

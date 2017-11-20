@@ -1,0 +1,14 @@
+{
+  "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Rio de Janeiro- ADIDAS 4.00\\ADIDAS - 4.0.txt",
+  "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Concentrator Service_02",
+  "tipoEmissao": "1",
+  "agentes": "26",
+  "serie": "495",
+  "numero": "3",
+  "quantidade": "2",
+  "nomenclatura": "NDDTES1000001001#",
+  "fuso": "-3",
+  "sleep": "3000",
+  "cnpj": "10280765000186",
+  "ie": "0963270850"
+}
