@@ -23,6 +23,7 @@ class DadosModel{
     get sleep() { return $('#sleep').value; }
     get cnpj() { return $('#CNPJ').value; }
     get ie() { return $('#IE').value; }
+    get itens() { return $('#itens').value; }
 
     set destino(valor){ $('#destino').value = valor; }
     set origem(valor){ $('#arquivo').path = valor; }
@@ -34,7 +35,8 @@ class DadosModel{
     set fuso(valor){ $('#fuso').value = valor; $('#lblFuso').classList.add('active'); }
     set sleep(valor){ $('#sleep').value = valor; $('#lblSleep').classList.add('active'); }
     set cnpj(valor){ $('#CNPJ').value = valor; $('#lblCNPJ').classList.add('active'); }       
-    set ie(valor){ $('#IE').value = valor; $('#lblIE').classList.add('active'); }       
+    set ie(valor){ $('#IE').value = valor; $('#lblIE').classList.add('active'); }  
+    set itens(valor){ $('#itens').value = valor; $('#lblItens').classList.add('active'); }      
     
 }
 

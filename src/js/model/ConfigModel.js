@@ -28,6 +28,7 @@ class ConfigModel {
                     dadosModel.sleep = dados.sleep;
                     dadosModel.cnpj = dados.cnpj;
                     dadosModel.ie = dados.ie;
+                    dadosModel.itens = dados.itens;
 
                     let file_field = $('input[type="file"]').closest('.file-field');       
                     let path_input = file_field.find('input.file-path');
@@ -80,6 +81,7 @@ class ConfigModel {
             sleep: dadosModel.sleep,
             cnpj: dadosModel.cnpj,
             ie: dadosModel.ie,
+            itens: dadosModel.itens
         }
         
         jsonfile.writeFile(dir + filename, dados, { spaces: 2 })

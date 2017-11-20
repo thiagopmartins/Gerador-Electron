@@ -24,8 +24,8 @@ let
     tipoEmissao,
     numeroInicio,
     ie,
-    xml = false;
-    ;
+    xml = false
+;
 
 class NotasModel {
     iniciar() {
@@ -49,49 +49,49 @@ class NotasModel {
             });
         });
     }
-    enviarBanco(conteudo, caminho){
+    enviarBanco(conteudo, caminho) {
         const connection = db.createConnection({
             host: 'localhost',
             user: 'root',
             password: "vertrigo",
             database: 'entrada_nfce'
-          });
-
+        });
+        console.log(connection);
         let tabela = 'nfceinput';
         let encodedData = base64.encode(conteudo);
         connection.query(
             `INSERT INTO ${tabela} (filename, documentdata) VALUES (?, ?)`,
             [caminho, encodedData],
-            function(err, results, fields) {
-                if(err)
+            function (err, results, fields) {
+                if (err)
                     console.log(err);
                 else
                     console.log(results); // results contains rows returned by server
             }
-          );        
+        );
     }
     criarNota(nota) {
         let notaConteudo = null;
         let numeroNota = parseInt(numeroInicio) + nota;
         let data = new Date();
-        let mezinho  =  data.getMonth()  +  1;
-        let mes  =  ("00" + mezinho).slice(-2);
+        let mezinho = data.getMonth() + 1;
+        let mes = ("00" +  mezinho).slice(-2);
         let dia = ("00" + data.getDate()).slice(-2);
         let hora = ("00" + data.getHours()).slice(-2);
         let minuto = ("00" + data.getMinutes()).slice(-2);
         let segundos = ("00" + data.getSeconds()).slice(-2);
         let fusoNota = fuso[0] + '0' + fuso[1];
-  
+
         let dataFormat = `${data.getFullYear()}-${mes}-${dia}T${hora}:${minuto}:${segundos}${fusoNota}:00`;
-        let uf;       
+        let uf;
         let mod;
         let codigoAleatorio = (Math.floor(Math.random() * (99999999 - 10000000 + 1)) + 10000000);
         let ano = data.getFullYear().toString().substr(-2);
-        
+
         try {
             xml = false;
             notaConteudo = fs.readFileSync(dir + filename, 'utf8');
-            if(notaConteudo.includes('<?xml'))
+            if (notaConteudo.includes('<?xml'))
                 xml = true;
 
         } catch (error) {
@@ -121,7 +121,62 @@ class NotasModel {
         notaConteudo = notaConteudo.replace('${tpEmis}', tipoEmissao);
         notaConteudo = notaConteudo.replace('${CNPJ}', cnpj);
         notaConteudo = notaConteudo.replace('${IE}', ie);
+        let linhas = notaConteudo.split('\n');
+        
+        let dadosModel = new DadosModel();
 
+        let totItens = dadosModel.itens;
+        let idItem = 1;
+        let todosItens = [];
+        let linhasInsert = [];
+        while(idItem <= totItens){
+            
+            for(let items of linhas){
+                //console.log(items);
+                let removeItem;
+                if(items.includes('${item}')){
+                    let removeItem;
+                    removeItem = items.replace('${item}', '');
+                    if(removeItem.includes('${idItem}'))
+                        linhasInsert.push(removeItem.replace(/\${idItem}/g,idItem)); 
+                    else
+                        linhasInsert.push(removeItem);    
+                    //console.log(linhasInsert);
+                    
+                }
+            }
+
+            todosItens.push(linhasInsert.toString());
+            idItem ++;
+        }
+        let notaParaEnviar = [];
+        let add = false;
+        for(let items of linhas){
+            //console.log(items);
+            let removeItem;
+            if(/\${item}/g.test(items)){
+                if(add == false){
+                    notaParaEnviar.push(linhasInsert.join('\n').toString()); 
+                    add = true;  
+                }  
+            }
+            else
+                notaParaEnviar.push(items);
+        }   
+
+        notaConteudo = notaParaEnviar.join('\n').toString();
+        let valorTotal = parseFloat(totItens*51.6000);
+        let valorPis = parseFloat(51.6000*1.65/100).toFixed(2);
+        let valorCofins = parseFloat(51.6000*7.60/100).toFixed(2);
+        let vTotTrib = parseFloat(19.95 * totItens);
+        let vFCPSTRet = parseFloat(51.6000*1.00/100).toFixed(2);
+        while(/\${valorTotal}/.test(notaConteudo)){
+            notaConteudo = notaConteudo.replace('${valorTotal}', valorTotal.toFixed(2));
+        }
+        notaConteudo = notaConteudo.replace('${valorPis}', (valorPis*totItens).toFixed(2));
+        notaConteudo = notaConteudo.replace('${valorCofins}', (valorCofins*totItens).toFixed(2));
+        notaConteudo = notaConteudo.replace('${vFCPSTRet}', (vFCPSTRet*totItens).toFixed(2));
+        notaConteudo = notaConteudo.replace('${vTotTrib}', vTotTrib.toFixed(2));
         console.log(notaConteudo);
         return notaConteudo;
     }
@@ -130,16 +185,16 @@ class NotasModel {
         let banco = true;
         let caminho;
         let nome = nomenclatura.substring(0, nomenclatura.length - 4);
-        let formatAgente  =  ("000"  + agenteId).slice(-3);
+        let formatAgente = ("000" + agenteId).slice(-3);
         nome = `${nome}${formatAgente}#`;
-        if(!xml)
+        if (!xml)
             caminho = nome + numNota + '_ped_env.txt';
         else
-            caminho = nome + numNota + '_ped_env.xml';    
+            caminho = nome + numNota + '_ped_env.xml';
         console.log(caminho);
 
         console.log(`Agente: ${nome}`);
-        if(banco){
+        if (banco) {
             this.enviarBanco(conteudo, caminho);
         }
         else
@@ -153,10 +208,10 @@ class NotasModel {
         let peso = [4, 3, 2, 9, 8, 7, 6, 5];
         let digitoRetorno;
         for (let i = 0; i < nNF.length - 1; i++)
-            soma += peso[i%8] * (parseInt(nNF.substr(i, 1)));
+            soma += peso[i % 8] * (parseInt(nNF.substr(i, 1)));
         resto = soma % 11;
         if (resto == 0 || resto == 1) digitoRetorno = 0; else digitoRetorno = 11 - resto;
-        
+
         return digitoRetorno;
     }
 
