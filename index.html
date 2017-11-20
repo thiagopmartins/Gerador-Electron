@@ -30,10 +30,26 @@
                       <i class="material-icons">menu</i>
                     </a>
                     <ul id="menuTopo">
-                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnGerador"><i class="material-icons">description</i></a></li>
-                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnEstatisticas"><i class="material-icons">insert_chart</i></a></li>
-                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnServicos"><i class="material-icons">backspace</i></a></li>
-                      <li><a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes"><i class="material-icons">settings</i></a></li>
+                      <li>
+                        <a class="btn-floating btnMenu grey lighten-5" id="btnGerador">
+                          <i class="material-icons">description</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="btn-floating btnMenu grey lighten-5" id="btnEstatisticas">
+                          <i class="material-icons">insert_chart</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="btn-floating btnMenu grey lighten-5" id="btnServicos">
+                          <i class="material-icons">backspace</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes">
+                          <i class="material-icons">settings</i>
+                        </a>
+                      </li>
                       <li id="showEmployees"></li>
                     </ul>
                   </div>
@@ -74,17 +90,29 @@
           <div class="col s3 center-align">
             <div class="file-field input-field arquivoBaseModal">
               <a class="modal-trigger" id="btnModal" href="">
-                  <button class="waves-effect waves-light btn-floating">
-                    <i class="small material-icons right">assignment</i>
-                  </button>
-                  <span>Arquivo Base</span>
-                </a>
+                <button class="waves-effect waves-light btn-floating">
+                  <i class="small material-icons right">assignment</i>
+                </button>
+                <span>Arquivo Base</span>
+              </a>
             </div>
           </div>
 
-          <div class="input-field col s12">
+          <div class="input-field col s9">
             <input id="destino" type="text" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service' required="required" />
             <label class="active" for="destino">Caminho de Destino</label>
+          </div>
+
+          <div class="col s3">
+            <div class="left-align mgTop-25">
+              <select id="tipoEnvioSelect">
+                <input name="tipoEnvio" type="radio" id="envioArquivo" value="1" checked />
+                <label for="envioArquivo">Arquivo</label>
+
+                <input name="tipoEnvio" type="radio" id="jdbc" value="2" />
+                <label for="jdbc">JDBC</label>
+              </select>             
+            </div>
           </div>
 
           <div class="col s12 center-align">
@@ -92,17 +120,17 @@
               <div class="col s4">
                 <div class="left-align mgTop-25">
                   <select id="tipoEmissao">
-                        <input name="group1" type="radio" id="normal" value="1" checked />
-                        <label for="normal">Normal</label>
+                    <input name="group1" type="radio" id="normal" value="1" checked />
+                    <label for="normal">Normal</label>
 
-                        <input name="group1" type="radio" id="contingencia" value="9" />
-                        <label for="contingencia">Contingência</label>
-                    </select>
+                    <input name="group1" type="radio" id="contingencia" value="9" />
+                    <label for="contingencia">Contingência</label>
+                  </select>
                 </div>
               </div>
               <div class="range-field col s8">
                 <label class="active" for="agentes" id="lblAgentes">Quantidade de Agentes: 1</label>
-                <input type="range" id="agentes" min="1" max="50" value="1" />
+                <input type="range" id="agentes" min="1" max="100" value="1" />
               </div>
             </div>
           </div>
@@ -110,7 +138,9 @@
           <div class="col s12 center-align">
             <div class="row">
               <div class="col s1">
-                <a id="btnGerarNovaSerie" class="btn-floating waves-effect waves-light red"><i class="small material-icons">autorenew</i></a>
+                <a id="btnGerarNovaSerie" class="btn-floating waves-effect waves-light red">
+                  <i class="small material-icons">autorenew</i>
+                </a>
               </div>
               <div class="input-field col s2">
                 <input id="serie" name="serie" type='number' step=1 data-length="3" required="required" />
@@ -138,7 +168,9 @@
           <div class="col s12 center-align">
             <div class="row">
               <div class="col s1">
-                <a id="btnCadastrarCnpj" class="btn-floating waves-effect waves-light red"><i class="small material-icons">list</i></a>
+                <a id="btnCadastrarCnpj" class="btn-floating waves-effect waves-light red">
+                  <i class="small material-icons">list</i>
+                </a>
               </div>
               <div class="input-field col s3">
                 <input id="CNPJ" type="text" id="autocomplete-input" class="autocomplete" required="required" />
@@ -163,9 +195,11 @@
             <div class="row">
               <div class="input-field col s6 left-align">
                 <a class="limpaFormulario" id="btnLimpaFormulario">
-                   <button class="btn-floating waves-effect waves-light red"><i class="material-icons">clear</i></button>
-                   Limpar Formulário
-                  </a>
+                  <button class="btn-floating waves-effect waves-light red">
+                    <i class="material-icons">clear</i>
+                  </button>
+                  Limpar Formulário
+                </a>
               </div>
 
               <div class="input-field col s6 right-align">
@@ -258,8 +292,9 @@
             <label class="active" for="arquivosAgente">Caminho dos Arquivos de Configuração</label>
           </div>
 
-          <div class="input-field col s12" >
-            <input id="destinoArquivos" type="text" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service_' required="required" />
+          <div class="input-field col s12">
+            <input id="destinoArquivos" type="text" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service_' required="required"
+            />
             <label class="active" for="destinoArquivos">Caminho de Destino</label>
           </div>
 
@@ -322,8 +357,9 @@
 <script type="text/javascript" src="node_modules/materialize/materialize.js"></script>
 <script type="text/javascript" src="src/js/autocomplete.js"></script>
 <script>
-  $(document).ready(function(){
+  $(document).ready(function () {
     $('.collapsible').collapsible();
   });
 </script>
+
 </html>

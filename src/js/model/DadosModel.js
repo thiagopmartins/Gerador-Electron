@@ -24,6 +24,7 @@ class DadosModel{
     get cnpj() { return $('#CNPJ').value; }
     get ie() { return $('#IE').value; }
     get itens() { return $('#itens').value; }
+    get comunicacao() { return $('input[name="tipoEnvio"]:checked').value; }
 
     set destino(valor){ $('#destino').value = valor; }
     set origem(valor){ $('#arquivo').path = valor; }

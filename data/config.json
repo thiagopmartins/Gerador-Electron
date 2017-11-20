@@ -4,12 +4,13 @@
   "tipoEmissao": "1",
   "agentes": "5",
   "serie": "430",
-  "numero": "923",
+  "numero": "926",
   "quantidade": "1",
   "nomenclatura": "NDDTUM1000001001#",
   "fuso": "-2",
   "sleep": "500",
   "cnpj": "10280765000186",
   "ie": "0963270850",
-  "itens": "20"
+  "itens": "20",
+  "comunicacao": "2"
 }

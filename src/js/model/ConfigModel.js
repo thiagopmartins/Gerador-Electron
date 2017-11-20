@@ -81,7 +81,8 @@ class ConfigModel {
             sleep: dadosModel.sleep,
             cnpj: dadosModel.cnpj,
             ie: dadosModel.ie,
-            itens: dadosModel.itens
+            itens: dadosModel.itens,
+            comunicacao: dadosModel.comunicacao
         }
         
         jsonfile.writeFile(dir + filename, dados, { spaces: 2 })

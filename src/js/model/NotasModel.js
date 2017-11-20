@@ -24,6 +24,7 @@ let
     tipoEmissao,
     numeroInicio,
     ie,
+    comunicacao,
     xml = false
 ;
 
@@ -45,6 +46,7 @@ class NotasModel {
                 sleep = dados.sleep;
                 tipoEmissao = dados.tipoEmissao;
                 numeroInicio = dados.numero;
+                comunicacao = dados.comunicacao;
                 return resolve(dados);
             });
         });
@@ -183,7 +185,6 @@ class NotasModel {
     }
 
     criarArquivo(conteudo, numNota, agenteId) {
-        let banco = true;
         let caminho;
         let nome = nomenclatura.substring(0, nomenclatura.length - 4);
         let formatAgente = ("000" + agenteId).slice(-3);
@@ -192,10 +193,9 @@ class NotasModel {
             caminho = nome + numNota + '_ped_env.txt';
         else
             caminho = nome + numNota + '_ped_env.xml';
-        console.log(caminho);
 
         console.log(`Agente: ${nome}`);
-        if (banco) {
+        if (comunicacao == 2){
             this.enviarBanco(conteudo, caminho);
         }
         else
