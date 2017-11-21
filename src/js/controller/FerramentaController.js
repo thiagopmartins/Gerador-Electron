@@ -15,6 +15,7 @@ class FerramentaController{
         $('#painelGerador').style.display = 'block';
         $('#painelEstatistica').style.display = 'none';
         $('#painelServicos').style.display = 'none';
+        $('#painelConfiguracoes').style.display = 'none';
         $('#btnGerador').classList.remove('btnSelected');
         $('#btnGerador').classList.add('btnSelected');
         $('#btnGerador').classList.add('disabled');
@@ -22,30 +23,53 @@ class FerramentaController{
         $('#btnEstatisticas').classList.remove('disabled'); 
         $('#btnServicos').classList.remove('btnSelected');
         $('#btnServicos').classList.remove('disabled');  
+        $('#btnConfiguracoes').classList.remove('btnSelected');
+        $('#btnConfiguracoes').classList.remove('disabled');   
     }
     static _ativarEstatisticas(){
         $('#painelGerador').style.display = 'none';
         $('#painelServicos').style.display = 'none';        
         $('#painelEstatistica').style.display = 'block';
+        $('#painelConfiguracoes').style.display = 'none';                
         $('#btnEstatisticas').classList.remove('btnSelected');
         $('#btnEstatisticas').classList.add('btnSelected');
         $('#btnEstatisticas').classList.add('disabled');
         $('#btnGerador').classList.remove('btnSelected');
         $('#btnGerador').classList.remove('disabled'); 
         $('#btnServicos').classList.remove('btnSelected');
-        $('#btnServicos').classList.remove('disabled');        
+        $('#btnServicos').classList.remove('disabled');   
+        $('#btnConfiguracoes').classList.remove('btnSelected');
+        $('#btnConfiguracoes').classList.remove('disabled');        
     }
     static _ativarServicos(){
         $('#painelGerador').style.display = 'none';
         $('#painelEstatistica').style.display = 'none';
-        $('#painelServicos').style.display = 'block';        
+        $('#painelServicos').style.display = 'block';  
+        $('#painelConfiguracoes').style.display = 'none';                
         $('#btnServicos').classList.remove('btnSelected');
         $('#btnServicos').classList.add('btnSelected');
         $('#btnServicos').classList.add('disabled');
         $('#btnGerador').classList.remove('btnSelected');
         $('#btnGerador').classList.remove('disabled');  
         $('#btnEstatisticas').classList.remove('btnSelected');
-        $('#btnEstatisticas').classList.remove('disabled');        
+        $('#btnEstatisticas').classList.remove('disabled');   
+        $('#btnConfiguracoes').classList.remove('btnSelected');
+        $('#btnConfiguracoes').classList.remove('disabled');       
+    }
+    static _ativarConfiguracoes(){
+        $('#painelGerador').style.display = 'none';
+        $('#painelEstatistica').style.display = 'none';
+        $('#painelServicos').style.display = 'none'; 
+        $('#painelConfiguracoes').style.display = 'block';        
+        $('#btnServicos').classList.remove('btnSelected');
+        $('#btnServicos').classList.remove('btnSelected');
+        $('#btnServicos').classList.remove('disabled');
+        $('#btnGerador').classList.remove('btnSelected');
+        $('#btnGerador').classList.remove('disabled');  
+        $('#btnEstatisticas').classList.remove('btnSelected');
+        $('#btnEstatisticas').classList.remove('disabled'); 
+        $('#btnConfiguracoes').classList.add('btnSelected');
+        $('#btnConfiguracoes').classList.add('disabled');       
     }
     static _validaFormulario(){
         if ($("#serie").value == "") {

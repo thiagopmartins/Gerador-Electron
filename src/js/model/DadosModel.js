@@ -26,6 +26,12 @@ class DadosModel{
     get itens() { return $('#itens').value; }
     get comunicacao() { return $('input[name="tipoEnvio"]:checked').value; }
 
+    get host() { return $('#host').value; }
+    get user() { return $('#user').value; }
+    get password() { return $('#password').value; }
+    get database() { return $('#database').value; }
+    get table() { return $('#table').value; }
+    
     set destino(valor){ $('#destino').value = valor; }
     set origem(valor){ $('#arquivo').path = valor; }
     set agentes(valor){ $('#agentes').value = valor; $('#lblAgentes').innerHTML = 'Quantidade de Agentes: ' + $('#agentes').value; }
@@ -39,6 +45,11 @@ class DadosModel{
     set ie(valor){ $('#IE').value = valor; $('#lblIE').classList.add('active'); }  
     set itens(valor){ $('#itens').value = valor; $('#lblItens').classList.add('active'); }      
     
+    set host(valor){ $('#host').value = valor; $('#lblHost').classList.add('active'); }
+    set user(valor){ $('#user').value = valor; $('#lblUser').classList.add('active'); }       
+    set password(valor){ $('#password').value = valor; $('#lblPassword').classList.add('active'); }  
+    set database(valor){ $('#database').value = valor; $('#lblDatabase').classList.add('active'); } 
+    set table(valor){ $('#table').value = valor; $('#lblTable').classList.add('active'); }   
 }
 
 module.exports = DadosModel;

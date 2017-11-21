@@ -25,6 +25,11 @@ let
     numeroInicio,
     ie,
     comunicacao,
+    host,
+    user,
+    password,
+    database,
+    table,
     xml = false
 ;
 
@@ -47,28 +52,31 @@ class NotasModel {
                 tipoEmissao = dados.tipoEmissao;
                 numeroInicio = dados.numero;
                 comunicacao = dados.comunicacao;
+                host = dados.host;
+                user = dados.user;
+                password = dados.password;
+                database = dados.database;
+                table = dados.table;
                 return resolve(dados);
             });
         });
     }
     enviarBanco(conteudo, caminho) {
         const connection = db.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: "vertrigo",
-            database: 'entrada_nfce'
+            host: host,
+            user: user,
+            password: password,
+            database: database
         });
-        console.log(connection);
-        let tabela = 'nfceinput';
+
         let encodedData = base64.encode(conteudo);
         connection.query(
-            `INSERT INTO ${tabela} (filename, documentdata) VALUES (?, ?)`,
+            `INSERT INTO ${table} (filename, documentdata) VALUES (?, ?)`,
             [caminho, encodedData],
             function (err, results, fields) {
                 if (err)
                     console.log(err);
-                else
-                    console.log(results); // results contains rows returned by server
+                
                 connection.close();
             }
         );

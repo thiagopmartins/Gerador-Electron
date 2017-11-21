@@ -34,6 +34,16 @@ window.onload = function () {
         FerramentaController._ativarServicos();
     };
 
+    $('#btnConfiguracoes').onclick = function (event) {
+        event.preventDefault();
+        FerramentaController._ativarConfiguracoes();
+    };
+
+    $('#salvarConfiguracoes').onclick = function (event) {
+        event.preventDefault();
+        FerramentaController._salvarDados();
+    };
+
     $('#btnGerarNovaSerie').onclick = function (event) {
         event.preventDefault();
         $('#serie').value = Math.floor(Math.random() * 900) + 1;
@@ -97,6 +107,18 @@ window.onload = function () {
             FerramentaController._gerarNotas();
         } 
 
+        event.preventDefault();
+    }
+
+    //Tipo de Comunicação - Arquivo ou JDBC
+
+    $('#envioArquivo').onchange = function (event) {
+        $("#destino").disabled = false;
+        event.preventDefault();
+    }
+
+    $('#jdbc').onchange = function (event) {
+        $("#destino").disabled = true;
         event.preventDefault();
     }
 

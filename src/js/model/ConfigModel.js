@@ -30,6 +30,12 @@ class ConfigModel {
                     dadosModel.ie = dados.ie;
                     dadosModel.itens = dados.itens;
 
+                    dadosModel.host = dados.host;
+                    dadosModel.user = dados.user;
+                    dadosModel.password = dados.password;
+                    dadosModel.database = dados.database;
+                    dadosModel.table = dados.table;
+
                     let file_field = $('input[type="file"]').closest('.file-field');       
                     let path_input = file_field.find('input.file-path');
                     let files = dados.origem;
@@ -82,7 +88,12 @@ class ConfigModel {
             cnpj: dadosModel.cnpj,
             ie: dadosModel.ie,
             itens: dadosModel.itens,
-            comunicacao: dadosModel.comunicacao
+            comunicacao: dadosModel.comunicacao,
+            host: dadosModel.host,
+            user: dadosModel.user,
+            password: dadosModel.password,
+            database: dadosModel.database,
+            table: dadosModel.table
         }
         
         jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
