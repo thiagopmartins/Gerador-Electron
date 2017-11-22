@@ -1,2 +1,3 @@
 node_modules/
-BACKUP ITENS/
+data/arquivo.tmp
+data/config.json
