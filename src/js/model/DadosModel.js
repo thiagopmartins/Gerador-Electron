@@ -31,6 +31,10 @@ class DadosModel{
     get password() { return $('#password').value; }
     get database() { return $('#database').value; }
     get table() { return $('#table').value; }
+
+    get ipSocket() { return $('#ipSocket').value; }
+    get porta() { return $('#porta').value; }
+    get out() { return $('#out').value; }
     
     set destino(valor){ $('#destino').value = valor; }
     set origem(valor){ $('#arquivo').path = valor; }
@@ -50,6 +54,10 @@ class DadosModel{
     set password(valor){ $('#password').value = valor; $('#lblPassword').classList.add('active'); }  
     set database(valor){ $('#database').value = valor; $('#lblDatabase').classList.add('active'); } 
     set table(valor){ $('#table').value = valor; $('#lblTable').classList.add('active'); }   
+
+    set ipSocket(valor){ $('#ipSocket').value = valor; $('#lblIp').classList.add('active'); }
+    set porta(valor){ $('#porta').value = valor; $('#lblPorta').classList.add('active'); }       
+    set out(valor){ $('#out').value = valor; $('#lblOut').classList.add('active'); }
 }
 
 module.exports = DadosModel;

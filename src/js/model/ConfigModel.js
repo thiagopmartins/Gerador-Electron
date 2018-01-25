@@ -36,6 +36,10 @@ class ConfigModel {
                     dadosModel.database = dados.database;
                     dadosModel.table = dados.table;
 
+                    dadosModel.ipSocket = dados.ipSocket;
+                    dadosModel.porta = dados.porta;
+                    dadosModel.out = dados.out;
+
                     let file_field = $('input[type="file"]').closest('.file-field');       
                     let path_input = file_field.find('input.file-path');
                     let files = dados.origem;
@@ -93,14 +97,20 @@ class ConfigModel {
             user: dadosModel.user,
             password: dadosModel.password,
             database: dadosModel.database,
-            table: dadosModel.table
+            table: dadosModel.table,
+            ipSocket: dadosModel.ipSocket,
+            porta: dadosModel.porta,
+            out: dadosModel.out
+
         }
         
         jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
             .then(() => {
                 console.log('Dado salvo com sucesso');
+                Materialize.toast('Dados gravados com sucesso!', 3000, 'green');
             }).catch((err) => {
                 console.log(err);
+                Materialize.toast('Erro ao gravar os dados!', 3000, 'red');
             })
     }
 }

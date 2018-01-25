@@ -1,7 +1,7 @@
 {
   "origem": "C:\\Users\\thiago.martins\\Desktop\\Massas\\Gerador e-Forms NFC-e TXT\\Nota_Base_NFe\\Rio Grande do Sul - TUMELERO\\NDDRS11000001001.txt",
   "destino": "C:\\Program Files\\NDDigital\\eForms_NFCe\\Concentrator Service\\agent\\in\\",
-  "tipoEmissao": "9",
+  "tipoEmissao": "1",
   "agentes": "1",
   "serie": "220",
   "numero": "33347",
@@ -13,9 +13,12 @@
   "ie": "0963270850",
   "itens": "10",
   "comunicacao": "1",
-  "host": "172.31.3.44",
+  "host": "localhost",
   "user": "root",
   "password": "vertrigo",
   "database": "entrada_nfce",
-  "table": "nfceinput"
+  "table": "nfceinput",
+  "ipSocket": "localhost",
+  "porta": "8081",
+  "out": "c:/out"
 }

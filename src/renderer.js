@@ -44,6 +44,11 @@ window.onload = function () {
         FerramentaController._salvarDados();
     };
 
+    $('#salvarConfiguracoesSocket').onclick = function (event) {
+        event.preventDefault();
+        FerramentaController._salvarDados();
+    };
+
     $('#btnGerarNovaSerie').onclick = function (event) {
         event.preventDefault();
         $('#serie').value = Math.floor(Math.random() * 900) + 1;
@@ -118,6 +123,11 @@ window.onload = function () {
     }
 
     $('#jdbc').onchange = function (event) {
+        $("#destino").disabled = true;
+        event.preventDefault();
+    }
+
+    $('#socket').onchange = function (event) {
         $("#destino").disabled = true;
         event.preventDefault();
     }

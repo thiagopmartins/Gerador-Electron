@@ -81,6 +81,26 @@ class NotasModel {
             }
         );
     }
+    enviarSocket(conteudo, caminho) {
+        const connection = db.createConnection({
+            host: host,
+            user: user,
+            password: password,
+            database: database
+        });
+
+        let encodedData = base64.encode(conteudo);
+        connection.query(
+            `INSERT INTO ${table} (filename, documentdata) VALUES (?, ?)`,
+            [caminho, encodedData],
+            function (err, results, fields) {
+                if (err)
+                    console.log(err);
+                
+                connection.close();
+            }
+        );
+    }
     criarNota(nota) {
         let notaConteudo = null;
         let numeroNota = parseInt(numeroInicio) + nota;
@@ -203,9 +223,10 @@ class NotasModel {
             caminho = nome + numNota + '_ped_env.xml';
 
         console.log(`Agente: ${nome}`);
-        if (comunicacao == 2){
+        if (comunicacao == 2)
             this.enviarBanco(conteudo, caminho);
-        }
+        else if (comunicacao == 3)
+            this.enviarSocket(conteudo, caminho);
         else
             fs.writeFileSync(destino + '\\' + caminho, conteudo);
     }

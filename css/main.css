@@ -70,3 +70,7 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 .collapsibleList .collapsible-header { color: black; font-size: 14px; font-weight: 700;}
 .collapsible-header {padding: 1rem 0rem;}
 .collapsible-header i {margin-right: 0.2rem;}
+.tipoEnvio {  display: inline !important; margin-right: 12px; }
+.tipoEnvio label { padding-left: 24px !important; }
+.tabs .tab a { display: block; font-size: 16px; font-weight: 500; }
+.tabs { margin-bottom: 20px; overflow: hidden !important; }

@@ -98,20 +98,27 @@
             </div>
           </div>
 
-          <div class="input-field col s9">
+          <div class="input-field col s8">
             <input id="destino" type="text" value='C:\Program Files\NDDigital\eForms_NFCe\Agent Service' required="required" />
             <label class="active" for="destino">Caminho de Destino</label>
           </div>
 
-          <div class="col s3">
+          <div class="col s4">
             <div class="left-align mgTop-25">
-              <select id="tipoEnvioSelect">
-                <input name="tipoEnvio" type="radio" id="envioArquivo" value="1" checked />
-                <label for="envioArquivo">Arquivo</label>
-
-                <input name="tipoEnvio" type="radio" id="jdbc" value="2" />
-                <label for="jdbc">JDBC</label>
-              </select>
+              <div id="tipoEnvioSelect">
+                <div class="tipoEnvio">
+                  <input name="tipoEnvio" type="radio" id="envioArquivo" value="1" checked />
+                  <label for="envioArquivo">Arquivo</label>
+                </div>
+                <div class="tipoEnvio">
+                  <input name="tipoEnvio" type="radio" id="jdbc" value="2" />
+                  <label for="jdbc">JDBC</label>
+                </div>
+                <div class="tipoEnvio">
+                  <input name="tipoEnvio" type="radio" id="socket" value="3" />
+                  <label for="socket">Socket</label>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -190,14 +197,6 @@
               </div>
             </div>
           </div>
-          <div class="col s12 center-align">
-            <div class="row">
-              <div class="col s3">
-                <input type="checkbox" class="filled-in" id="ped-print" />
-                <label for="ped-print">Gerar Reprint</label>
-              </div>
-            </div>
-          </div>          
 
           <div class="col s12 center-align">
             <div class="row">
@@ -331,37 +330,77 @@
                 <span class="spanTitle">Gerenciador de Configurações</span>
               </div>
             </div>
-            <div class="input-field col s9 mgTop-25">
-              <input id="host" type="text" placeholder='localhost' required="required" />
-              <label class="active" id="lblHost" for="host">Host</label>
+            <div class="col s5">
+              <ul class="tabs">
+                <li class="tab col s6">
+                  <a class="active" href="#test1">JDBC</a>
+                </li>
+                <li class="tab col s6">
+                  <a href="#test2">Socket</a>
+                </li>
+                <li class="indicator" style="right: 158px; left: 0px;"></li>
+              </ul>
             </div>
-            <div class="input-field col s9">
-              <input id="user" type="text" placeholder='root' required="required" />
-              <label class="active" id="lblUser" for="user">Usuário</label>
-            </div>
-            <div class="input-field col s9">
-              <input id="password" type="text" placeholder='vertrigo' required="required" />
-              <label class="active" id="lblPassword" for="password">Senha</label>
-            </div>
-            <div class="input-field col s9">
-              <input id="database" type="text" placeholder='nfce' required="required" />
-              <label class="active" id="lblDatabase" for="database">Banco de Dados</label>
-            </div>
-            <div class="input-field col s9">
+            <div id="test1" class="col s12">
+              <div class="input-field col s9 mgTop-25">
+                <input id="host" type="text" placeholder='localhost' required="required" />
+                <label class="active" id="lblHost" for="host">Host</label>
+              </div>
+              <div class="input-field col s9">
+                <input id="user" type="text" placeholder='root' required="required" />
+                <label class="active" id="lblUser" for="user">Usuário</label>
+              </div>
+              <div class="input-field col s9">
+                <input id="password" type="text" placeholder='vertrigo' required="required" />
+                <label class="active" id="lblPassword" for="password">Senha</label>
+              </div>
+              <div class="input-field col s9">
+                <input id="database" type="text" placeholder='nfce' required="required" />
+                <label class="active" id="lblDatabase" for="database">Banco de Dados</label>
+              </div>
+              <div class="input-field col s9">
                 <input id="table" type="text" placeholder='nfce' required="required" />
                 <label class="active" id="lblTable" for="table">Tabela</label>
               </div>
-            <div class="col s12 center-align">
-              <div class="row">
-                <div class="input-field col s3 right right-align">
-                  <button class="btn waves-effect waves-light" id="salvarConfiguracoes" type="submit">Gravar
-                    <i class="material-icons right">send</i>
-                  </button>
+              <div class="col s12 center-align">
+                <div class="row">
+                  <div class="input-field col s3 right right-align">
+                    <button class="btn waves-effect waves-light" id="salvarConfiguracoes" type="submit">Gravar
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="test2" class="col s12">
+              <div class="input-field col s9 mgTop-25">
+                <input id="ipSocket" type="text" placeholder='localhost' required="required" />
+                <label class="active" id="lblIp" for="ipSocket">IP</label>
+              </div>
+              <div class="input-field col s9">
+                <input id="porta" type="number" placeholder='8080' required="required" />
+                <label class="active" id="lblPorta" for="porta">Porta</label>
+              </div>
+              <div class="input-field col s9">
+                <input id="out" type="text" placeholder='c:/out' required="required" />
+                <label class="active" id="lblOut" for="out">Saída - Out</label>
+              </div>
+              <div class="col s12 center-align">
+                <div class="row">
+                  <div class="input-field col s3 right right-align">
+                    <button class="btn waves-effect waves-light" id="salvarConfiguracoesSocket" type="submit">Gravar
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                  <div class="input-field col s3 right right-align">
+                    <button class="btn waves-effect waves-light red" id="testarConexao" type="submit">Testar
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </form>
 
         <div class="modal-message container">
@@ -408,7 +447,10 @@
 <script>
   $(document).ready(function () {
     $('.collapsible').collapsible();
+
+    $('ul.tabs').tabs();
   });
 </script>
+
 
 </html>
