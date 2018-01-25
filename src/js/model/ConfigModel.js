@@ -76,7 +76,7 @@ class ConfigModel {
                     })
             });
     }
-    salvarDados() {
+    salvarDados(toast) {
         dadosModel = new DadosModel();
         let dados = {
             origem: dadosModel.origem,
@@ -107,10 +107,12 @@ class ConfigModel {
         jsonfile.writeFile(dir + filename, dados, { spaces: 2 })
             .then(() => {
                 console.log('Dado salvo com sucesso');
-                Materialize.toast('Dados gravados com sucesso!', 3000, 'green');
+                if(toast == true)
+                    Materialize.toast('Dados gravados com sucesso!', 3000, 'green');
             }).catch((err) => {
                 console.log(err);
-                Materialize.toast('Erro ao gravar os dados!', 3000, 'red');
+                if(toast == true)
+                    Materialize.toast('Erro ao gravar os dados!', 3000, 'red');
             })
     }
 }

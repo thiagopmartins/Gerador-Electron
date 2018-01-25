@@ -9,6 +9,7 @@ const path = require('path');
 const readline = require('readline');
 const dir = './data/';
 const filename = 'arquivo.tmp';
+const net = require('net');
 
 let configModel = null;
 let
@@ -30,7 +31,10 @@ let
     password,
     database,
     table,
-    xml = false
+    xml = false,
+    ipSocket,
+    out,
+    porta
 ;
 
 class NotasModel {
@@ -57,9 +61,30 @@ class NotasModel {
                 password = dados.password;
                 database = dados.database;
                 table = dados.table;
+                ipSocket = dados.ipSocket;
+                porta = dados.porta;
+                out = dados.out;               
                 return resolve(dados);
             });
         });
+    }
+    criarArquivo(conteudo, numNota, agenteId) {
+        let caminho;
+        let nome = nomenclatura.substring(0, nomenclatura.length - 4);
+        let formatAgente = ("000" + agenteId).slice(-3);
+        nome = `${nome}${formatAgente}#`;
+        if (!xml)
+            caminho = nome + numNota + '_ped_env.txt';
+        else
+            caminho = nome + numNota + '_ped_env.xml';
+
+        console.log(`Agente: ${nome}`);
+        if (comunicacao == 2)
+            this.enviarBanco(conteudo, caminho);
+        else if (comunicacao == 3)
+            this.enviarSocket(conteudo, caminho, agenteId);
+        else
+            fs.writeFileSync(destino + '\\' + caminho, conteudo);
     }
     enviarBanco(conteudo, caminho) {
         const connection = db.createConnection({
@@ -81,25 +106,33 @@ class NotasModel {
             }
         );
     }
-    enviarSocket(conteudo, caminho) {
-        const connection = db.createConnection({
-            host: host,
-            user: user,
-            password: password,
-            database: database
+    enviarSocket(conteudo, caminho, agenteId) {
+        let client = new net.Socket();
+        let multiplasPortas = parseInt(porta) + parseInt(agenteId) - 1;
+        client.connect(multiplasPortas, ipSocket, () => {
+            console.log(`Conectado ao endereço ${ipSocket}:${multiplasPortas}`);
+            console.log(`${caminho}_TCPMSG;${conteudo}`);
+            client.write(`${caminho}_TCPMSG;${conteudo}`);
+            client.end();
         });
-
-        let encodedData = base64.encode(conteudo);
-        connection.query(
-            `INSERT INTO ${table} (filename, documentdata) VALUES (?, ?)`,
-            [caminho, encodedData],
-            function (err, results, fields) {
-                if (err)
-                    console.log(err);
-                
-                connection.close();
-            }
-        );
+               
+        
+        client.on('data', function(data) {
+            console.log(data.toString());
+            let retorno = [];
+            retorno = data.toString().split(/_TCPMSG;/);
+            fs.writeFileSync(out + '\\' + retorno[0], retorno[1]);
+            client.destroy(); // kill client after server's response
+        });
+        
+        client.on('close', function() {
+            console.log('Connection closed');
+        });
+        client.on('error', function(error) {
+            console.log(error);
+            console.log(error.toString());
+            fs.writeFileSync(out + '\\' + 'ERRO_' + caminho, error.toString());            
+        }); 
     }
     criarNota(nota) {
         let notaConteudo = null;
@@ -212,24 +245,6 @@ class NotasModel {
         return notaConteudo;
     }
 
-    criarArquivo(conteudo, numNota, agenteId) {
-        let caminho;
-        let nome = nomenclatura.substring(0, nomenclatura.length - 4);
-        let formatAgente = ("000" + agenteId).slice(-3);
-        nome = `${nome}${formatAgente}#`;
-        if (!xml)
-            caminho = nome + numNota + '_ped_env.txt';
-        else
-            caminho = nome + numNota + '_ped_env.xml';
-
-        console.log(`Agente: ${nome}`);
-        if (comunicacao == 2)
-            this.enviarBanco(conteudo, caminho);
-        else if (comunicacao == 3)
-            this.enviarSocket(conteudo, caminho);
-        else
-            fs.writeFileSync(destino + '\\' + caminho, conteudo);
-    }
 
     //Calcula o digito verificador
     calculaDV(nNF) {

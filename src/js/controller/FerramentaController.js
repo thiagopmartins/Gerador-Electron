@@ -106,7 +106,7 @@ class FerramentaController{
             configModel.salvarDados();
             this._criarNota();
         } catch (error) {
-            configModel.salvarDados();
+            configModel.salvarDados(false);
             configModel.pegarDados()
                 .then((dados) => {
                     if(fs.existsSync(dados.origem)){
@@ -125,7 +125,7 @@ class FerramentaController{
 
     static _salvarOrigem(){ configModel.salvarOrigem(); }
 
-    static _salvarDados(){ configModel.salvarDados(); }
+    static _salvarDados(toast){ configModel.salvarDados(toast); }
 
     static _registraIe(cnpj) {       
         let cnpjModel = new CnpjModel();

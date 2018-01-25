@@ -41,12 +41,12 @@ window.onload = function () {
 
     $('#salvarConfiguracoes').onclick = function (event) {
         event.preventDefault();
-        FerramentaController._salvarDados();
+        FerramentaController._salvarDados(true);
     };
 
     $('#salvarConfiguracoesSocket').onclick = function (event) {
         event.preventDefault();
-        FerramentaController._salvarDados();
+        FerramentaController._salvarDados(true);
     };
 
     $('#btnGerarNovaSerie').onclick = function (event) {
