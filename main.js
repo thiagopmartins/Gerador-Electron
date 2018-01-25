@@ -12,7 +12,7 @@ let ModalEmployees = null;
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 900,
-    height: 650,
+    height: 700,
     autoHideMenuBar: true,
     icon: path.join(__dirname, 'img/logo.png')
   });

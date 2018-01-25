@@ -180,7 +180,7 @@ class NotasModel {
         let valorPis = parseFloat(51.6000*1.65/100).toFixed(2);
         let valorCofins = parseFloat(51.6000*7.60/100).toFixed(2);
         let vTotTrib = parseFloat(19.95 * totItens);
-        let vFCPSTRet = parseFloat(51.6000*1.00/100).toFixed(2);
+        let vFCPSTRet = parseFloat(51.6000*2.00/100).toFixed(2);
         while(/\${valorTotal}/.test(notaConteudo)){
             notaConteudo = notaConteudo.replace('${valorTotal}', valorTotal.toFixed(2));
         }
