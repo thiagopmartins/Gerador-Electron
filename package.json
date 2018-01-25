@@ -18,7 +18,7 @@
   "author": "Diego de Liz - Thiago Martins",
   "license": "",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "~1.8.1"
   },
   "dependencies": {
     "base-64": "^0.1.0",
