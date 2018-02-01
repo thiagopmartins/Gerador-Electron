@@ -154,7 +154,6 @@ class NotasModel {
                     else
                         linhasInsert.push(removeItem);
                     //console.log(linhasInsert);
-
                 }
             }
 

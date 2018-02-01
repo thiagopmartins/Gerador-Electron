@@ -33,6 +33,7 @@ class DadosModel {
     get table() { return $('#table').value; }
     get tableOut() { return $('#tableOut').value; }
     get outBanco() { return $('#outBanco').value; }
+    get capturarRetornos() { return $('#capturarRetornos').value; }
     get deletarRegistros() {
         let checks = document.getElementsByTagName("input");
         let i = 0;
@@ -68,10 +69,15 @@ class DadosModel {
     set table(valor) { $('#table').value = valor; $('#lblTable').classList.add('active'); }
     set tableOut(valor) { $('#tableOut').value = valor; $('#lblTableOut').classList.add('active'); }
     set outBanco(valor) { $('#outBanco').value = valor; $('#lblOutBanco').classList.add('active'); }
+    set capturarRetornos(valor) {
+        if (valor == '1')
+            $('#capturarRetornos').checked = 'checked';
+        else 
+            $("#deletarRegistros").disabled = true;
+    }
     set deletarRegistros(valor) {
-        if (valor == 'on') {
+        if (valor == 'on') 
             $('#deletarRegistros').checked = 'checked';
-        }
     }
 
     set ipSocket(valor) { $('#ipSocket').value = valor; $('#lblIp').classList.add('active'); }

@@ -12,7 +12,8 @@ let
     table,
     tableOut,
     outBanco,
-    deletarRegistros
+    deletarRegistros,
+    capturarRetornos
     ;
 class EnvioBanco {
 
@@ -27,12 +28,12 @@ class EnvioBanco {
                 table = dados.table;
                 tableOut = dados.tableOut;
                 outBanco = dados.outBanco;
+                capturarRetornos = dados.capturarRetornos;
                 deletarRegistros = dados.deletarRegistros;
                 return resolve(dados);
             });
         });
     }
-
 
     criarConexao() {
         return db.createConnection({
@@ -53,7 +54,8 @@ class EnvioBanco {
                     console.log(err);
                 else {
                     setTimeout(() => {
-                        this.consultaRetorno(results.insertId, 0);
+                        if (capturarRetornos == 1)
+                            this.consultaRetorno(results.insertId, 0);
                     }, parseInt(3000));
                 }
                 connection.close();
@@ -74,17 +76,14 @@ class EnvioBanco {
                         }, parseInt(1000));
                     }
                     console.log(err)
-                }
-
-                else {
+                } else {
                     if (results.length == 0) {
                         if (tentativa < 50000) {
                             setTimeout(() => {
                                 this.consultaRetorno(id, tentativa);
                             }, parseInt(1000));
                         }
-                    }
-                    else {
+                    } else {
                         console.log('Salvando resultado na pasta de saida.');
                         fs.writeFileSync(outBanco + '\\' + results[0].filename, results[0].documentdata);
                         if (deletarRegistros == 'on')

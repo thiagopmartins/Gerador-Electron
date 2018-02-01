@@ -41,7 +41,7 @@ window.onload = function () {
 
     $('#salvarConfiguracoes').onclick = function (event) {
         event.preventDefault();
-        FerramentaController._salvarDados(true);       
+        FerramentaController._salvarDados(true);
     };
 
     $('#salvarConfiguracoesSocket').onclick = function (event) {
@@ -110,9 +110,9 @@ window.onload = function () {
         if (verificaValidacao == true) {
             //Chama o método para gerar Notas
             FerramentaController._gerarNotas();
-        } 
-        
-        event.preventDefault();       
+        }
+
+        event.preventDefault();
     }
 
     //Tipo de Comunicação - Arquivo ou JDBC
@@ -131,6 +131,18 @@ window.onload = function () {
         $("#destino").disabled = true;
         event.preventDefault();
     }
+
+    //Ativar/Desativar e setar valor para checkbox tabela de saída JDBC
+
+    document.getElementById("capturarRetornos").onclick = function () {
+        if ($('#capturarRetornos').checked) {
+            $('#capturarRetornos').value = 1;
+            $("#deletarRegistros").disabled = false;
+        } else {
+            $('#capturarRetornos').value = 2;
+            $("#deletarRegistros").disabled = true;
+        }
+    };
 
     //Estatistica .Exception
 

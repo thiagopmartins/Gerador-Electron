@@ -37,6 +37,7 @@ class ConfigModel {
                     dadosModel.table = dados.table;
                     dadosModel.tableOut = dados.tableOut;
                     dadosModel.outBanco = dados.outBanco;
+                    dadosModel.capturarRetornos = dados.capturarRetornos;
                     dadosModel.deletarRegistros = dados.deletarRegistros;
 
                     dadosModel.ipSocket = dados.ipSocket;
@@ -102,6 +103,7 @@ class ConfigModel {
             database: dadosModel.database,
             table: dadosModel.table,
             tableOut: dadosModel.tableOut,
+            capturarRetornos: dadosModel.capturarRetornos,
             deletarRegistros: dadosModel.deletarRegistros,
             outBanco: dadosModel.outBanco,
             ipSocket: dadosModel.ipSocket,
