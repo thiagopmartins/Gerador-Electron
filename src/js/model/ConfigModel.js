@@ -35,6 +35,9 @@ class ConfigModel {
                     dadosModel.password = dados.password;
                     dadosModel.database = dados.database;
                     dadosModel.table = dados.table;
+                    dadosModel.tableOut = dados.tableOut;
+                    dadosModel.outBanco = dados.outBanco;
+                    dadosModel.deletarRegistros = dados.deletarRegistros;
 
                     dadosModel.ipSocket = dados.ipSocket;
                     dadosModel.porta = dados.porta;
@@ -98,6 +101,9 @@ class ConfigModel {
             password: dadosModel.password,
             database: dadosModel.database,
             table: dadosModel.table,
+            tableOut: dadosModel.tableOut,
+            deletarRegistros: dadosModel.deletarRegistros,
+            outBanco: dadosModel.outBanco,
             ipSocket: dadosModel.ipSocket,
             porta: dadosModel.porta,
             out: dadosModel.out

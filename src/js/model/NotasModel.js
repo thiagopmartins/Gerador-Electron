@@ -1,15 +1,19 @@
+
 const jsonfile = require('jsonfile-promised');
 const ConfigModel = require('../model/ConfigModel.js');
 const ArquivoBaseModel = require('../model/ArquivoBaseModel.js');
 const DadosModel = require('../model/DadosModel.js');
+const EnvioArquivo = require('../model/EnvioArquivo.js');
+const EnvioBanco = require('../model/EnvioBanco.js');
+const EnvioSocket = require('../model/EnvioSocket.js')
 const db = require('mysql2');
-const base64 = require('base-64');
+
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const dir = './data/';
 const filename = 'arquivo.tmp';
-const net = require('net');
+
 
 let configModel = null;
 let
@@ -26,16 +30,8 @@ let
     numeroInicio,
     ie,
     comunicacao,
-    host,
-    user,
-    password,
-    database,
-    table,
-    xml = false,
-    ipSocket,
-    out,
-    porta
-;
+    xml = false
+    ;
 
 class NotasModel {
     iniciar() {
@@ -56,18 +52,12 @@ class NotasModel {
                 tipoEmissao = dados.tipoEmissao;
                 numeroInicio = dados.numero;
                 comunicacao = dados.comunicacao;
-                host = dados.host;
-                user = dados.user;
-                password = dados.password;
-                database = dados.database;
-                table = dados.table;
-                ipSocket = dados.ipSocket;
-                porta = dados.porta;
-                out = dados.out;               
+
                 return resolve(dados);
             });
         });
     }
+
     criarArquivo(conteudo, numNota, agenteId) {
         let caminho;
         let nome = nomenclatura.substring(0, nomenclatura.length - 4);
@@ -79,67 +69,25 @@ class NotasModel {
             caminho = nome + numNota + '_ped_env.xml';
 
         console.log(`Agente: ${nome}`);
-        if (comunicacao == 2)
-            this.enviarBanco(conteudo, caminho);
-        else if (comunicacao == 3)
-            this.enviarSocket(conteudo, caminho, agenteId);
+        if (comunicacao == 2){
+            let envioBanco = new EnvioBanco();
+            envioBanco.iniciar().then(() => envioBanco.enviar(conteudo, caminho));
+        }
+        else if (comunicacao == 3){
+            let envioSocket = new EnvioSocket();
+            envioSocket.iniciar().then(() => envioSocket.enviar(conteudo, caminho, agenteId));                  
+        }
         else
-            fs.writeFileSync(destino + '\\' + caminho, conteudo);
-    }
-    enviarBanco(conteudo, caminho) {
-        const connection = db.createConnection({
-            host: host,
-            user: user,
-            password: password,
-            database: database
-        });
+            new EnvioArquivo(destino, caminho, conteudo);
 
-        let encodedData = base64.encode(conteudo);
-        connection.query(
-            `INSERT INTO ${table} (filename, documentdata) VALUES (?, ?)`,
-            [caminho, encodedData],
-            function (err, results, fields) {
-                if (err)
-                    console.log(err);
-                
-                connection.close();
-            }
-        );
     }
-    enviarSocket(conteudo, caminho, agenteId) {
-        let client = new net.Socket();
-        let multiplasPortas = parseInt(porta) + parseInt(agenteId) - 1;
-        client.connect(multiplasPortas, ipSocket, () => {
-            console.log(`Conectado ao endereço ${ipSocket}:${multiplasPortas}`);
-            console.log(`${caminho}_TCPMSG;${conteudo}`);
-            client.write(`${caminho}_TCPMSG;${conteudo}`);
-            client.end();
-        });
-               
-        
-        client.on('data', function(data) {
-            console.log(data.toString());
-            let retorno = [];
-            retorno = data.toString().split(/_TCPMSG;/);
-            fs.writeFileSync(out + '\\' + retorno[0], retorno[1]);
-            client.destroy(); // kill client after server's response
-        });
-        
-        client.on('close', function() {
-            console.log('Connection closed');
-        });
-        client.on('error', function(error) {
-            console.log(error);
-            console.log(error.toString());
-            fs.writeFileSync(out + '\\' + 'ERRO_' + caminho, error.toString());            
-        }); 
-    }
+    
     criarNota(nota) {
         let notaConteudo = null;
         let numeroNota = parseInt(numeroInicio) + nota;
         let data = new Date();
         let mezinho = data.getMonth() + 1;
-        let mes = ("00" +  mezinho).slice(-2);
+        let mes = ("00" + mezinho).slice(-2);
         let dia = ("00" + data.getDate()).slice(-2);
         let hora = ("00" + data.getHours()).slice(-2);
         let minuto = ("00" + data.getMinutes()).slice(-2);
@@ -186,60 +134,60 @@ class NotasModel {
         notaConteudo = notaConteudo.replace('${CNPJ}', cnpj);
         notaConteudo = notaConteudo.replace('${IE}', ie);
         let linhas = notaConteudo.split('\n');
-        
+
         let dadosModel = new DadosModel();
 
         let totItens = dadosModel.itens;
         let idItem = 1;
         let todosItens = [];
         let linhasInsert = [];
-        while(idItem <= totItens){
-            
-            for(let items of linhas){
+        while (idItem <= totItens) {
+
+            for (let items of linhas) {
                 //console.log(items);
                 let removeItem;
-                if(items.includes('${item}')){
+                if (items.includes('${item}')) {
                     let removeItem;
                     removeItem = items.replace('${item}', '');
-                    if(removeItem.includes('${idItem}'))
-                        linhasInsert.push(removeItem.replace(/\${idItem}/g,idItem)); 
+                    if (removeItem.includes('${idItem}'))
+                        linhasInsert.push(removeItem.replace(/\${idItem}/g, idItem));
                     else
-                        linhasInsert.push(removeItem);    
+                        linhasInsert.push(removeItem);
                     //console.log(linhasInsert);
-                    
+
                 }
             }
 
             todosItens.push(linhasInsert.toString());
-            idItem ++;
+            idItem++;
         }
         let notaParaEnviar = [];
         let add = false;
-        for(let items of linhas){
+        for (let items of linhas) {
             //console.log(items);
             let removeItem;
-            if(/\${item}/g.test(items)){
-                if(add == false){
-                    notaParaEnviar.push(linhasInsert.join('\n').toString()); 
-                    add = true;  
-                }  
+            if (/\${item}/g.test(items)) {
+                if (add == false) {
+                    notaParaEnviar.push(linhasInsert.join('\n').toString());
+                    add = true;
+                }
             }
             else
                 notaParaEnviar.push(items);
-        }   
+        }
 
         notaConteudo = notaParaEnviar.join('\n').toString();
-        let valorTotal = parseFloat(totItens*51.6000);
-        let valorPis = parseFloat(51.6000*1.65/100).toFixed(2);
-        let valorCofins = parseFloat(51.6000*7.60/100).toFixed(2);
+        let valorTotal = parseFloat(totItens * 51.6000);
+        let valorPis = parseFloat(51.6000 * 1.65 / 100).toFixed(2);
+        let valorCofins = parseFloat(51.6000 * 7.60 / 100).toFixed(2);
         let vTotTrib = parseFloat(19.95 * totItens);
-        let vFCPSTRet = parseFloat(51.6000*2.00/100).toFixed(2);
-        while(/\${valorTotal}/.test(notaConteudo)){
+        let vFCPSTRet = parseFloat(51.6000 * 2.00 / 100).toFixed(2);
+        while (/\${valorTotal}/.test(notaConteudo)) {
             notaConteudo = notaConteudo.replace('${valorTotal}', valorTotal.toFixed(2));
         }
-        notaConteudo = notaConteudo.replace('${valorPis}', (valorPis*totItens).toFixed(2));
-        notaConteudo = notaConteudo.replace('${valorCofins}', (valorCofins*totItens).toFixed(2));
-        notaConteudo = notaConteudo.replace('${vFCPSTRet}', (vFCPSTRet*totItens).toFixed(2));
+        notaConteudo = notaConteudo.replace('${valorPis}', (valorPis * totItens).toFixed(2));
+        notaConteudo = notaConteudo.replace('${valorCofins}', (valorCofins * totItens).toFixed(2));
+        notaConteudo = notaConteudo.replace('${vFCPSTRet}', (vFCPSTRet * totItens).toFixed(2));
         notaConteudo = notaConteudo.replace('${vTotTrib}', vTotTrib.toFixed(2));
         console.log(notaConteudo);
         return notaConteudo;

@@ -41,7 +41,7 @@ window.onload = function () {
 
     $('#salvarConfiguracoes').onclick = function (event) {
         event.preventDefault();
-        FerramentaController._salvarDados(true);
+        FerramentaController._salvarDados(true);       
     };
 
     $('#salvarConfiguracoesSocket').onclick = function (event) {

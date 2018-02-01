@@ -72,5 +72,12 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 .collapsible-header i {margin-right: 0.2rem;}
 .tipoEnvio {  display: inline !important; margin-right: 12px; }
 .tipoEnvio label { padding-left: 24px !important; }
-.tabs .tab a { display: block; font-size: 16px; font-weight: 500; }
+.tabs .tab a { color:#97dcca !important; display: block; font-size: 16px; font-weight: 500; }
+.tabs .tab a.active {
+    background-color: transparent !important;
+    color: #2fb995 !important;
+}
+.indicator { background-color:#2fb995 !important; }
 .tabs { margin-bottom: 20px; overflow: hidden !important; }
+.btnGravarConfig { position: fixed; right: 65px !important; bottom: 80px; }
+.help { font-size: 1.25rem; position: absolute; padding: 4px 7px; color: #c70000; }

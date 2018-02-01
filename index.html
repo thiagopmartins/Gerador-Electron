@@ -342,27 +342,42 @@
               </ul>
             </div>
             <div id="test1" class="col s12">
-              <div class="input-field col s9 mgTop-25">
-                <input id="host" type="text" placeholder='localhost' required="required" />
-                <label class="active" id="lblHost" for="host">Host</label>
+              <div class="col s12 mgTop-25">
+                <div class="input-field col s4">
+                  <input id="host" type="text" placeholder='localhost' required="required" />
+                  <label class="active" id="lblHost" for="host">Host</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="user" type="text" placeholder='root' required="required" />
+                  <label class="active" id="lblUser" for="user">Usuário</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="password" type="password" placeholder='vertrigo' required="required" />
+                  <label class="active" id="lblPassword" for="password">Senha</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="database" type="text" placeholder='nfce' required="required" />
+                  <label class="active" id="lblDatabase" for="database">Banco de Dados</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="table" type="text" placeholder='nfce' required="required" />
+                  <label class="active" id="lblTable" for="table">Tabela de Entrada</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="tableOut" type="text" placeholder='nfceoutput' required="required" />
+                  <label class="active" id="lblTableOut" for="tableOut">Tabela de Saida</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="outBanco" type="text" placeholder='c:/out' required="required" />
+                  <label class="active" id="lblOutBanco" for="outBanco">Destino Integração dos Arquivos</label>
+                </div>
+                <div class="col s4">
+                  <input type="checkbox" class="filled-in" id="deletarRegistros" />
+                  <label for="deletarRegistros" style="color: black;">Apagar Tabela de Saida</label>
+                  <i class="help material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="O sistema irá deletar os registros da tabela de saida,<br> após criar os arquivos no destino selecionado.">help_outline</i>
+                </div>
               </div>
-              <div class="input-field col s9">
-                <input id="user" type="text" placeholder='root' required="required" />
-                <label class="active" id="lblUser" for="user">Usuário</label>
-              </div>
-              <div class="input-field col s9">
-                <input id="password" type="text" placeholder='vertrigo' required="required" />
-                <label class="active" id="lblPassword" for="password">Senha</label>
-              </div>
-              <div class="input-field col s9">
-                <input id="database" type="text" placeholder='nfce' required="required" />
-                <label class="active" id="lblDatabase" for="database">Banco de Dados</label>
-              </div>
-              <div class="input-field col s9">
-                <input id="table" type="text" placeholder='nfce' required="required" />
-                <label class="active" id="lblTable" for="table">Tabela</label>
-              </div>
-              <div class="col s12 center-align">
+              <div class="col s12 center-align btnGravarConfig">
                 <div class="row">
                   <div class="input-field col s3 right right-align">
                     <button class="btn waves-effect waves-light" id="salvarConfiguracoes" type="submit">Gravar
@@ -373,19 +388,21 @@
               </div>
             </div>
             <div id="test2" class="col s12">
-              <div class="input-field col s9 mgTop-25">
-                <input id="ipSocket" type="text" placeholder='localhost' required="required" />
-                <label class="active" id="lblIp" for="ipSocket">IP</label>
+              <div class="col s12 mgTop-25">
+                <div class="input-field col s12">
+                  <input id="ipSocket" type="text" placeholder='localhost' required="required" />
+                  <label class="active" id="lblIp" for="ipSocket">IP</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="porta" type="number" placeholder='8080' required="required" />
+                  <label class="active" id="lblPorta" for="porta">Porta</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="out" type="text" placeholder='c:/out' required="required" />
+                  <label class="active" id="lblOut" for="out">Saída - Out</label>
+                </div>
               </div>
-              <div class="input-field col s9">
-                <input id="porta" type="number" placeholder='8080' required="required" />
-                <label class="active" id="lblPorta" for="porta">Porta</label>
-              </div>
-              <div class="input-field col s9">
-                <input id="out" type="text" placeholder='c:/out' required="required" />
-                <label class="active" id="lblOut" for="out">Saída - Out</label>
-              </div>
-              <div class="col s12 center-align">
+              <div class="col s12 center-align btnGravarConfig">
                 <div class="row">
                   <div class="input-field col s3 right right-align">
                     <button class="btn waves-effect waves-light" id="salvarConfiguracoesSocket" type="submit">Gravar
