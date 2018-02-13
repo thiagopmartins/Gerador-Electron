@@ -1,7 +1,7 @@
 const ConfigModel = require('../model/ConfigModel.js');
 const db = require('mysql2');
-const base64 = require('base-64');
 const fs = require('fs');
+const Log = require('../../Log.js');
 
 
 let
@@ -13,9 +13,14 @@ let
     tableOut,
     outBanco,
     deletarRegistros,
-    capturarRetornos
+    capturarRetornos,
+    logger
     ;
 class EnvioBanco {
+
+    constructor(){
+        logger = new Log();
+    }
 
     iniciar() {
         return new Promise((resolve, reject) => {
@@ -45,14 +50,17 @@ class EnvioBanco {
     }
     enviar(conteudo, caminho) {
         const connection = this.criarConexao();
-        let encodedData = base64.encode(conteudo);
+        logger.escreve(`Inserindo o documento ${caminho} no banco de dados: ${conteudo}`)        
         connection.query(
             `INSERT INTO ${table} (filename, documentdata) VALUES (?, ?)`,
-            [caminho, encodedData],
+            [caminho, conteudo],
             (err, results, fields) => {
-                if (err)
-                    console.log(err);
+                if (err){
+                    logger.escreveError(`Erro ao inserir o documento ${caminho}`);
+                    logger.escreveError(err);
+                }
                 else {
+                    logger.escreve(`Documento ${caminho} inserido com sucesso!`);
                     setTimeout(() => {
                         if (capturarRetornos == 1)
                             this.consultaRetorno(results.insertId, 0);
@@ -75,7 +83,7 @@ class EnvioBanco {
                             this.consultaRetorno(id, tentativa);
                         }, parseInt(1000));
                     }
-                    console.log(err)
+                    logger.escreveError(err);
                 } else {
                     if (results.length == 0) {
                         if (tentativa < 50000) {
@@ -84,7 +92,9 @@ class EnvioBanco {
                             }, parseInt(1000));
                         }
                     } else {
-                        console.log('Salvando resultado na pasta de saida.');
+                        Log.escreve(err);
+                        if (!fs.existsSync(outBanco))
+                            fs.mkdirSync(outBanco);
                         fs.writeFileSync(outBanco + '\\' + results[0].filename, results[0].documentdata);
                         if (deletarRegistros == 'on')
                             this.deletarRegistro(id);
@@ -101,11 +111,9 @@ class EnvioBanco {
             [id],
             (err, results, fields) => {
                 if (err)
-                    console.log(err)
-
-                else {
-                    console.log('Registro deletado com sucesso.');
-                }
+                    logger.escreveError(err);
+                else
+                    logger.escreve('Registro deletado com sucesso.')
                 connection.close();
             }
         );

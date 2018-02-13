@@ -47,9 +47,15 @@
                       </li>
                       <li>
                         <a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes">
+                          <i class="material-icons">text_format</i>
+                        </a>
+                      </li>                      
+                      <li>
+                        <a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes">
                           <i class="material-icons">settings</i>
                         </a>
                       </li>
+                      
                       <li id="showEmployees"></li>
                     </ul>
                   </div>
@@ -171,7 +177,6 @@
               </div>
             </div>
           </div>
-
           <div class="col s12 center-align">
             <div class="row">
               <div class="col s1">
@@ -197,6 +202,23 @@
               </div>
             </div>
           </div>
+          <div class="col s12 center-align">
+            <div class="row">
+              <div class="col s3">
+                <div class="switch" style="margin-top: 16px; margin-right: 35px;">
+                  <input type="checkbox" class="filled-in" id="generateCanInu" />
+                  <label for="generateCanInu">Gerar Can-Inu</label>
+                </div>
+              </div>
+              <div class="col s3">
+                <div class="switch" style="margin-top: 16px; margin-right: 35px;">
+                  <input type="checkbox" class="filled-in" id="generatePedAjuste" />
+                  <label for="generatePedAjuste">Gerar Ped-Ajuste</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
           <div class="col s12 center-align">
             <div class="row">
@@ -330,7 +352,7 @@
                 <span class="spanTitle">Gerenciador de Configurações</span>
               </div>
             </div>
-            <div class="col s5">
+            <div class="col s8">
               <ul class="tabs">
                 <li class="tab col s6">
                   <a class="active" href="#test1">JDBC</a>
@@ -338,7 +360,10 @@
                 <li class="tab col s6">
                   <a href="#test2">Socket</a>
                 </li>
-                <li class="indicator" style="right: 158px; left: 0px;"></li>
+                <li class="tab col s6">
+                  <a href="#test3">Cancelamentos</a>
+                </li>
+                <li class="indicator" style="right: 340px; left: 0px;"></li>
               </ul>
             </div>
             <div id="test1" class="col s12">
@@ -415,6 +440,52 @@
                   </div>
                   <div class="input-field col s3 right right-align">
                     <button class="btn waves-effect waves-light red" id="testarConexao" type="submit">Testar
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="test3" class="col s12">
+              <div class="col s12 mgTop-25">
+                <div class="input-field col s4">
+                  <input id="ipCancelamento" type="text" placeholder='localhost' required="required" />
+                  <label class="active" id="lblIpCancelamento" for="ipCancelamento">IP</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="userCancelamento" type="text" placeholder='sa' required="required" />
+                  <label class="active" id="lblUserCancelamento" for="userCancelamento">Usuário</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="senhaCancelamento" type="password" placeholder='' required="required" />
+                  <label class="active" id="lblUserCancelamento" for="senhaCancelamento">Senha</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="bancoCancelamento" type="text" placeholder='NDD_CONNECTOR_NFCe' required="required" />
+                  <label class="active" id="lblBancoCancelamento" for="bancoCancelamento">Banco de Dados</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="agenteCancelamento" type="text" placeholder='NDDTES1000001001' required="required" />
+                  <label class="active" id="lblAgenteCancelamento" for="agenteCancelamento">Agente</label>
+                </div>
+                <div class="input-field col s4">
+                  <input id="timeoutCancelamento" type="number" placeholder='1000' required="required" />
+                  <label class="active" id="lblTimeoutCancelamento" for="timeoutCancelamento">Timeout</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="destinoCancelamento" type="text" placeholder='c:\cancelamento' required="required" />
+                  <label class="active" id="lblDestinoCancelamento" for="destinoCancelamento">Destino Cancelamento</label>
+                </div>
+              </div>
+              <div class="col s12 center-align btnGravarConfig">
+                <div class="row">
+                  <div class="input-field col s3 right right-align">
+                    <button class="btn waves-effect waves-light" id="ajustarDocumentos" type="submit">Ajuste
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+                  <div class="input-field col s3 right right-align">
+                    <button class="btn waves-effect waves-light red" id="cancelarDocumentos" type="submit">Cancelamento
                       <i class="material-icons right">send</i>
                     </button>
                   </div>

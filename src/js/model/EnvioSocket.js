@@ -37,6 +37,8 @@ class EnvioSocket {
             console.log(data.toString());
             let retorno = [];
             retorno = data.toString().split(/_TCPMSG;/);
+            if (!fs.existsSync(out))
+                fs.mkdirSync(out);            
             fs.writeFileSync(out + '\\' + retorno[0], retorno[1]);
             client.destroy(); // kill client after server's response
         });

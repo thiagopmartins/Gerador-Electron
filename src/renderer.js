@@ -1,6 +1,9 @@
 const FerramentaController = require('./js/controller/FerramentaController.js');
 const ServicosController = require('./js/controller/ServicosController.js');
 const EstatisticaController = require('./js/controller/EstatisticaController.js');
+const CancelamentoModel = require('./js/model/CancelamentoModel.js');
+
+
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
 
@@ -93,7 +96,26 @@ window.onload = function () {
         event.preventDefault();
         document.getElementById("painelGerador").reset();
     };
-
+    $('#cancelarDocumentos').onclick = (event) => {
+        let cancelamento = new CancelamentoModel();
+        cancelamento.iniciarProcesso(
+            $('#agenteCancelamento').value, 
+            $('#destinoCancelamento').value, 
+            $('#timeoutCancelamento').value,
+            $('#bancoCancelamento').value,
+            0
+        );
+    }
+    $('#ajustarDocumentos').onclick = (event) => {
+        let cancelamento = new CancelamentoModel();
+        cancelamento.iniciarProcesso(
+            $('#agenteCancelamento').value, 
+            $('#destinoCancelamento').value, 
+            $('#timeoutCancelamento').value,
+            $('#bancoCancelamento').value,
+            1
+        );
+    }    
     $('#nomenclatura').oninput = (event) => {
         //regra
         if (conteudo == $('#nomenclatura').value) {

@@ -7,13 +7,14 @@ const EnvioArquivo = require('../model/EnvioArquivo.js');
 const EnvioBanco = require('../model/EnvioBanco.js');
 const EnvioSocket = require('../model/EnvioSocket.js')
 const db = require('mysql2');
+const base64 = require('base-64');
 
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const dir = './data/';
 const filename = 'arquivo.tmp';
-
+const Log = require('../../Log.js');
 
 let configModel = null;
 let
@@ -30,10 +31,15 @@ let
     numeroInicio,
     ie,
     comunicacao,
-    xml = false
+    xml = false,
+    logger,
+    generateCanInu
     ;
 
 class NotasModel {
+    constructor() {
+        logger = new Log();
+    }
     iniciar() {
         return new Promise((resolve, reject) => {
             configModel = new ConfigModel();
@@ -52,37 +58,52 @@ class NotasModel {
                 tipoEmissao = dados.tipoEmissao;
                 numeroInicio = dados.numero;
                 comunicacao = dados.comunicacao;
+                generateCanInu = dados.generateCanInu;
 
                 return resolve(dados);
             });
         });
     }
 
-    criarArquivo(conteudo, numNota, agenteId) {
-        let caminho;
+    getName(agenteId) {
         let nome = nomenclatura.substring(0, nomenclatura.length - 4);
         let formatAgente = ("000" + agenteId).slice(-3);
-        nome = `${nome}${formatAgente}#`;
+
+        if (+agentes == 1)
+            nome = nomenclatura;
+        else
+            nome = `${nome}${formatAgente}#`;
+        return nome;
+    }
+
+    criarArquivo(conteudo, numNota, agenteId) {
+        let caminho;
+        
+        let nome = this.getName(agenteId);
+
         if (!xml)
             caminho = nome + numNota + '_ped_env.txt';
         else
             caminho = nome + numNota + '_ped_env.xml';
 
         console.log(`Agente: ${nome}`);
-        if (comunicacao == 2){
+        let encodedData = base64.encode(conteudo);
+        logger.escreve(`Criando o documento ${caminho} tipo de envio: ${comunicacao}`);
+        if (comunicacao == 2) {
             let envioBanco = new EnvioBanco();
-            envioBanco.iniciar().then(() => envioBanco.enviar(conteudo, caminho));
+            envioBanco.iniciar().then(() => envioBanco.enviar(encodedData, caminho));
         }
-        else if (comunicacao == 3){
+        else if (comunicacao == 3) {
             let envioSocket = new EnvioSocket();
-            envioSocket.iniciar().then(() => envioSocket.enviar(conteudo, caminho, agenteId));                  
+            envioSocket.iniciar().then(() => envioSocket.enviar(conteudo, caminho, agenteId));
         }
-        else
+        else {
             new EnvioArquivo(destino, caminho, conteudo);
+        }
 
     }
-    
-    criarNota(nota) {
+
+    criarNota(nota, agenteId) {
         let notaConteudo = null;
         let numeroNota = parseInt(numeroInicio) + nota;
         let data = new Date();
@@ -121,10 +142,21 @@ class NotasModel {
             }
         }
 
-        let nNF = uf + ano + mezinho + cnpj + mod + serie + ("000000000" + numeroNota).slice(-9) + tipoEmissao + codigoAleatorio + 1;
+        let nNF = uf + ano + mes + cnpj + mod + serie + ("000000000" + numeroNota).slice(-9) + tipoEmissao + codigoAleatorio + 1;
         let digito = this.calculaDV(nNF);
 
         notaConteudo = notaConteudo.replace('${Id}', "NFe" + `${nNF}`.substring(0, 43) + `${digito}`);
+
+        if (generateCanInu == 'on') {
+            let content = `0000;CANCINUT;${nNF.substring(0, 43)}${digito};Dados incorretos da nota;Dados incorretos da not`;
+            let novo = destino.replace(/\\in/, '') + '\\can-inu\\';
+            if (!fs.existsSync(novo))
+                fs.mkdirSync(novo);
+
+            console.log(novo);
+            fs.writeFileSync(novo + this.getName(agenteId) + numeroNota + '_ped_can-inu.txt', content);
+        }
+
         notaConteudo = notaConteudo.replace('${cNF}', codigoAleatorio);
         notaConteudo = notaConteudo.replace('${serie}', serie);
         notaConteudo = notaConteudo.replace('${nNF}', numeroNota);
@@ -203,6 +235,9 @@ class NotasModel {
             soma += peso[i % 8] * (parseInt(nNF.substr(i, 1)));
         resto = soma % 11;
         if (resto == 0 || resto == 1) digitoRetorno = 0; else digitoRetorno = 11 - resto;
+
+        console.log(nNF + digitoRetorno);
+
 
         return digitoRetorno;
     }

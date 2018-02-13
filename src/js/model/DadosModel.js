@@ -44,6 +44,16 @@ class DadosModel {
         }
     }
 
+    get generateCanInu() { 
+        let checks = document.getElementsByTagName("input");
+        let i = 0;
+        for (var key of checks) {
+            if (key.id == 'generateCanInu' && key.checked) {
+                return key.value;
+            }
+        }
+    }
+
 
     get ipSocket() { return $('#ipSocket').value; }
     get porta() { return $('#porta').value; }
@@ -72,12 +82,17 @@ class DadosModel {
     set capturarRetornos(valor) {
         if (valor == '1')
             $('#capturarRetornos').checked = 'checked';
-        else 
+        else
             $("#deletarRegistros").disabled = true;
     }
     set deletarRegistros(valor) {
-        if (valor == 'on') 
+        if (valor == 'on')
             $('#deletarRegistros').checked = 'checked';
+    }
+
+    set generateCanInu(valor) {
+        if (valor == 'on')
+            $('#generateCanInu').checked = 'checked';
     }
 
     set ipSocket(valor) { $('#ipSocket').value = valor; $('#lblIp').classList.add('active'); }

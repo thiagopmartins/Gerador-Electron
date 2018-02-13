@@ -26,20 +26,19 @@ class NotasController{
         else{
             let numNota = i + 1;
             console.clear();
-             
+            let dadosModel = new DadosModel();
             let estimativa = document.getElementById('estimativa');
             estimativa.innerHTML = this.estimativaTempo();
-
-            let nota = notasModel.criarNota(i);
-            let notaNumero = parseInt(notasModel.numeroInicio) + i;
-            let dadosModel = new DadosModel();
-            let detalhes = document.getElementById('detalhes');
-            detalhes.innerHTML = 'Gerando Notas ' + numNota + '/' + notasModel.quantidade + ' <strong><br>Nota: ' + notaNumero;
             if(agenteId >= dadosModel.agentes)
                 agenteId = 1;
             else
                 agenteId ++;
-            console.log('agente ' + agenteId);
+            let nota = notasModel.criarNota(i,agenteId);
+            let notaNumero = parseInt(notasModel.numeroInicio) + i;
+           
+            let detalhes = document.getElementById('detalhes');
+            detalhes.innerHTML = 'Gerando Notas ' + numNota + '/' + notasModel.quantidade + ' <strong><br>Nota: ' + notaNumero;
+
             notasModel.criarArquivo(nota,notaNumero,agenteId);      
             if(i < notasModel.quantidade - 1){
                 setTimeout(() => {

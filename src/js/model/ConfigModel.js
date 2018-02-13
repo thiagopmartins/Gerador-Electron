@@ -44,6 +44,9 @@ class ConfigModel {
                     dadosModel.porta = dados.porta;
                     dadosModel.out = dados.out;
 
+                    dadosModel.generateCanInu = dados.generateCanInu;
+
+
                     let file_field = $('input[type="file"]').closest('.file-field');       
                     let path_input = file_field.find('input.file-path');
                     let files = dados.origem;
@@ -108,7 +111,8 @@ class ConfigModel {
             outBanco: dadosModel.outBanco,
             ipSocket: dadosModel.ipSocket,
             porta: dadosModel.porta,
-            out: dadosModel.out
+            out: dadosModel.out,
+            generateCanInu: dadosModel.generateCanInu
 
         }
         
