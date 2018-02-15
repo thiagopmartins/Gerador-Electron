@@ -1,6 +1,7 @@
 const fs = require("fs");
 const ConfigBanco = require('../../../data/configBancoCancelamento.js');
 
+const log = require('log4js').getLogger("CancelamentoModel");
 let resultado = null;
 let espera;
 let caminho;
@@ -46,7 +47,7 @@ class CancelamentoModel {
                 let documentkey3 = ("00000000" + resultado[doc].DOCUMENTKEY3).slice(-8);
                 let content = null;
                 let ext;
-                
+                log.info(`Gerando cancelamento id ${resultado[doc].DOCUMENTKEY1}${resultado[doc].DOCUMENTKEY2}${documentkey3}`);
                 if(type == 0){
                     content = `0000;CANCINUT;${resultado[doc].DOCUMENTKEY1}${resultado[doc].DOCUMENTKEY2}${documentkey3};Dados incorretos da nota;Dados incorretos da not`;
                     ext = '_ped_can-inu.txt';

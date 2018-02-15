@@ -2,7 +2,10 @@ const FerramentaController = require('./js/controller/FerramentaController.js');
 const ServicosController = require('./js/controller/ServicosController.js');
 const EstatisticaController = require('./js/controller/EstatisticaController.js');
 const CancelamentoModel = require('./js/model/CancelamentoModel.js');
-
+const ConvertModel = require('./js/model/ConvertModel.js');
+const Log = require('./Log.js');
+const base64 = require('base-64');
+let zlib = require("zlib");
 
 const { ipcRenderer } = require('electron');
 const fs = require('fs');
@@ -13,7 +16,8 @@ let cnpjModel;
 window.onload = function () {
 
     console.log("Carregando aplicação!!!");
-
+    let log = new Log();
+    log.escreve("Carregando a aplicação");
     //Materialize.toast('Lista Atualizada!', 3000);
 
     let emissaoValor = 1;
@@ -36,7 +40,24 @@ window.onload = function () {
         event.preventDefault();
         FerramentaController._ativarServicos();
     };
+    $('#btnDescompactador').onclick = function (event) {
+        event.preventDefault();
+        FerramentaController._ativarDescompactador();
+    };
+    $('#btnCompactar').onclick = function (event) {
+        event.preventDefault();
+        let msg = $('#txtDescompactador').value;
+        let convert = new ConvertModel();
+        convert.compactar(msg);
 
+    };
+    $('#btnDescompactar').onclick = function (event) {
+        event.preventDefault();
+        let msg = $('#txtDescompactador').value;
+        let convert = new ConvertModel();
+        convert.descompactar(msg);
+
+    };
     $('#btnConfiguracoes').onclick = function (event) {
         event.preventDefault();
         FerramentaController._ativarConfiguracoes();
@@ -99,8 +120,8 @@ window.onload = function () {
     $('#cancelarDocumentos').onclick = (event) => {
         let cancelamento = new CancelamentoModel();
         cancelamento.iniciarProcesso(
-            $('#agenteCancelamento').value, 
-            $('#destinoCancelamento').value, 
+            $('#agenteCancelamento').value,
+            $('#destinoCancelamento').value,
             $('#timeoutCancelamento').value,
             $('#bancoCancelamento').value,
             0
@@ -109,21 +130,21 @@ window.onload = function () {
     $('#ajustarDocumentos').onclick = (event) => {
         let cancelamento = new CancelamentoModel();
         cancelamento.iniciarProcesso(
-            $('#agenteCancelamento').value, 
-            $('#destinoCancelamento').value, 
+            $('#agenteCancelamento').value,
+            $('#destinoCancelamento').value,
             $('#timeoutCancelamento').value,
             $('#bancoCancelamento').value,
             1
         );
-    }    
+    }
     $('#nomenclatura').oninput = (event) => {
         //regra
         if (conteudo == $('#nomenclatura').value) {
-            $('#menuTopo').style.right = '-130px';
+            $('#menuTopo').style.right = '-90px';
             $('#showEmployees').innerHTML = '<a class="btn-floating btnMenu amber accent-4"><i class="material-icons">people</i></a>';
         }
-        else {
-            $('#menuTopo').style.right = '-186px';
+        else{
+            $('#menuTopo').style.right = '-140px';
         }
     };
 

@@ -79,5 +79,11 @@ textarea.materialize-textarea:focus:not([readonly]) {border: none;}
 }
 .indicator { background-color:#2fb995 !important; }
 .tabs { margin-bottom: 20px; overflow: hidden !important; }
-.btnGravarConfig { position: fixed; right: 65px !important; bottom: 80px; }
+.btnGravarConfig { position: fixed; right: 65px !important; bottom: 80px;  }
 .help { font-size: 1.25rem; position: absolute; padding: 4px 7px; color: #c70000; }
+textarea.materialize-textarea {
+    min-height: 180px !important;
+    max-height: 180px !important;    
+    font-size: 0.9rem !important;
+}
+.btnGravarConfig .btn { min-width: 205px !important; }

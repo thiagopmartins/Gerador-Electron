@@ -9,6 +9,7 @@ let modalWindow = null;
 let ModalCnpj = null;
 let ModalEmployees = null;
 
+
 function createWindow () {
   mainWindow = new BrowserWindow({
     width: 950,

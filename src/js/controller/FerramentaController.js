@@ -16,6 +16,7 @@ class FerramentaController{
         $('#painelEstatistica').style.display = 'none';
         $('#painelServicos').style.display = 'none';
         $('#painelConfiguracoes').style.display = 'none';
+        $('#painelDescompactador').style.display = 'none';
         $('#btnGerador').classList.remove('btnSelected');
         $('#btnGerador').classList.add('btnSelected');
         $('#btnGerador').classList.add('disabled');
@@ -25,10 +26,13 @@ class FerramentaController{
         $('#btnServicos').classList.remove('disabled');  
         $('#btnConfiguracoes').classList.remove('btnSelected');
         $('#btnConfiguracoes').classList.remove('disabled');   
+        $('#btnDescompactador').classList.remove('btnSelected');
+        $('#btnDescompactador').classList.remove('disabled');  
     }
     static _ativarEstatisticas(){
         $('#painelGerador').style.display = 'none';
-        $('#painelServicos').style.display = 'none';        
+        $('#painelServicos').style.display = 'none';  
+        $('#painelDescompactador').style.display = 'none';      
         $('#painelEstatistica').style.display = 'block';
         $('#painelConfiguracoes').style.display = 'none';                
         $('#btnEstatisticas').classList.remove('btnSelected');
@@ -39,11 +43,14 @@ class FerramentaController{
         $('#btnServicos').classList.remove('btnSelected');
         $('#btnServicos').classList.remove('disabled');   
         $('#btnConfiguracoes').classList.remove('btnSelected');
-        $('#btnConfiguracoes').classList.remove('disabled');        
+        $('#btnConfiguracoes').classList.remove('disabled');   
+        $('#btnDescompactador').classList.remove('btnSelected');
+        $('#btnDescompactador').classList.remove('disabled');       
     }
     static _ativarServicos(){
         $('#painelGerador').style.display = 'none';
         $('#painelEstatistica').style.display = 'none';
+        $('#painelDescompactador').style.display = 'none';
         $('#painelServicos').style.display = 'block';  
         $('#painelConfiguracoes').style.display = 'none';                
         $('#btnServicos').classList.remove('btnSelected');
@@ -54,12 +61,35 @@ class FerramentaController{
         $('#btnEstatisticas').classList.remove('btnSelected');
         $('#btnEstatisticas').classList.remove('disabled');   
         $('#btnConfiguracoes').classList.remove('btnSelected');
-        $('#btnConfiguracoes').classList.remove('disabled');       
+        $('#btnConfiguracoes').classList.remove('disabled');  
+        $('#btnDescompactador').classList.remove('btnSelected');
+        $('#btnDescompactador').classList.remove('disabled');      
     }
+    static _ativarDescompactador(){
+        $('#painelGerador').style.display = 'none';
+        $('#painelEstatistica').style.display = 'none';
+        $('#painelServicos').style.display = 'none'; 
+        $('#painelConfiguracoes').style.display = 'none';  
+        $('#painelDescompactador').style.display = 'block';        
+        $('#btnServicos').classList.remove('btnSelected');
+        $('#btnServicos').classList.remove('btnSelected');
+        $('#btnServicos').classList.remove('disabled');
+        $('#btnGerador').classList.remove('btnSelected');
+        $('#btnGerador').classList.remove('disabled');  
+        $('#btnEstatisticas').classList.remove('btnSelected');
+        $('#btnEstatisticas').classList.remove('disabled'); 
+        $('#btnConfiguracoes').classList.remove('btnSelected');
+        $('#btnConfiguracoes').classList.remove('disabled'); 
+        $('#btnDescompactador').classList.add('btnSelected');
+        $('#btnDescompactador').classList.add('disabled');  
+        $('#resultadoLib').value = '';
+        $('#txtDescompactador').value = '';
+    }    
     static _ativarConfiguracoes(){
         $('#painelGerador').style.display = 'none';
         $('#painelEstatistica').style.display = 'none';
         $('#painelServicos').style.display = 'none'; 
+        $('#painelDescompactador').style.display = 'none';
         $('#painelConfiguracoes').style.display = 'block';        
         $('#btnServicos').classList.remove('btnSelected');
         $('#btnServicos').classList.remove('btnSelected');
@@ -69,7 +99,9 @@ class FerramentaController{
         $('#btnEstatisticas').classList.remove('btnSelected');
         $('#btnEstatisticas').classList.remove('disabled'); 
         $('#btnConfiguracoes').classList.add('btnSelected');
-        $('#btnConfiguracoes').classList.add('disabled');       
+        $('#btnConfiguracoes').classList.add('disabled');  
+        $('#btnDescompactador').classList.remove('btnSelected');
+        $('#btnDescompactador').classList.remove('disabled');       
     }
     static _validaFormulario(){
         if ($("#serie").value == "") {

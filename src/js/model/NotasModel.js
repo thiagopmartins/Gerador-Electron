@@ -14,7 +14,7 @@ const path = require('path');
 const readline = require('readline');
 const dir = './data/';
 const filename = 'arquivo.tmp';
-const Log = require('../../Log.js');
+const log = require('log4js').getLogger("NotasModel");
 
 let configModel = null;
 let
@@ -32,14 +32,10 @@ let
     ie,
     comunicacao,
     xml = false,
-    logger,
     generateCanInu
     ;
 
 class NotasModel {
-    constructor() {
-        logger = new Log();
-    }
     iniciar() {
         return new Promise((resolve, reject) => {
             configModel = new ConfigModel();
@@ -88,17 +84,17 @@ class NotasModel {
 
         console.log(`Agente: ${nome}`);
         let encodedData = base64.encode(conteudo);
-        logger.escreve(`Criando o documento ${caminho} tipo de envio: ${comunicacao}`);
+        log.info(`Criando o documento ${caminho} tipo de envio: ${comunicacao}`);
         if (comunicacao == 2) {
             let envioBanco = new EnvioBanco();
             envioBanco.iniciar().then(() => envioBanco.enviar(encodedData, caminho));
         }
         else if (comunicacao == 3) {
             let envioSocket = new EnvioSocket();
-            envioSocket.iniciar().then(() => envioSocket.enviar(conteudo, caminho, agenteId));
+            envioSocket.iniciar().then(() => envioSocket.enviar(conteudo, caminho, agenteId, encodedData));
         }
         else {
-            new EnvioArquivo(destino, caminho, conteudo);
+            new EnvioArquivo(destino, caminho, conteudo, encodedData);
         }
 
     }
@@ -131,6 +127,7 @@ class NotasModel {
             ArquivoBaseModel.criarArquivo = origem;
             notaConteudo = fs.readFileSync(dir + filename, 'utf8');
             console.log("Arquivo .tmp não encontrado. Gerando novo arquivo com base na URL de origem" + error);
+            log.error(error);
         }
 
         let ks = notaConteudo.split("\n");
@@ -154,6 +151,8 @@ class NotasModel {
                 fs.mkdirSync(novo);
 
             console.log(novo);
+            let encoded = base64.encode(content);
+            log.info(`Gerando can-inu ${this.getName(agenteId)}${numeroNota}_ped_can-inu.txt ${encoded}`);
             fs.writeFileSync(novo + this.getName(agenteId) + numeroNota + '_ped_can-inu.txt', content);
         }
 

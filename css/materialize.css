@@ -5308,7 +5308,7 @@ button.btn-floating {
 
 .fixed-action-btn.horizontal ul {
   text-align: right;
-  right: -186px;
+  right: -140px;
   top: 20%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);

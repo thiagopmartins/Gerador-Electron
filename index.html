@@ -32,30 +32,30 @@
                     <ul id="menuTopo">
                       <li>
                         <a class="btn-floating btnMenu grey lighten-5" id="btnGerador">
-                          <i class="material-icons">description</i>
+                          <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="Gerador de Notas">description</i>
                         </a>
                       </li>
                       <li>
                         <a class="btn-floating btnMenu grey lighten-5" id="btnEstatisticas">
-                          <i class="material-icons">insert_chart</i>
+                          <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="Estatísticas">insert_chart</i>
                         </a>
                       </li>
                       <li>
                         <a class="btn-floating btnMenu grey lighten-5" id="btnServicos">
-                          <i class="material-icons">backspace</i>
+                          <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="Gerenciador de Serviços">backspace</i>
+                        </a>
+                      </li>
+                      <li>
+                        <a class="btn-floating btnMenu grey lighten-5" id="btnDescompactador">
+                          <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="Compactador/Descompactador">text_format</i>
                         </a>
                       </li>
                       <li>
                         <a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes">
-                          <i class="material-icons">text_format</i>
-                        </a>
-                      </li>                      
-                      <li>
-                        <a class="btn-floating btnMenu grey lighten-5" id="btnConfiguracoes">
-                          <i class="material-icons">settings</i>
+                          <i class="material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="Configurações">settings</i>
                         </a>
                       </li>
-                      
+
                       <li id="showEmployees"></li>
                     </ul>
                   </div>
@@ -344,166 +344,192 @@
           </div>
         </form>
 
-        <form action="#" id="painelConfiguracoes">
+        <form action="#" id="painelDescompactador">
           <div class="row mainMenu">
-            <div class="col s12">
-              <div class="chip">
-                <i class="material-icons iconTitle">settings</i>
-                <span class="spanTitle">Gerenciador de Configurações</span>
+            <div class="input-field col s12">
+              <textarea id="txtDescompactador" class="materialize-textarea"></textarea>
+              <label for="txtDescompactador">Insira a string</label>
+            </div>
+            <div class="input-field col s12">
+              <textarea id="resultadoLib" class="materialize-textarea"></textarea>
+              <label id="lblResultadoLib" for="resultadoLib">
+                <strong>Resultado</strong>
+              </label>
+            </div>
+
+          </div>
+          <div class="btnGravarConfig">
+            <button class="btn waves-effect waves-light" id="btnCompactar" type="submit">Compactar
+              <i class="material-icons right">unfold_less</i>
+            </button>
+            <button class="btn waves-effect waves-light" id="btnDescompactar" type="submit">Descompactar
+              <i class="material-icons right">unfold_more</i>
+            </button>
+          </div>
+
+      </div>
+      </form>
+
+      <form action="#" id="painelConfiguracoes">
+        <div class="row mainMenu">
+          <div class="col s12">
+            <div class="chip">
+              <i class="material-icons iconTitle">settings</i>
+              <span class="spanTitle">Gerenciador de Configurações</span>
+            </div>
+          </div>
+          <div class="col s8">
+            <ul class="tabs">
+              <li class="tab col s6">
+                <a class="active" href="#test1">JDBC</a>
+              </li>
+              <li class="tab col s6">
+                <a href="#test2">Socket</a>
+              </li>
+              <li class="tab col s6">
+                <a href="#test3">Cancelamentos</a>
+              </li>
+              <li class="indicator" style="right: 340px; left: 0px;"></li>
+            </ul>
+          </div>
+          <div id="test1" class="col s12">
+            <div class="col s12 mgTop-25">
+              <div class="input-field col s4">
+                <input id="host" type="text" placeholder='localhost' required="required" />
+                <label class="active" id="lblHost" for="host">Host</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="user" type="text" placeholder='root' required="required" />
+                <label class="active" id="lblUser" for="user">Usuário</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="password" type="password" placeholder='vertrigo' required="required" />
+                <label class="active" id="lblPassword" for="password">Senha</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="database" type="text" placeholder='nfce' required="required" />
+                <label class="active" id="lblDatabase" for="database">Banco de Dados</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="table" type="text" placeholder='nfce' required="required" />
+                <label class="active" id="lblTable" for="table">Tabela de Entrada</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="tableOut" type="text" placeholder='nfceoutput' required="required" />
+                <label class="active" id="lblTableOut" for="tableOut">Tabela de Saida</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="outBanco" type="text" placeholder='c:/out' required="required" />
+                <label class="active" id="lblOutBanco" for="outBanco">Destino Integração dos Arquivos</label>
+              </div>
+              <div class="col s4">
+                <input type="checkbox" class="filled-in" id="capturarRetornos" name="capturarRetornos" value="teste" />
+                <label for="capturarRetornos" style="color: black;">Capturar Retornos</label>
+              </div>
+              <div class="col s4">
+                <input type="checkbox" class="filled-in" id="deletarRegistros" name="deletarRegistros" />
+                <label for="deletarRegistros" style="color: black;">Apagar Tabela de Saida</label>
+                <i class="help material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="O sistema irá deletar os registros da tabela de saida,<br> após criar os arquivos no destino selecionado.">help_outline</i>
               </div>
             </div>
-            <div class="col s8">
-              <ul class="tabs">
-                <li class="tab col s6">
-                  <a class="active" href="#test1">JDBC</a>
-                </li>
-                <li class="tab col s6">
-                  <a href="#test2">Socket</a>
-                </li>
-                <li class="tab col s6">
-                  <a href="#test3">Cancelamentos</a>
-                </li>
-                <li class="indicator" style="right: 340px; left: 0px;"></li>
-              </ul>
-            </div>
-            <div id="test1" class="col s12">
-              <div class="col s12 mgTop-25">
-                <div class="input-field col s4">
-                  <input id="host" type="text" placeholder='localhost' required="required" />
-                  <label class="active" id="lblHost" for="host">Host</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="user" type="text" placeholder='root' required="required" />
-                  <label class="active" id="lblUser" for="user">Usuário</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="password" type="password" placeholder='vertrigo' required="required" />
-                  <label class="active" id="lblPassword" for="password">Senha</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="database" type="text" placeholder='nfce' required="required" />
-                  <label class="active" id="lblDatabase" for="database">Banco de Dados</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="table" type="text" placeholder='nfce' required="required" />
-                  <label class="active" id="lblTable" for="table">Tabela de Entrada</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="tableOut" type="text" placeholder='nfceoutput' required="required" />
-                  <label class="active" id="lblTableOut" for="tableOut">Tabela de Saida</label>
-                </div>
-                <div class="input-field col s12">
-                  <input id="outBanco" type="text" placeholder='c:/out' required="required" />
-                  <label class="active" id="lblOutBanco" for="outBanco">Destino Integração dos Arquivos</label>
-                </div>
-                <div class="col s4">
-                  <input type="checkbox" class="filled-in" id="capturarRetornos" name="capturarRetornos" value="teste" />
-                  <label for="capturarRetornos" style="color: black;">Capturar Retornos</label>
-                </div>
-                <div class="col s4">
-                  <input type="checkbox" class="filled-in" id="deletarRegistros" name="deletarRegistros" />
-                  <label for="deletarRegistros" style="color: black;">Apagar Tabela de Saida</label>
-                  <i class="help material-icons tooltipped" data-position="bottom" data-delay="50" data-html="true" data-tooltip="O sistema irá deletar os registros da tabela de saida,<br> após criar os arquivos no destino selecionado.">help_outline</i>
-                </div>
-              </div>
-              <div class="col s12 center-align btnGravarConfig">
-                <div class="row">
-                  <div class="input-field col s3 right right-align">
-                    <button class="btn waves-effect waves-light" id="salvarConfiguracoes" type="submit">Gravar
-                      <i class="material-icons right">send</i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="test2" class="col s12">
-              <div class="col s12 mgTop-25">
-                <div class="input-field col s12">
-                  <input id="ipSocket" type="text" placeholder='localhost' required="required" />
-                  <label class="active" id="lblIp" for="ipSocket">IP</label>
-                </div>
-                <div class="input-field col s12">
-                  <input id="porta" type="number" placeholder='8080' required="required" />
-                  <label class="active" id="lblPorta" for="porta">Porta</label>
-                </div>
-                <div class="input-field col s12">
-                  <input id="out" type="text" placeholder='c:/out' required="required" />
-                  <label class="active" id="lblOut" for="out">Saída - Out</label>
-                </div>
-              </div>
-              <div class="col s12 center-align btnGravarConfig">
-                <div class="row">
-                  <div class="input-field col s3 right right-align">
-                    <button class="btn waves-effect waves-light" id="salvarConfiguracoesSocket" type="submit">Gravar
-                      <i class="material-icons right">send</i>
-                    </button>
-                  </div>
-                  <div class="input-field col s3 right right-align">
-                    <button class="btn waves-effect waves-light red" id="testarConexao" type="submit">Testar
-                      <i class="material-icons right">send</i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="test3" class="col s12">
-              <div class="col s12 mgTop-25">
-                <div class="input-field col s4">
-                  <input id="ipCancelamento" type="text" placeholder='localhost' required="required" />
-                  <label class="active" id="lblIpCancelamento" for="ipCancelamento">IP</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="userCancelamento" type="text" placeholder='sa' required="required" />
-                  <label class="active" id="lblUserCancelamento" for="userCancelamento">Usuário</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="senhaCancelamento" type="password" placeholder='' required="required" />
-                  <label class="active" id="lblUserCancelamento" for="senhaCancelamento">Senha</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="bancoCancelamento" type="text" placeholder='NDD_CONNECTOR_NFCe' required="required" />
-                  <label class="active" id="lblBancoCancelamento" for="bancoCancelamento">Banco de Dados</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="agenteCancelamento" type="text" placeholder='NDDTES1000001001' required="required" />
-                  <label class="active" id="lblAgenteCancelamento" for="agenteCancelamento">Agente</label>
-                </div>
-                <div class="input-field col s4">
-                  <input id="timeoutCancelamento" type="number" placeholder='1000' required="required" />
-                  <label class="active" id="lblTimeoutCancelamento" for="timeoutCancelamento">Timeout</label>
-                </div>
-                <div class="input-field col s12">
-                  <input id="destinoCancelamento" type="text" placeholder='c:\cancelamento' required="required" />
-                  <label class="active" id="lblDestinoCancelamento" for="destinoCancelamento">Destino Cancelamento</label>
-                </div>
-              </div>
-              <div class="col s12 center-align btnGravarConfig">
-                <div class="row">
-                  <div class="input-field col s3 right right-align">
-                    <button class="btn waves-effect waves-light" id="ajustarDocumentos" type="submit">Ajuste
-                      <i class="material-icons right">send</i>
-                    </button>
-                  </div>
-                  <div class="input-field col s3 right right-align">
-                    <button class="btn waves-effect waves-light red" id="cancelarDocumentos" type="submit">Cancelamento
-                      <i class="material-icons right">send</i>
-                    </button>
-                  </div>
+            <div class="col s12 center-align btnGravarConfig">
+              <div class="row">
+                <div class="input-field col s3 right right-align">
+                  <button class="btn waves-effect waves-light" id="salvarConfiguracoes" type="submit">Gravar
+                    <i class="material-icons right">send</i>
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        </form>
-
-        <div class="modal-message container">
-          <div class="row center">
-            <div class="col s8 chip offset-s2" id="notificacao">
-
+          <div id="test2" class="col s12">
+            <div class="col s12 mgTop-25">
+              <div class="input-field col s12">
+                <input id="ipSocket" type="text" placeholder='localhost' required="required" />
+                <label class="active" id="lblIp" for="ipSocket">IP</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="porta" type="number" placeholder='8080' required="required" />
+                <label class="active" id="lblPorta" for="porta">Porta</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="out" type="text" placeholder='c:/out' required="required" />
+                <label class="active" id="lblOut" for="out">Saída - Out</label>
+              </div>
+            </div>
+            <div class="col s12 center-align btnGravarConfig">
+              <div class="row">
+                <div class="input-field col s3 right right-align">
+                  <button class="btn waves-effect waves-light" id="salvarConfiguracoesSocket" type="submit">Gravar
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+                <div class="input-field col s3 right right-align">
+                  <button class="btn waves-effect waves-light red" id="testarConexao" type="submit">Testar
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="test3" class="col s12">
+            <div class="col s12 mgTop-25">
+              <div class="input-field col s4">
+                <input id="ipCancelamento" type="text" placeholder='localhost' required="required" />
+                <label class="active" id="lblIpCancelamento" for="ipCancelamento">IP</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="userCancelamento" type="text" placeholder='sa' required="required" />
+                <label class="active" id="lblUserCancelamento" for="userCancelamento">Usuário</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="senhaCancelamento" type="password" placeholder='' required="required" />
+                <label class="active" id="lblUserCancelamento" for="senhaCancelamento">Senha</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="bancoCancelamento" type="text" placeholder='NDD_CONNECTOR_NFCe' required="required" />
+                <label class="active" id="lblBancoCancelamento" for="bancoCancelamento">Banco de Dados</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="agenteCancelamento" type="text" placeholder='NDDTES1000001001' required="required" />
+                <label class="active" id="lblAgenteCancelamento" for="agenteCancelamento">Agente</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="timeoutCancelamento" type="number" placeholder='1000' required="required" />
+                <label class="active" id="lblTimeoutCancelamento" for="timeoutCancelamento">Timeout</label>
+              </div>
+              <div class="input-field col s12">
+                <input id="destinoCancelamento" type="text" placeholder='c:\cancelamento' required="required" />
+                <label class="active" id="lblDestinoCancelamento" for="destinoCancelamento">Destino Cancelamento</label>
+              </div>
+            </div>
+            <div class="col s12 center-align btnGravarConfig">
+              <div class="row">
+                <div class="input-field col s3 right right-align">
+                  <button class="btn waves-effect waves-light" id="ajustarDocumentos" type="submit">Ajuste
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+                <div class="input-field col s3 right right-align">
+                  <button class="btn waves-effect waves-light red" id="cancelarDocumentos" type="submit">Cancelamento
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </form>
 
+      <div class="modal-message container">
+        <div class="row center">
+          <div class="col s8 chip offset-s2" id="notificacao">
+
+          </div>
+        </div>
       </div>
+
+    </div>
     </div>
   </main>
   <!-- The Modal -->

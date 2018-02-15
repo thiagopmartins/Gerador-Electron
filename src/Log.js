@@ -11,12 +11,9 @@ class Log {
     }
     escreve(texto) {
         logger.info(texto);
-        console.log(texto);
-
     }
     escreveError(texto) {
         logger.error(texto);
-        console.log(texto);
     }
 }
 module.exports = Log;

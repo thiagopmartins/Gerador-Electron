@@ -1,7 +1,7 @@
 const ConfigModel = require('../model/ConfigModel.js');
 const db = require('mysql2');
 const fs = require('fs');
-const Log = require('../../Log.js');
+const log = require('log4js').getLogger("EnvioBanco");
 
 
 let
@@ -13,15 +13,9 @@ let
     tableOut,
     outBanco,
     deletarRegistros,
-    capturarRetornos,
-    logger
+    capturarRetornos
     ;
 class EnvioBanco {
-
-    constructor(){
-        logger = new Log();
-    }
-
     iniciar() {
         return new Promise((resolve, reject) => {
             let configModel = new ConfigModel();
@@ -50,17 +44,18 @@ class EnvioBanco {
     }
     enviar(conteudo, caminho) {
         const connection = this.criarConexao();
-        logger.escreve(`Inserindo o documento ${caminho} no banco de dados: ${conteudo}`)        
+        log.info(`Inserindo o documento ${caminho} no banco de dados:\n ${conteudo}`)
         connection.query(
             `INSERT INTO ${table} (filename, documentdata) VALUES (?, ?)`,
             [caminho, conteudo],
             (err, results, fields) => {
-                if (err){
-                    logger.escreveError(`Erro ao inserir o documento ${caminho}`);
-                    logger.escreveError(err);
+                if (err) {
+                    log.error(`Erro ao inserir o documento ${caminho}`);
+                    log.error(err);
+                    console.log(err);
                 }
                 else {
-                    logger.escreve(`Documento ${caminho} inserido com sucesso!`);
+                    log.info(`Documento ${caminho} inserido com sucesso!`);
                     setTimeout(() => {
                         if (capturarRetornos == 1)
                             this.consultaRetorno(results.insertId, 0);
@@ -92,7 +87,7 @@ class EnvioBanco {
                             }, parseInt(1000));
                         }
                     } else {
-                        Log.escreve(err);
+                        log.error(err);
                         if (!fs.existsSync(outBanco))
                             fs.mkdirSync(outBanco);
                         fs.writeFileSync(outBanco + '\\' + results[0].filename, results[0].documentdata);
@@ -111,9 +106,9 @@ class EnvioBanco {
             [id],
             (err, results, fields) => {
                 if (err)
-                    logger.escreveError(err);
+                    log.error(err);
                 else
-                    logger.escreve('Registro deletado com sucesso.')
+                    log.info('Registro deletado com sucesso.')
                 connection.close();
             }
         );
