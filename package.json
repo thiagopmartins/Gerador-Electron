@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "package:win": "electron-packager . 'Gerador de massas Electron' --platform=win32 --arch=x64 --overwrite "
+    "package:win": "electron-packager . Ferramenta-NFCe --overwrite --asar=true --platform=win32 --arch=ia32 --out=out --icon=img/logo.ico",
+    "package:linux": "electron-packager . Ferramenta-NFCe --overwrite --asar=true --platform=linux --arch=x64 --icon=img/logo.ico --prune=true --out=out"
   },
   "repository": "",
   "keywords": [
@@ -18,16 +19,18 @@
   "author": "Diego de Liz - Thiago Martins",
   "license": "",
   "devDependencies": {
-    "electron": "~1.8.1"
+    "electron": "~1.8.2",
+    "electron-packager": "^8.6.0",
+    "electron-winstaller": "^2.2.0"
   },
   "dependencies": {
     "base-64": "^0.1.0",
-    "electron-packager": "^10.1.0",
     "encoding": "^0.1.12",
     "fs": "0.0.1-security",
     "fs-extra": "^4.0.2",
     "fs.realpath": "^1.0.0",
     "hammer": "0.0.5",
+    "jdbc": "^0.6.1",
     "jquery": "^3.2.1",
     "jsonfile-promised": "0.0.1",
     "lodash": "^4.17.4",

@@ -31,7 +31,7 @@ function createWindow () {
       fs.unlinkSync(dir);
     }
   });
-  
+  mainWindow.openDevTools();
 }
 
 app.on('ready', createWindow);

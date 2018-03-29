@@ -146,7 +146,7 @@ class NotasModel {
 
         if (generateCanInu == 'on') {
             let content = `0000;CANCINUT;${nNF.substring(0, 43)}${digito};Dados incorretos da nota;Dados incorretos da not`;
-            let novo = destino.replace(/\\in/, '') + '\\can-inu\\';
+            let novo = destino.replace(/in/, '') + path.sep + 'can-inu' + path.sep;
             if (!fs.existsSync(novo))
                 fs.mkdirSync(novo);
 

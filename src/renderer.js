@@ -5,6 +5,9 @@ const CancelamentoModel = require('./js/model/CancelamentoModel.js');
 const ConvertModel = require('./js/model/ConvertModel.js');
 const Log = require('./Log.js');
 const base64 = require('base-64');
+
+const MediaRet = require('./js/model/MediaRet.js')
+
 let zlib = require("zlib");
 
 const { ipcRenderer } = require('electron');
@@ -119,7 +122,7 @@ window.onload = function () {
     };
     $('#cancelarDocumentos').onclick = (event) => {
         let cancelamento = new CancelamentoModel();
-        cancelamento.iniciarProcesso(
+        cancelamento.testeCanInu(
             $('#agenteCancelamento').value,
             $('#destinoCancelamento').value,
             $('#timeoutCancelamento').value,
@@ -129,13 +132,18 @@ window.onload = function () {
     }
     $('#ajustarDocumentos').onclick = (event) => {
         let cancelamento = new CancelamentoModel();
-        cancelamento.iniciarProcesso(
-            $('#agenteCancelamento').value,
-            $('#destinoCancelamento').value,
-            $('#timeoutCancelamento').value,
-            $('#bancoCancelamento').value,
-            1
-        );
+
+        if ($('#agenteCancelamento').value == 1) {
+
+        } else {
+            cancelamento.iniciarProcesso(
+                $('#agenteCancelamento').value,
+                $('#destinoCancelamento').value,
+                $('#timeoutCancelamento').value,
+                $('#bancoCancelamento').value,
+                1
+            );
+        }
     }
     $('#nomenclatura').oninput = (event) => {
         //regra
@@ -143,7 +151,7 @@ window.onload = function () {
             $('#menuTopo').style.right = '-90px';
             $('#showEmployees').innerHTML = '<a class="btn-floating btnMenu amber accent-4"><i class="material-icons">people</i></a>';
         }
-        else{
+        else {
             $('#menuTopo').style.right = '-140px';
         }
     };
@@ -166,6 +174,8 @@ window.onload = function () {
     }
 
     $('#jdbc').onchange = function (event) {
+        let media = new MediaRet();
+        media.teste();
         $("#destino").disabled = true;
         event.preventDefault();
     }
