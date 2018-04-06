@@ -98,7 +98,10 @@ window.onload = function () {
         event.preventDefault();
         ipcRenderer.send('ModalArquivo');
     };
-
+    $('#btnIntegrador').onclick = function (event) {
+        event.preventDefault();
+        ipcRenderer.send('integradorWindow');
+    };
     $('#btnCadastrarCnpj').onclick = function (event) {
         event.preventDefault();
         ipcRenderer.send('ModalCnpj');

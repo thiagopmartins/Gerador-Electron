@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nota Base</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../css/materialize.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="../css/main.css" media="screen,projection" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <div class="row" style="margin-top: 4rem;">
+        <div class="col s4 center" style="border-right: 1px solid #e0e0e0">
+            <div class="input-field col s8 offset-s2">
+                <input id="idProcessoEnvPag" type="number" placeholder="999" />
+                <label class="active" for="idProcessoEnvPag">idProcesso</label>
+            </div>
+            <div class="input-field col s8 offset-s2">
+                <input id="idQuantidadeEnvPag" type="number" placeholder="999" />
+                <label class="active" for="idQuantidadeEnvPag">Qto. Pag.</label>
+            </div>
+            <a class="waves-effect waves-light btn" id="env_pag" style="margin-top: 6.2rem;">env_pag</a>
+        </div>
+        <div class="col s4 center" style="border-right: 1px solid #e0e0e0">
+            <div class="input-field col s8 offset-s2">
+                <input id="idProcessoStaPag" type="number" placeholder="999" />
+                <label class="active" for="idProcessoStaPag">idProcesso</label>
+            </div>
+            <div class="input-field col s8 offset-s2">
+                <input id="idQuantidadeStaPag" type="number" placeholder="999" />
+                <label class="active" for="idQuantidadeStaPag">Qto. Pag.</label>
+            </div>
+            <a class="waves-effect waves-light btn" id="sta_pag" style="margin-top: 6.2rem;">sta_pag</a>
+        </div>
+        <div class="col s4 center" style="border-right: 1px solid #e0e0e0">
+            <div class="input-field col s8 offset-s2">
+                <input id="idProcessoRespFis" type="number" placeholder="999" />
+                <label class="active" for="idProcessoRespFis">idProcesso</label>
+            </div>
+            <div class="input-field col s8 offset-s2">
+                <input id="idQuantidadeRespFis" type="number" placeholder="999" />
+                <label class="active" for="idQuantidadeRespFis">Qto. Pag.</label>
+            </div>
+            <div class="input-field col s8 offset-s2">
+                <input id="idChaveRespFis" type="number" placeholder="999" />
+                <label class="active" for="idChaveRespFis">Chave</label>
+            </div>
+            <a class="waves-effect waves-light btn" id="resp_fis" style="margin-top: 2rem;">resp_fis</a>
+        </div>
+    </div>
+</body>
+<script>
+    require('../src/integrador.js');
+</script>
+<script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="../node_modules/hammer/hammer-min.js"></script>
+<script type="text/javascript" src="../node_modules/materialize/materialize.js"></script>
+</html>
