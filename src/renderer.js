@@ -10,7 +10,7 @@ const MediaRet = require('./js/model/MediaRet.js')
 
 let zlib = require("zlib");
 
-const { ipcRenderer } = require('electron');
+const { ipcRenderer, ipc } = require('electron');
 const fs = require('fs');
 
 let $ = document.querySelector.bind(document);
@@ -160,13 +160,39 @@ window.onload = function () {
     };
 
     $('#gerarNotas').onclick = function (event) {
+        event.preventDefault();
         let verificaValidacao = FerramentaController._validaFormulario();
         if (verificaValidacao == true) {
+            let valoresIntegrador = {
+                nomenclatura: $('#nomenclatura').value,
+                destino: $('#destino').value 
+             }
+             console.log(valoresIntegrador);
+             ipcRenderer.send('atualizarIntegrador', valoresIntegrador);            
             //Chama o método para gerar Notas
             FerramentaController._gerarNotas();
+            
         }
 
+        
+    }
+    $('#save').onclick = function (event) {
         event.preventDefault();
+        let verificaValidacao = FerramentaController._validaFormulario();
+        if (verificaValidacao == true) {
+            let valoresIntegrador = {
+                nomenclatura: $('#nomenclatura').value,
+                destino: $('#destino').value 
+             }
+             console.log(valoresIntegrador);
+             ipcRenderer.send('atualizarIntegrador', valoresIntegrador);            
+            //Chama o método para gerar Notas
+            FerramentaController._salvarDados(false);
+            $('#notificacao').classList.add("green");
+            $('#notificacao').innerHTML = "As informações foram salvas!";    
+        }
+
+        
     }
 
     //Tipo de Comunicação - Arquivo ou JDBC

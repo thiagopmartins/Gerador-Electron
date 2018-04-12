@@ -1,12 +1,21 @@
 const ConfigModel = require('./js/model/ConfigModel.js');
 const fs = require('fs');
 const path = require('path');
+const { ipc, ipcRenderer } = require('electron');
 
 let $ = document.querySelector.bind(document);
 
 let destino;
 let nomenclatura;
 let documento = [];
+
+ipcRenderer.on('atualizarIntegrador', (event, { destino, nomenclatura }) => {
+    console.log('Atualizando Integrador....');
+
+    this.destino = destino;
+    this.nomenclatura = nomenclatura;
+    
+});
 
 window.onload = () => {
     console.log('Iniciando Integrador.js');
@@ -19,7 +28,7 @@ window.onload = () => {
     );
 };
 $('#env_pag').onclick = () => {
-    let quantidade =  + $('#idQuantidadeEnvPag').value;
+    let quantidade = + $('#idQuantidadeEnvPag').value;
     let idProcesso = + $('#idProcessoEnvPag').value;
     let pag;
     let i = 0;
@@ -29,7 +38,7 @@ $('#env_pag').onclick = () => {
 	        <EnviarPagamento>
                 <chaveAcessoValidador>25CFE38D-3B92-46C0-91CA-CFF751A82D3D</chaveAcessoValidador>`
     );
-    while(i < quantidade){
+    while (i < quantidade) {
         pag = ("000" + (i + 1)).slice(-3);
         documento.push(`
             <Parametros idpagamento="pag${pag}">
@@ -79,8 +88,8 @@ $('#env_pag').onclick = () => {
             </Parametro>
         </Parametros>
         `);
-        i ++;
-        idProcesso ++;
+        i++;
+        idProcesso++;
     }
     documento.push(`
         </EnviarPagamento>
@@ -93,8 +102,8 @@ $('#env_pag').onclick = () => {
     console.log(documento);
 };
 $('#sta_pag').onclick = () => {
-    
-    let quantidade =  + $('#idQuantidadeStaPag').value;
+
+    let quantidade = + $('#idQuantidadeStaPag').value;
     let idProcesso = + $('#idProcessoStaPag').value;
     let pag;
     let i = 0;
@@ -104,7 +113,7 @@ $('#sta_pag').onclick = () => {
             <EnviarStatusPagamento>
             <chaveAcessoValidador>25CFE38D-3B92-46C0-91CA-CFF751A82D3D</chaveAcessoValidador>`
     );
-    while(i < quantidade){
+    while (i < quantidade) {
         pag = ("000" + (i + 1)).slice(-3);
         documento.push(`
             <Parametros idpagamento="pag${pag}">
@@ -154,8 +163,8 @@ $('#sta_pag').onclick = () => {
 			</Parametro>
         </Parametros>
         `);
-        i ++;
-        idProcesso ++;
+        i++;
+        idProcesso++;
     }
     documento.push(`
         </EnviarStatusPagamento>
@@ -167,7 +176,7 @@ $('#sta_pag').onclick = () => {
     console.log(documento);
 };
 $('#resp_fis').onclick = () => {
-    let quantidade =  + $('#idQuantidadeRespFis').value;
+    let quantidade = + $('#idQuantidadeRespFis').value;
     let idProcesso = + $('#idProcessoRespFis').value;
     let idChaveRespFis = $('#idChaveRespFis').value;
     let pag;
@@ -178,7 +187,7 @@ $('#resp_fis').onclick = () => {
             <RespostaFiscal>
             <chaveAcessoValidador>25CFE38D-3B92-46C0-91CA-CFF751A82D3D</chaveAcessoValidador>`
     );
-    while(i < quantidade){
+    while (i < quantidade) {
         pag = ("000" + (i + 1)).slice(-3);
         documento.push(`
             <Parametros idpagamento="pag${pag}">
@@ -216,8 +225,8 @@ $('#resp_fis').onclick = () => {
 			</Parametro>
         </Parametros>
         `);
-        i ++;
-        idProcesso ++;
+        i++;
+        idProcesso++;
     }
     documento.push(`
         </RespostaFiscal>

@@ -76,11 +76,10 @@ ipcMain.on('integradorWindow', () => {
       width: 600,
       height: 400,
       resizable: true,
-      movable: false,
-      minimizable: false,
+      movable: true,
+      minimizable: true,
       modal: true,
       autoHideMenuBar: true,
-      parent: mainWindow,
       icon: path.join(__dirname, 'img/logo.png')
     });
     integradorWindow.loadURL(url.format({
@@ -91,6 +90,14 @@ ipcMain.on('integradorWindow', () => {
   }
   integradorWindow.on('closed', () => { integradorWindow = null });
 });
+
+ipcMain.on('atualizarIntegrador', (event, arg) => {
+  if (integradorWindow != null) {
+    integradorWindow.webContents.send('atualizarIntegrador', arg);
+    console.log(arg);
+  }
+});
+
 ipcMain.on('ModalCnpj', () => {
   if (ModalCnpj == null) {
     ModalCnpj = new BrowserWindow({
