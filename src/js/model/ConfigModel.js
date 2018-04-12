@@ -46,6 +46,8 @@ class ConfigModel {
 
                     dadosModel.generateCanInu = dados.generateCanInu;
 
+                    dadosModel.nomeFastShop = dados.nomeFastShop;
+
 
                     let file_field = $('input[type="file"]').closest('.file-field');       
                     let path_input = file_field.find('input.file-path');
@@ -112,7 +114,8 @@ class ConfigModel {
             ipSocket: dadosModel.ipSocket,
             porta: dadosModel.porta,
             out: dadosModel.out,
-            generateCanInu: dadosModel.generateCanInu
+            generateCanInu: dadosModel.generateCanInu,
+            nomeFastShop: dadosModel.nomeFastShop
 
         }
         

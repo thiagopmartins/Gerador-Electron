@@ -54,6 +54,16 @@ class DadosModel {
         }
     }
 
+    get nomeFastShop() { 
+        let checks = document.getElementsByTagName("input");
+        let i = 0;
+        for (var key of checks) {
+            if (key.id == 'nomeFastShop' && key.checked) {
+                return key.value;
+            }
+        }
+    }    
+    
 
     get ipSocket() { return $('#ipSocket').value; }
     get porta() { return $('#porta').value; }
@@ -95,6 +105,10 @@ class DadosModel {
             $('#generateCanInu').checked = 'checked';
     }
 
+    set nomeFastShop(valor) {
+        if (valor == 'on')
+            $('#nomeFastShop').checked = 'checked';
+    }    
     set ipSocket(valor) { $('#ipSocket').value = valor; $('#lblIp').classList.add('active'); }
     set porta(valor) { $('#porta').value = valor; $('#lblPorta').classList.add('active'); }
     set out(valor) { $('#out').value = valor; $('#lblOut').classList.add('active'); }

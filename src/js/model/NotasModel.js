@@ -32,7 +32,8 @@ let
     ie,
     comunicacao,
     xml = false,
-    generateCanInu
+    generateCanInu,
+    nomeFastShop
     ;
 
 class NotasModel {
@@ -55,6 +56,7 @@ class NotasModel {
                 numeroInicio = dados.numero;
                 comunicacao = dados.comunicacao;
                 generateCanInu = dados.generateCanInu;
+                nomeFastShop = dados.nomeFastShop;
 
                 return resolve(dados);
             });
@@ -76,11 +78,15 @@ class NotasModel {
         let caminho;
         
         let nome = this.getName(agenteId);
-
+        let dat = new Date();
+        let sufixo = numNota;
+        if(nomeFastShop == 'on'){
+            sufixo = `${numNota}Z${dat.getTime()}`;
+        }
         if (!xml)
-            caminho = nome + numNota + '_ped_env.txt';
+            caminho = nome + sufixo + '_ped_env.txt';
         else
-            caminho = nome + numNota + '_ped_env.xml';
+            caminho = nome + sufixo + '_ped_env.xml';
 
         console.log(`Agente: ${nome}`);
         let encodedData = base64.encode(conteudo);
@@ -152,8 +158,13 @@ class NotasModel {
 
             console.log(novo);
             let encoded = base64.encode(content);
-            log.info(`Gerando can-inu ${this.getName(agenteId)}${numeroNota}_ped_can-inu.txt ${encoded}`);
-            fs.writeFileSync(novo + this.getName(agenteId) + numeroNota + '_ped_can-inu.txt', content);
+            let sufixo = numeroNota;
+            let dat = new Date();
+            if(nomeFastShop == 'on'){
+                sufixo = `${numeroNota}Z${dat.getTime()}`;
+            }
+            log.info(`Gerando can-inu ${this.getName(agenteId)}${sufixo}_ped_can-inu.txt ${encoded}`);
+            fs.writeFileSync(novo + this.getName(agenteId) + sufixo + '_ped_can-inu.txt', content);
         }
 
         notaConteudo = notaConteudo.replace('${cNF}', codigoAleatorio);
