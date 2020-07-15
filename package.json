@@ -33,7 +33,7 @@
     "jdbc": "^0.6.1",
     "jquery": "^3.2.1",
     "jsonfile-promised": "0.0.1",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "log4js": "^2.5.2",
     "materialize": "^1.0.0",
     "mssql": "^4.1.0",
